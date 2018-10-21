@@ -1,0 +1,473 @@
+/* Table of Contents
+/* ------------------------------------------------------------
+
+This is a development CSS file which is built to a minified
+production stylesheet in assets/built/screen.css
+
+1.  Global Styles
+2.  Layout
+3.  Special Templates
+4.  Site Header
+5.  Site Navigation
+6.  Post Feed
+7.  Single Post
+  7.1. Subscribe Form
+  7.2. Post Footer
+     7.2.1 Single Author Byline
+     7.2.2 Multiple Author Byline
+  7.3. Comments
+  7.4. Related Posts
+  7.5. Floating Header
+8.  Author Template
+9.  Error Template
+10. Subscribe Overlay
+11. Site Footer
+
+*/
+
+/* 1. Global - Set up the things
+/* ---------------------------------------------------------- */
+@import "global";
+
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900');
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,300,700');
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+html, body {
+  color: var(--darkgrey);
+  font-family: "Source Sans Pro", -apple-system, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--darkgrey);
+}
+
+a {
+  color: var(--darkgrey);
+  &:hover {
+    color: var(--grey);
+  }
+}
+
+/* 2. Layout - Page building blocks
+/* ---------------------------------------------------------- */
+
+header {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  padding: 2em;
+  padding-bottom: 1em;
+}
+
+main {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0%;
+  flex-direction: column;
+  justify-content: center;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+}
+
+/* 3. Special Template Styles
+/* ---------------------------------------------------------- */
+
+/* Large Screens */
+@media only screen and (min-width: 1281px) {
+  html, body {
+    font-size: 1.1em;
+  }
+}
+
+/* Small Screens */
+@media only screen and (max-width: 800px) {
+  body {
+    padding: 0;
+  }
+  header {
+    border-right: none;
+    border-bottom: 1px #eee solid;
+    position: relative;
+    height: auto;
+    width: auto;
+    text-align: center;
+    padding-bottom: 1em;
+  }
+  main {
+    margin-left: 0;
+    padding: 2em 2em 1em 2em;
+    width: auto;
+  }
+}
+
+/* Tiny Screens */
+@media only screen and (max-width: 320px) {
+  header, main {
+    padding: 1.2em 1.2em 0.6em 1.2em;
+  }
+  ul, ol {
+    margin-left: 2em;
+  }
+}
+
+/* 4. Site Header
+/* ---------------------------------------------------------- */
+
+header {
+  background: var(--darkgrey);
+  * {
+    color: white;
+  }
+  h1.title {
+    font-size: 2em;
+    font-weight: 500;
+    margin-bottom: 0em;
+  }
+  .description {
+    margin-top: 0.2em;
+    margin-bottom: 0.8em;
+  }
+  a:hover {
+    color: var(--lightgrey);
+  }
+  .navigation {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    h4 {
+      margin-top: 0.2em;
+      margin-bottom: 0.2em;
+    }
+  }
+}
+
+#follow-icons {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  font-size: 0.6em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  a {
+    vertical-align: top;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+  }
+}
+
+header h6 {
+  margin-top: 0.5em;
+}
+
+h1 {
+  &.post-title, &.page-title {
+    font-size: 2.2rem;
+  }
+}
+
+.page-title, .post-title {
+  margin-top: 0;
+}
+
+/* 5. Site Navigation
+/* ---------------------------------------------------------- */
+
+.navigation h2 {
+  margin-top: 0.5rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  font-size: 1.2em;
+  margin-top: 3em;
+}
+
+.pagination > * {
+  padding: 0.5em;
+}
+
+/* 6. Post Feed
+/* ---------------------------------------------------------- */
+
+.post-title {
+  margin: 0;
+}
+
+.post-subtitle {
+  margin-top: 0.5em;
+  padding-bottom: 0.9em;
+  font-size: 0.8em;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.post-title .feature-star {
+  font-size: 0.9em;
+}
+
+.separator, .tags, .feature-star {
+  color: var(--darkgrey);
+}
+
+.tags {
+  * {
+    background-color: var(--darkgrey);
+    color: white;
+    line-height: 1.5em;
+    padding: 0.3em 0.6em 0.3em 0.6em;
+    vertical-align: 20%;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 0.3em;
+    -moz-border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+  }
+  a:hover {
+    background-color: var(--grey);
+    color: white;
+  }
+}
+
+.taglist {
+  display: inline-block;
+}
+
+.smallTag {
+  font-size: 0.6em;
+}
+
+.read-on {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* 7. Single Post
+/* ---------------------------------------------------------- */
+
+article.post > .header {}
+
+.post-content {
+  h1 {
+    border-bottom: 1px solid var(--lightgrey);
+    padding-bottom: 0.5rem;
+  }
+  a {
+    color: var(--blue);
+  }
+}
+
+.footnotes {
+  border-top: 1px solid var(--lightgrey);
+}
+
+/* 7.1 Single Post Image
+/* ---------------------------------------------------------- */
+
+:root {
+  --widthFullPaddingPercentage: 0.1;
+}
+
+.post-content {
+  .kg-image {
+    max-height: 100vh;
+  }
+  figure {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  figcaption {
+    font-size: 80%;
+    text-align: center;
+  }
+  .kg-width-wide {
+    width: 100%;
+  }
+  .kg-width-full {
+    width: calc(100% + var(--paddingContent) * (2 - var(--widthFullPaddingPercentage) * 2));
+    margin-left: calc(var(--paddingContent) * ((1 - var(--widthFullPaddingPercentage)) * -1));
+  }
+}
+
+.kg-gallery-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1040px;
+  width: 100vw;
+}
+
+.kg-gallery-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.kg-gallery-image img {
+  display: block;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.kg-gallery-row:not(:first-of-type) {
+  margin: 0.75em 0 0 0;
+}
+
+.kg-gallery-image:not(:first-of-type) {
+  margin: 0 0 0 0.75em;
+}
+
+/* 7.2. Post Footer
+/* ---------------------------------------------------------- */
+
+#social-bar, #social-items-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#social-bar {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  padding: 1em;
+  background-color: #eee;
+  font-size: 90%;
+  font-weight: 500;
+  border-radius: 0.3em;
+  flex-direction: column;
+  > * {
+    margin: 0;
+  }
+  .title {
+    padding-bottom: 0.5em;
+  }
+}
+
+#social-items-list {
+  flex-direction: row;
+}
+
+article.post .bottom-navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  a {
+    border-radius: 0.3em;
+    padding: 0.3em;
+    border: 2px solid var(--darkgrey);
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+  }
+}
+
+/* 7.2.1 Single Author Byline
+/* ---------------------------------------------------------- */
+
+/*todo*/
+
+/* 7.2.2 Multiple Author Byline
+/* ---------------------------------------------------------- */
+
+/*todo*/
+
+/* 7.3. Comments
+/* ---------------------------------------------------------- */
+
+/* none */
+
+/* 7.4. Related posts
+/* ---------------------------------------------------------- */
+
+/*todo*/
+
+/* 7.5. Floating Footer
+/* ---------------------------------------------------------- */
+
+.progress {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  width: 100%;
+  height: 3px;
+  border: none;
+  color: var(--blue);
+  background: transparent;
+  &::-webkit-progress-bar {
+    background-color: transparent;
+  }
+  &::-webkit-progress-value, &::-moz-progress-bar {
+    background-color: var(--blue);
+  }
+}
+
+.progress-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: transparent;
+}
+
+.progress-bar {
+  display: block;
+  width: 50%;
+  height: inherit;
+  background-color: var(--blue);
+}
+
+/* 8. Author Template
+/* ---------------------------------------------------------- */
+
+/*todo*/
+
+/* 8. Tag Template
+/* ---------------------------------------------------------- */
+
+.page-tags .tags:not(:first-child) {
+  margin-top: 1em;
+}
+
+.tag-template .tags {
+  margin-top: 0.5em;
+}
+
+/* 8. Archive Template
+/* ---------------------------------------------------------- */
+
+.page-archives .tags {
+  margin-top: 1em;
+}
+
+/* 9. Error Template
+/* ---------------------------------------------------------- */
+
+/*todo*/
+
+/* 10. Subscribe Overlay
+/* ---------------------------------------------------------- */
+
+/*todo*/
+
+/* 11. Site Footer
+/* ---------------------------------------------------------- */
+
+footer {
+  font-size: 0.8em;
+  color: var(--grey);
+  line-height: 1.1em;
+}

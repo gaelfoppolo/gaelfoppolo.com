@@ -1,0 +1,51 @@
+# Site
+title: /var/log/journal
+description: >-
+  Thoughts, stories and ideas.
+url: https://www.gaelfoppolo.com
+timezone: Europe/Paris
+lang: en-US
+permalink: /:title/
+
+# Author
+author:
+  name: Gaël Foppolo
+  email: me@gaelfoppolo.com
+
+# Build
+markdown: kramdown
+highlighter: none
+
+# Front matter defaults 
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      types: ["pages", "meta"]
+    values:
+      layout: "page"
+
+# Collections
+collections:
+  meta:
+    output: true
+    permalink: /:path/
+  pages:
+    output: true
+    permalink: /:path/
+
+# Setup
+include: [".well-known"]
+exclude: ["README*", "LICENSE*", "Gemfile*"]
+
+# Pagination
+pagination:
+  enabled: true
+  per_page: 5
+  permalink: '/page/:num/'
+  sort_field: 'date'
+  sort_reverse: true

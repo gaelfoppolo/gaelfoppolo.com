@@ -1,0 +1,35 @@
+---
+layout: default
+title: /var/log/journal
+permalink: /
+pagination:
+  enabled: true
+---
+
+{% for post in paginator.posts %}
+	<section id="{{ post.id }}" class="post post-list">
+		<h1 class="post-title"><a href="{{ post.url }}" alt="{{ post.title }}">{{ post.title }}</a></h1>
+		<h2 class="post-subtitle">{{ post.date | date: "%d %B %Y"}}
+			<span class="separator"> &middot; </span> {{ post.content | reading_time_as_i }} &middot;
+			{% assign categories = post.categories %}
+			{% include inline-tags-list.html %}
+		</h2>
+		<p>{{ post.excerpt }}</p>
+		<p class="read-on"><a href="{{ post.url }}">Read On →</a></p>
+	</section>
+{% endfor %}
+
+{% if paginator.total_pages > 1 %}
+<nav class="pagination" role="pagination">
+    {% if paginator.previous_page %}
+    <span class="newer-posts">
+    	<a href="{{ paginator.previous_page_path | prepend: site.baseurl }}">&larr; Newer</a>
+    </span>
+    {% endif %}
+    {% if paginator.next_page %}
+    <span class="older-posts">
+    	<a href="{{ paginator.next_page_path | prepend: site.baseurl }}">Older &rarr;</a>
+    </span>
+    {% endif %}
+</nav>
+{% endif %}

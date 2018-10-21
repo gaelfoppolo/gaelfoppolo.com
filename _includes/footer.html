@@ -1,0 +1,7 @@
+<footer>
+	<p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name }}. All rights reserved.
+	{% for item in site.meta %}
+		<a href="{{ item.url }}" alt="{{ item.title }}">{{ item.title }}</a>.
+   	{% endfor %}
+	</p>
+</footer>

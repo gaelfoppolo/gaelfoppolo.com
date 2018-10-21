@@ -1,0 +1,22 @@
+---
+layout: default
+---
+
+<article id="{{ page.id }}" class="post">
+
+    <div class="header">
+        <h1 class="post-title">{{ page.title }}</h1>
+        <h2 class="post-subtitle">{{ page.date | date: "%d %B %Y" }}
+        	<span class="separator"> &middot; </span> {{ page.content | reading_time_as_i }} &middot;
+            {% assign categories = page.categories %}
+        	{% include inline-tags-list.html %}
+        </h2>
+    </div>
+
+    <div class="post-content">
+	   {{ content }}
+    </div>
+
+</article>
+
+{% include floatting-header.html %}

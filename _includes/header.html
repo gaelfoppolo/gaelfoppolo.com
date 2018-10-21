@@ -1,0 +1,11 @@
+	<header id="header">
+		<a href="/" alt="{{ site.title }}"><h1 class="title">{{ site.title }}</h1></a>
+		<p class="description">{{ site.description }}</p>
+		
+		<div class="navigation">
+   			{% for item in site.pages %}
+				<h2><a href="{{ item.url }}" alt="{{ item.title }}">{{ item.title }}</a></h2>
+   			{% endfor %}
+		</div>
+
+	</header>
