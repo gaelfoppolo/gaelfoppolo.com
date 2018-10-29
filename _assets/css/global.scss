@@ -1,8 +1,4 @@
-/* Variables
-/* ---------------------------------------------------------- */
-
 :root {
-  /* Colours */
   --darkgrey: #282822;
   --grey: #808080;
   --lightgrey: #cccc;
@@ -17,9 +13,6 @@
   --headerWidth: 18em;
   --paddingContent: 6em;
 }
-
-/* Reset
-/* ---------------------------------------------------------- */
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
@@ -228,10 +221,6 @@ th {
   border-bottom: 1px var(--darkgrey) solid;
 }
 
-/* ==========================================================================
-   Base styles: opinionated defaults
-   ========================================================================== */
-
 * {
   padding: 0;
   margin: 0;
@@ -411,8 +400,6 @@ blockquote {
     }
   }
 }
-
-/* Quotation marks */
 
 a {
   font-weight: 700;

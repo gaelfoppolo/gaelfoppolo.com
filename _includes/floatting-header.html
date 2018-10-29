@@ -2,15 +2,9 @@
         <div class="progress-container">
             <span class="progress-bar"></span>
         </div>
-    </progress>
+</progress>
 
-{{#contentFor "scripts"}}
-
-<script
-        src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous">
-    </script>
+{% asset jquery-3.2.1.min.js %}
 
 <script>
 
@@ -60,4 +54,3 @@ $(document).ready(function () {
 
 });
 </script>
-{{/contentFor}}

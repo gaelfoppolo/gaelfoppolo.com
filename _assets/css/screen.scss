@@ -1,39 +1,7 @@
-/* Table of Contents
-/* ------------------------------------------------------------
-
-This is a development CSS file which is built to a minified
-production stylesheet in assets/built/screen.css
-
-1.  Global Styles
-2.  Layout
-3.  Special Templates
-4.  Site Header
-5.  Site Navigation
-6.  Post Feed
-7.  Single Post
-  7.1. Subscribe Form
-  7.2. Post Footer
-     7.2.1 Single Author Byline
-     7.2.2 Multiple Author Byline
-  7.3. Comments
-  7.4. Related Posts
-  7.5. Floating Header
-8.  Author Template
-9.  Error Template
-10. Subscribe Overlay
-11. Site Footer
-
-*/
-
-/* 1. Global - Set up the things
-/* ---------------------------------------------------------- */
 @import "global";
 
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900');
-
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,300,700');
-
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
 html, body {
   color: var(--darkgrey);
@@ -50,9 +18,6 @@ a {
     color: var(--grey);
   }
 }
-
-/* 2. Layout - Page building blocks
-/* ---------------------------------------------------------- */
 
 header {
   display: flex;
@@ -74,9 +39,6 @@ footer {
   display: flex;
   justify-content: center;
 }
-
-/* 3. Special Template Styles
-/* ---------------------------------------------------------- */
 
 /* Large Screens */
 @media only screen and (min-width: 1281px) {
@@ -115,9 +77,6 @@ footer {
     margin-left: 2em;
   }
 }
-
-/* 4. Site Header
-/* ---------------------------------------------------------- */
 
 header {
   background: var(--darkgrey);
@@ -177,9 +136,6 @@ h1 {
   margin-top: 0;
 }
 
-/* 5. Site Navigation
-/* ---------------------------------------------------------- */
-
 .navigation h2 {
   margin-top: 0.5rem;
 }
@@ -194,9 +150,6 @@ h1 {
 .pagination > * {
   padding: 0.5em;
 }
-
-/* 6. Post Feed
-/* ---------------------------------------------------------- */
 
 .post-title {
   margin: 0;
@@ -251,9 +204,6 @@ h1 {
   justify-content: flex-end;
 }
 
-/* 7. Single Post
-/* ---------------------------------------------------------- */
-
 article.post > .header {}
 
 .post-content {
@@ -269,9 +219,6 @@ article.post > .header {}
 .footnotes {
   border-top: 1px solid var(--lightgrey);
 }
-
-/* 7.1 Single Post Image
-/* ---------------------------------------------------------- */
 
 :root {
   --widthFullPaddingPercentage: 0.1;
@@ -327,9 +274,6 @@ article.post > .header {}
   margin: 0 0 0 0.75em;
 }
 
-/* 7.2. Post Footer
-/* ---------------------------------------------------------- */
-
 #social-bar, #social-items-list {
   display: flex;
   justify-content: center;
@@ -370,29 +314,6 @@ article.post .bottom-navigation {
   }
 }
 
-/* 7.2.1 Single Author Byline
-/* ---------------------------------------------------------- */
-
-/*todo*/
-
-/* 7.2.2 Multiple Author Byline
-/* ---------------------------------------------------------- */
-
-/*todo*/
-
-/* 7.3. Comments
-/* ---------------------------------------------------------- */
-
-/* none */
-
-/* 7.4. Related posts
-/* ---------------------------------------------------------- */
-
-/*todo*/
-
-/* 7.5. Floating Footer
-/* ---------------------------------------------------------- */
-
 .progress {
   position: fixed;
   bottom: 0;
@@ -430,14 +351,6 @@ article.post .bottom-navigation {
   background-color: var(--blue);
 }
 
-/* 8. Author Template
-/* ---------------------------------------------------------- */
-
-/*todo*/
-
-/* 8. Tag Template
-/* ---------------------------------------------------------- */
-
 .page-tags .tags:not(:first-child) {
   margin-top: 1em;
 }
@@ -446,25 +359,9 @@ article.post .bottom-navigation {
   margin-top: 0.5em;
 }
 
-/* 8. Archive Template
-/* ---------------------------------------------------------- */
-
 .page-archives .tags {
   margin-top: 1em;
 }
-
-/* 9. Error Template
-/* ---------------------------------------------------------- */
-
-/*todo*/
-
-/* 10. Subscribe Overlay
-/* ---------------------------------------------------------- */
-
-/*todo*/
-
-/* 11. Site Footer
-/* ---------------------------------------------------------- */
 
 footer {
   font-size: 0.8em;
