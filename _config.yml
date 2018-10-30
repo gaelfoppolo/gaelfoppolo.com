@@ -49,3 +49,11 @@ pagination:
   permalink: '/page/:num/'
   sort_field: 'date'
   sort_reverse: true
+
+jekyll-archives:
+  enabled: 
+    - categories
+  layouts:
+    category: 'category'
+  permalinks:
+    category: '/category/:name/'
