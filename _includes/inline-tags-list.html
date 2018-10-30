@@ -1,5 +1,9 @@
-<span class="tags taglist smallTag">
-        	{% for category in categories %}
-				<a href="/{{ # }}" alt="{{ category }}">{{ category }}</a>
-   			{% endfor %}
-</span>
+<section class='tags taglist smallTag'>
+   	{% for category in categories %}
+   		{% assign category_name = category %}
+   		{% if category[0] != nil %}
+			{% assign category_name = category[0] %}
+		{% endif %}
+  		<a href='{{ site.baseurl }}/category/{{ category_name | replace: " ", "-" }}' alt='{{ category_name }}'>{{ category_name }}</a>
+	{% endfor %}
+</section>
