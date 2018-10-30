@@ -7,7 +7,7 @@
     		<meta name="description" content="{{ page.excerpt | strip_html }}"/>
     		<link rel="canonical" href="{{ page.url | absolute_url }}"/>
   		{% else %}
-    		<title>{{ page.title | strip_html }}</title>
+    		<title>{{ site.title | strip_html }}</title>
     		<meta name="description" content="{{ site.description | strip_html }}"/>
     		<link rel="canonical" href="{{ site.url }}"/>
 		{% endif %}

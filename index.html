@@ -1,7 +1,5 @@
 ---
 layout: default
-title: /var/log/journal
-permalink: /
 pagination:
   enabled: true
 ---
@@ -15,7 +13,7 @@ pagination:
 			{% include inline-tags-list.html %}
 		</h2>
 		<p>{{ post.excerpt }}</p>
-		<p class="read-on"><a href="{{ post.url }}">Read On →</a></p>
+		<p class="read-on"><a href="{{ post.url }}">{{ site.data.index.continue }}</a></p>
 	</section>
 {% endfor %}
 
@@ -23,12 +21,12 @@ pagination:
 <nav class="pagination" role="pagination">
     {% if paginator.previous_page %}
     <span class="newer-posts">
-    	<a href="{{ paginator.previous_page_path | prepend: site.baseurl }}">&larr; Newer</a>
+    	<a href="{{ paginator.previous_page_path | prepend: site.baseurl }}">{{ site.data.index.pagination.previous }}</a>
     </span>
     {% endif %}
     {% if paginator.next_page %}
     <span class="older-posts">
-    	<a href="{{ paginator.next_page_path | prepend: site.baseurl }}">Older &rarr;</a>
+    	<a href="{{ paginator.next_page_path | prepend: site.baseurl }}">{{ site.data.index.pagination.next }}</a>
     </span>
     {% endif %}
 </nav>
