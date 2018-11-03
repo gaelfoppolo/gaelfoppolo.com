@@ -7,7 +7,7 @@ pagination:
 {% for post in paginator.posts %}
 	<section id="{{ post.id }}" class="post post-list">
 		<h1 class="post-title"><a href="{{ post.url }}" alt="{{ post.title }}">{{ post.title }}</a></h1>
-		<h2 class="post-subtitle">{{ post.date | date: "%d %B %Y"}}
+		<h2 class="post-subtitle">{{ post.date | date: site.date_format}}
 			<span class="separator"> &middot; </span> {{ post.content | reading_time_as_i }} &middot;
 			{% assign categories = post.categories %}
 			{% include inline-tags-list.html %}

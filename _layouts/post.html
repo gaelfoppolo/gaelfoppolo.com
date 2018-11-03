@@ -6,7 +6,7 @@ layout: default
 
     <div class="header">
         <h1 class="post-title">{{ page.title }}</h1>
-        <h2 class="post-subtitle">{{ page.date | date: "%d %B %Y" }}
+        <h2 class="post-subtitle">{{ page.date | date: site.date_format }}
         	<span class="separator"> &middot; </span> {{ page.content | reading_time_as_i }} &middot;
             {% assign categories = page.categories %}
         	{% include inline-tags-list.html %}
