@@ -2,7 +2,7 @@
     	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
        	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
        
-       	{% if page.id %}
+       	{% if page.id or page.type %}
     		<title>{{ site.title }} — {{ page.title | strip_html }}</title>
     		<meta name="description" content="{{ page.excerpt | strip_html }}"/>
     		<link rel="canonical" href="{{ page.url | absolute_url }}"/>
