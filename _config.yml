@@ -11,6 +11,7 @@ permalink: /:title/
 author:
   name: Gaël Foppolo
   email: me@gaelfoppolo.com
+  twitter: gaelugio
 
 # Build
 markdown: kramdown
