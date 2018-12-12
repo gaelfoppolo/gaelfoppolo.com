@@ -60,3 +60,9 @@ jekyll-archives:
     category: 'category'
   permalinks:
     category: '/category/:name/'
+
+plugins:
+  - jekyll-font-awesome-sass
+
+font-awesome:
+  assets: true
