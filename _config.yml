@@ -15,7 +15,7 @@ author:
 
 # Build
 markdown: kramdown
-highlighter: none
+highlighter: rouge
 date_format: "%d<sup>%o</sup> %B %Y"
 
 # Front matter defaults 

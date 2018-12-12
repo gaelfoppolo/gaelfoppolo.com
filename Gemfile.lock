@@ -118,6 +118,7 @@ DEPENDENCIES
   jekyll-font-awesome-sass
   jekyll-paginate-v2
   jekyll-time-to-read
+  rouge
 
 RUBY VERSION
    ruby 2.5.0p0
