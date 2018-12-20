@@ -4,9 +4,9 @@ categories: [ios, security]
 
 ---
 
-OTP are becoming a security requirement nowadays. There are an essential part our usage flow. We want to perform an sensitive action, we need to verify and confirm it with a security code.
+OTP are becoming a security requirement nowadays. There are an essential part of our usage flow. We want to perform a sensitive action, we need to verify and confirm it with a security code.
 
-Unfortunalely the flow can be very tedious. The code is requested and received. Either you have a blasting memory and can type the code during the short amount of time of the notification. Or you switch to the Messages app and copy the code, and again back in the app.
+Unfortunately the flow can be very tedious. The code is requested and received. Either you have a blasting memory and can type the code during the short amount of time of the notification. Or you switch to the Messages app and copy the code, and again back in the app.
 
 {% asset security-code-autofill-before.png %}
 
@@ -25,9 +25,9 @@ That's it. Reference: [UITextContentType.oneTimeCode](https://developer.apple.co
 
 **This is not mandatory.**  
 
-As of iOS 12, all `UITextField` can display this AutoFill option by default, when the system detect a security code. 
+As of iOS 12, all `UITextField` can display this AutoFill option by default, when the system detects a security code. 
 
-However, if your view display several text fields, using this specific `UITextContentType` will help the system, by providing an indication, a hint. iOS will then only display the AutoFill option in the specified text field tagged with security code content type.
+However, if your view displays several text fields, using this specific `UITextContentType` will help the system, by providing an indication, a hint. iOS will then only display the AutoFill option in the specified text field tagged with security code content type.
 
 ## Limitations
 
