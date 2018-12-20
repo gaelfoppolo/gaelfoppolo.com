@@ -1,7 +1,6 @@
 ---
 title: Security Code AutoFill
 categories: [ios, security]
-
 ---
 
 OTP are becoming a security requirement nowadays. There are an essential part of our usage flow. We want to perform a sensitive action, we need to verify and confirm it with a security code.
