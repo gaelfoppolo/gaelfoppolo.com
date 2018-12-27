@@ -18,6 +18,38 @@ header {
   flex-direction: column;
   padding: 2em;
   padding-bottom: 1em;
+  background: $baseDarkGrey;
+  * {
+    color: white;
+  }
+  h1, h2 {
+    font-size: $type-size-4;
+  }
+  h1.title {
+    font-size: 2em;
+    font-weight: 500;
+    margin-bottom: 0em;
+  }
+  .description {
+    margin-top: 0.2em;
+    margin-bottom: 0.8em;
+  }
+  a:hover {
+    color: $baseLightGrey;
+  }
+  a:visited {
+    color: white;
+  }
+  .navigation {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    * {
+      margin-top: 0.5rem;
+    }
+  }
 }
 
 main {
@@ -31,6 +63,9 @@ main {
 footer {
   display: flex;
   justify-content: center;
+  font-size: 0.8em;
+  color: $baseGrey;
+  line-height: 1.1em;
 }
 
 /* Small Screens */
@@ -64,45 +99,8 @@ footer {
   }
 }
 
-header {
-  background: $baseDarkGrey;
-  * {
-    color: white;
-  }
-  h1.title {
-    font-size: 2em;
-    font-weight: 500;
-    margin-bottom: 0em;
-  }
-  .description {
-    margin-top: 0.2em;
-    margin-bottom: 0.8em;
-  }
-  a:hover {
-    color: $baseLightGrey;
-  }
-  a:visited {
-    color: white;
-  }
-  .navigation {
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    margin-top: 1em;
-    margin-bottom: 1em;
-  }
-}
-
-header h1, header h2  {
-  font-size: $type-size-4;
-}
-
 .page-title, .post-title {
   margin-top: 0;
-}
-
-header .navigation * {
-  margin-top: 0.5rem;
 }
 
 .pagination {
@@ -110,10 +108,9 @@ header .navigation * {
   justify-content: center;
   font-size: 1.2em;
   margin-top: 3em;
-}
-
-.pagination > * {
-  padding: 0.5em;
+  > * {
+    padding: 0.5em;
+  }
 }
 
 .post-title {
@@ -182,15 +179,14 @@ article.post > .header {}
   a {
     color: $baseBlue;
   }
-}
-
-.post-content > p:first-child:first-letter {
+  > p:first-child:first-letter {
     color: $baseDarkGrey;
     float: left;
     font-size: 75px;
     font-weight: 500;
     line-height: 60px;
     padding-right: 5px;
+  }
 }
 
 .footnotes {
@@ -311,10 +307,4 @@ article.post .bottom-navigation {
 
 .page-archives .tags {
   margin-top: 1em;
-}
-
-footer {
-  font-size: 0.8em;
-  color: $baseGrey;
-  line-height: 1.1em;
 }
