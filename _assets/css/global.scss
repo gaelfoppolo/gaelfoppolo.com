@@ -20,15 +20,12 @@ table {
   border-collapse: collapse;
 }
 
-img, iframe {
-  max-width: 100%;
-}
-
 sub {
   position: relative;
   font-size: $type-size-7;
   line-height: 0;
   vertical-align: baseline;
+  bottom: -0.25em;
 }
 
 sup {
@@ -37,14 +34,6 @@ sup {
   line-height: 0;
   vertical-align: baseline;
   top: -0.5em;
-}
-
-sub {
-  bottom: -0.25em;
-}
-
-img {
-  border: 0;
 }
 
 svg:not(:root) {
@@ -198,6 +187,8 @@ p, ul, ol, dl {
 ol, ul {
   padding-left: 1.3em;
   padding-right: 1.5em;
+  max-width: 100%;
+  margin-left: 1em;
 }
 
 ol ol {
@@ -222,11 +213,6 @@ ol {
   list-style: decimal;
 }
 
-ul, ol {
-  max-width: 100%;
-  margin-left: 1em;
-}
-
 li > p {
   margin: 0.5em 0;
 }
@@ -243,11 +229,6 @@ dt {
 dd {
   margin: 0 0 5px 0;
   text-align: left;
-}
-
-p {
-  margin-top: 0.9em;
-  margin-bottom: 0.9em;
 }
 
 input {

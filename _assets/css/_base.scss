@@ -99,7 +99,8 @@ i, em, dfn {
 }
 
 p {
-  margin-bottom: 1.3em;
+  margin-top: 0.9em;
+  margin-bottom: 0.9em;
 }
 
 u,
@@ -163,8 +164,7 @@ a {
     @extend %tab-focus;
   }
 
-  &:hover,
-  &:active {
+  &:hover {
     color: $link-color-hover;
     outline: 0;
     text-decoration: none;
@@ -255,14 +255,15 @@ figure {
   margin: 2em 0;
 
   img,
-  iframe,
-  .fluid-width-video-wrapper {
+  iframe {
+    max-width: 100%;
     margin-bottom: 1em;
   }
 
   img {
     width: 100%;
     border-radius: $border-radius;
+    border: 0;
   }
 
   > a {

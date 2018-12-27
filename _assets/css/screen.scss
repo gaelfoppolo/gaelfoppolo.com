@@ -5,11 +5,8 @@ $fa-font-path: "/assets/fonts/font-awesome/";
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,300,700');
 
-a {
-  color: $baseDarkGrey;
-  &:hover {
-    color: $baseGrey;
-  }
+a:hover {
+  color: $baseGrey;
 }
 
 header {
@@ -245,19 +242,6 @@ article.post > .header {}
 
 .kg-gallery-image:not(:first-of-type) {
   margin: 0 0 0 0.75em;
-}
-
-article.post .bottom-navigation {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  a {
-    border-radius: 0.3em;
-    padding: 0.3em;
-    border: 2px solid $baseDarkGrey;
-    margin-left: 0.5em;
-    margin-right: 0.5em;
-  }
 }
 
 .progress {
