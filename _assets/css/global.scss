@@ -10,6 +10,8 @@ $baseBlue: #52ADC8 !default;
 // $basePink: #FA3A57 !default;
 // $baseBrown: #A3821A !default;
 
+$baseFontFamily: -apple-system, "Source Sans Pro", "Open Sans", "Helvetica Neue", sans-serif !default;
+
 $baseHeaderWidth: 18em !default;
 $basePaddingContent: 6em !default;
 
@@ -59,7 +61,6 @@ img, iframe {
 
 html {
   box-sizing: border-box;
-  font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -225,7 +226,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   overflow-x: hidden;
   font-size: 1em;
-  font-family: -apple-system, "Helvetica Neue", sans-serif;
+  font-family: $baseFontFamily;
   font-weight: 400;
   font-style: normal;
   text-rendering: optimizeLegibility;
@@ -240,7 +241,7 @@ html {
 body {
   overflow-x: hidden;
   font-size: 1em;
-  font-family: -apple-system, "Helvetica Neue", sans-serif;
+  font-family: $baseFontFamily;
   font-weight: 400;
   font-style: normal;
   text-rendering: optimizeLegibility;
