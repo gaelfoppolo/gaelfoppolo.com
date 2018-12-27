@@ -1,5 +1,4 @@
 @import "global";
-@import "syntax";
 $fa-font-path: "/assets/fonts/font-awesome/";
 @import 'font-awesome';
 
@@ -40,13 +39,6 @@ main {
 footer {
   display: flex;
   justify-content: center;
-}
-
-/* Large Screens */
-@media only screen and (min-width: 1281px) {
-  html, body {
-    font-size: 1.1em;
-  }
 }
 
 /* Small Screens */
@@ -97,6 +89,9 @@ header {
   a:hover {
     color: $baseLightGrey;
   }
+  a:visited {
+    color: white;
+  }
   .navigation {
     display: flex;
     flex-direction: column;
@@ -110,28 +105,12 @@ header {
   }
 }
 
-#follow-icons {
-  display: flex;
-  flex-direction: row;
-  align-self: center;
-  font-size: 0.6em;
-  margin-top: 1em;
-  margin-bottom: 1em;
-  a {
-    vertical-align: top;
-    margin-left: 0.5em;
-    margin-right: 0.5em;
-  }
-}
-
 header h6 {
   margin-top: 0.5em;
 }
 
-h1 {
-  &.post-title, &.page-title {
-    font-size: 2.2rem;
-  }
+header h1, header h2  {
+  font-size: $type-size-4;
 }
 
 .page-title, .post-title {
@@ -189,6 +168,9 @@ h1 {
   }
   a:hover {
     background-color: $baseGrey;
+    color: white;
+  }
+  a {
     color: white;
   }
 }

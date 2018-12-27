@@ -1,3 +1,5 @@
+@import "sass";
+
 $baseDarkGrey: #282822 !default;
 $baseGrey: #808080 !default;
 $baseLightGrey: #CCCC !default;
@@ -10,8 +12,6 @@ $baseBlue: #52ADC8 !default;
 // $basePink: #FA3A57 !default;
 // $baseBrown: #A3821A !default;
 
-$baseFontFamily: -apple-system, "Source Sans Pro", "Open Sans", "Helvetica Neue", sans-serif !default;
-
 $baseHeaderWidth: 18em !default;
 $basePaddingContent: 6em !default;
 
@@ -19,17 +19,11 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   margin: 0;
   padding: 0;
   border: 0;
-  font: inherit;
-  font-size: 100%;
   vertical-align: baseline;
 }
 
 body {
   line-height: 1;
-}
-
-ol, ul {
-  list-style: none;
 }
 
 blockquote, q {
@@ -79,28 +73,16 @@ a {
   }
 }
 
-b, strong {
-  font-weight: bold;
-}
-
-i, em, dfn {
-  font-style: italic;
-}
-
-small {
-  font-size: 80%;
-}
-
 sub {
   position: relative;
-  font-size: 70%;
+  font-size: $type-size-7;
   line-height: 0;
   vertical-align: baseline;
 }
 
 sup {
   position: relative;
-  font-size: 70%;
+  font-size: $type-size-7;
   line-height: 0;
   vertical-align: baseline;
   top: -0.5em;
@@ -125,7 +107,6 @@ mark {
 button, input, optgroup, select, textarea {
   margin: 0;
   color: inherit;
-  font: inherit;
 }
 
 button {
@@ -214,19 +195,14 @@ th {
   border-bottom: 1px $baseDarkGrey solid;
 }
 
-* {
-  padding: 0;
-  margin: 0;
-}
+// --------------------------------
 
 html {
-  height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   overflow-x: hidden;
-  font-size: 1em;
-  font-family: $baseFontFamily;
+  font-family: $global-font-family;
   font-weight: 400;
   font-style: normal;
   text-rendering: optimizeLegibility;
@@ -235,13 +211,12 @@ html {
   -moz-font-feature-settings: "liga" on;
   line-height: 1.5em;
   letter-spacing: 0;
-  background: white;
+  
 }
 
 body {
   overflow-x: hidden;
-  font-size: 1em;
-  font-family: $baseFontFamily;
+  font-family: $global-font-family;
   font-weight: 400;
   font-style: normal;
   text-rendering: optimizeLegibility;
@@ -287,6 +262,7 @@ header {
   left: 0;
   bottom: 0;
   width: $baseHeaderWidth;
+  font-family: $header-font-family;
 }
 
 footer {
@@ -374,13 +350,12 @@ blockquote {
   color: $baseGrey;
   p {
     margin: 0.8em 0;
-    font-size: 1.2em;
-    font-weight: 300;
+    font-size: $type-size-4;
   }
   small {
     display: inline-block;
     margin: 0.8em 0 0.8em 1.5em;
-    font-size: 0.9em;
+    font-size: $type-size-6;
     opacity: 0.8;
     &:before {
       content: "\2014 \00A0";
@@ -416,22 +391,22 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 
 h1 {
   margin-top: 2rem;
-  font-size: 2rem;
+  font-size: $type-size-1;
 }
 
 h2 {
   margin-top: 1.5rem;
-  font-size: 1.5rem;
+  font-size: $type-size-2;
 }
 
 h3 {
   margin-top: 1.25rem;
-  font-size: 1.25rem;
+  font-size: $type-size-3;
 }
 
 h4, h5, h6 {
   margin-top: 1rem;
-  font-size: 1rem;
+  font-size: $type-size-4;
 }
 
 p {
@@ -440,6 +415,6 @@ p {
 }
 
 input {
-  font-size: 1em;
+  font-size: $type-size-5;
   padding: 0.3em;
 }
