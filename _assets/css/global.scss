@@ -15,13 +15,6 @@ $baseBlue: #52ADC8 !default;
 $baseHeaderWidth: 18em !default;
 $basePaddingContent: 6em !default;
 
-q {
-  &:before, &:after {
-    content: "";
-    content: none;
-  }
-}
-
 table {
   border-spacing: 0;
   border-collapse: collapse;
@@ -29,26 +22,6 @@ table {
 
 img, iframe {
   max-width: 100%;
-}
-
-html {
-  box-sizing: border-box;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
-
-* {
-  box-sizing: inherit;
-  &:before, &:after {
-    box-sizing: inherit;
-  }
-}
-
-a {
-  background-color: transparent;
-  &:active, &:hover {
-    outline: 0;
-  }
 }
 
 sub {
@@ -175,43 +148,8 @@ th {
 
 // --------------------------------
 
-html {
-  overflow-x: hidden;
-  overflow-y: scroll;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  overflow-x: hidden;
-  font-family: $global-font-family;
-  font-weight: 400;
-  font-style: normal;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -moz-font-feature-settings: "liga" on;
-  line-height: 1.5em;
-  letter-spacing: 0;
-  
-}
-
 body {
-  overflow-x: hidden;
-  font-family: $global-font-family;
-  font-weight: 400;
-  font-style: normal;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -moz-font-feature-settings: "liga" on;
-  line-height: 1.5em;
-  letter-spacing: 0;
-  background: white;
-  min-height: 100vh;
   padding-left: $baseHeaderWidth;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: stretch;
-  align-content: stretch;
 }
 
 main {
@@ -221,26 +159,12 @@ main {
   padding-bottom: $basePaddingContent;
 }
 
-::selection, ::-moz-selection {
-  background: $baseLightGrey !important;
-}
-
-hr {
-  position: relative;
-  display: block;
-  width: 100%;
-  margin-top: 0.9em;
-  margin-bottom: 0.9em;
-  padding: 0;
-}
-
 header {
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   width: $baseHeaderWidth;
-  font-family: $header-font-family;
 }
 
 footer {
@@ -319,22 +243,6 @@ dt {
 dd {
   margin: 0 0 5px 0;
   text-align: left;
-}
-
-a {
-  font-weight: 700;
-  text-decoration: none;
-  &:hover {
-    text-decoration: none;
-  }
-}
-
-h1, h2, h3, h4, h5, h6 {
-  margin-top: 0;
-  margin-bottom: .5rem;
-  line-height: 1.25em;
-  font-weight: 700;
-  text-rendering: optimizeLegibility;
 }
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
