@@ -24,6 +24,8 @@ $monospace: 'SF Mono', monospace !default;
 $type-size: 0.9em;
 $border-radius: 0.5em;
 
+/* syntax highlighting */
+
 code, kbd, pre, samp {
   font-family: $monospace;
   font-size: 1em;

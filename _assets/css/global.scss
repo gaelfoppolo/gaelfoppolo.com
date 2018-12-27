@@ -1,18 +1,17 @@
-:root {
-  --darkgrey: #282822;
-  --grey: #808080;
-  --lightgrey: #cccc;
-  --whitegrey: #e5eff5;
-  --blue: #52adc8;
-  --green: #a4d037;
-  --purple: #ad26b4;
-  --yellow: #fecd35;
-  --red: #f05230;
-  --pink: #fa3a57;
-  --brown: #a3821a;
-  --headerWidth: 18em;
-  --paddingContent: 6em;
-}
+$baseDarkGrey: #282822 !default;
+$baseGrey: #808080 !default;
+$baseLightGrey: #CCCC !default;
+// $baseWhiteGrey: #E5EFF5 !default;
+$baseBlue: #52ADC8 !default;
+// $baseGreen: #A4D037 !default;
+// $basePurple: #AD26B4 !default;
+// $baseYellow: #FECD35 !default;
+// $baseRed: #F05230 !default;
+// $basePink: #FA3A57 !default;
+// $baseBrown: #A3821A !default;
+
+$baseHeaderWidth: 18em !default;
+$basePaddingContent: 6em !default;
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
@@ -200,7 +199,7 @@ table {
   border-collapse: collapse;
   margin: 1em auto;
   width: 80%;
-  border: 2px var(--darkgrey) solid;
+  border: 2px $baseDarkGrey solid;
   table-layout: fixed;
   word-wrap: break-word;
 }
@@ -211,7 +210,7 @@ td {
 
 th {
   font-weight: bold;
-  border-bottom: 1px var(--darkgrey) solid;
+  border-bottom: 1px $baseDarkGrey solid;
 }
 
 * {
@@ -252,7 +251,7 @@ body {
   letter-spacing: 0;
   background: white;
   min-height: 100vh;
-  padding-left: var(--headerWidth);
+  padding-left: $baseHeaderWidth;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -262,14 +261,14 @@ body {
 }
 
 main {
-  padding-left: var(--paddingContent);
-  padding-right: var(--paddingContent);
-  padding-top: var(--paddingContent);
-  padding-bottom: var(--paddingContent);
+  padding-left: $basePaddingContent;
+  padding-right: $basePaddingContent;
+  padding-top: $basePaddingContent;
+  padding-bottom: $basePaddingContent;
 }
 
 ::selection, ::-moz-selection {
-  background: var(--lightgrey) !important;
+  background: $baseLightGrey !important;
 }
 
 hr {
@@ -286,7 +285,7 @@ header {
   top: 0;
   left: 0;
   bottom: 0;
-  width: var(--headerWidth);
+  width: $baseHeaderWidth;
 }
 
 footer {
@@ -357,7 +356,7 @@ dt {
   float: left;
   margin: 0 20px 0 0;
   width: 120px;
-  color: var(--darkgrey);
+  color: $baseDarkGrey;
   font-weight: 500;
   text-align: right;
 }
@@ -369,9 +368,9 @@ dd {
 
 blockquote {
   margin: 1.5em 0;
-  border-left: var(--grey) 0.25em solid;
+  border-left: $baseGrey 0.25em solid;
   padding-left: 1.2em;
-  color: var(--grey);
+  color: $baseGrey;
   p {
     margin: 0.8em 0;
     font-size: 1.2em;

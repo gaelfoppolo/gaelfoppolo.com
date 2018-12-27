@@ -8,18 +8,18 @@ $fa-font-path: "/assets/fonts/font-awesome/";
 @import 'font-awesome';
 
 html, body {
-  color: var(--darkgrey);
+  color: $baseDarkGrey;
   font-family: -apple-system, "Source Sans Pro", "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: var(--darkgrey);
+  color: $baseDarkGrey;
 }
 
 a {
-  color: var(--darkgrey);
+  color: $baseDarkGrey;
   &:hover {
-    color: var(--grey);
+    color: $baseGrey;
   }
 }
 
@@ -83,7 +83,7 @@ footer {
 }
 
 header {
-  background: var(--darkgrey);
+  background: $baseDarkGrey;
   * {
     color: white;
   }
@@ -97,7 +97,7 @@ header {
     margin-bottom: 0.8em;
   }
   a:hover {
-    color: var(--lightgrey);
+    color: $baseLightGrey;
   }
   .navigation {
     display: flex;
@@ -172,12 +172,12 @@ h1 {
 }
 
 .separator, .tags, .feature-star {
-  color: var(--darkgrey);
+  color: $baseDarkGrey;
 }
 
 .tags {
   * {
-    background-color: var(--darkgrey);
+    background-color: $baseDarkGrey;
     color: white;
     line-height: 1.5em;
     padding: 0.3em 0.6em 0.3em 0.6em;
@@ -190,7 +190,7 @@ h1 {
     -webkit-border-radius: 0.3em;
   }
   a:hover {
-    background-color: var(--grey);
+    background-color: $baseGrey;
     color: white;
   }
 }
@@ -212,16 +212,16 @@ article.post > .header {}
 
 .post-content {
   h1 {
-    border-bottom: 1px solid var(--lightgrey);
+    border-bottom: 1px solid $baseLightGrey;
     padding-bottom: 0.5rem;
   }
   a {
-    color: var(--blue);
+    color: $baseBlue;
   }
 }
 
 .post-content > p:first-child:first-letter {
-    color: var(--darkgrey);
+    color: $baseDarkGrey;
     float: left;
     font-size: 75px;
     font-weight: 500;
@@ -230,7 +230,7 @@ article.post > .header {}
 }
 
 .footnotes {
-  border-top: 1px solid var(--lightgrey);
+  border-top: 1px solid $baseLightGrey;
 }
 
 :root {
@@ -254,8 +254,8 @@ article.post > .header {}
     width: 100%;
   }
   .kg-width-full {
-    width: calc(100% + var(--paddingContent) * (2 - var(--widthFullPaddingPercentage) * 2));
-    margin-left: calc(var(--paddingContent) * ((1 - var(--widthFullPaddingPercentage)) * -1));
+    width: calc(100% + $basePaddingContent * (2 - var(--widthFullPaddingPercentage) * 2));
+    margin-left: calc($basePaddingContent * ((1 - var(--widthFullPaddingPercentage)) * -1));
   }
 }
 
@@ -321,7 +321,7 @@ article.post .bottom-navigation {
   a {
     border-radius: 0.3em;
     padding: 0.3em;
-    border: 2px solid var(--darkgrey);
+    border: 2px solid $baseDarkGrey;
     margin-left: 0.5em;
     margin-right: 0.5em;
   }
@@ -337,13 +337,13 @@ article.post .bottom-navigation {
   width: 100%;
   height: 3px;
   border: none;
-  color: var(--blue);
+  color: $baseBlue;
   background: transparent;
   &::-webkit-progress-bar {
     background-color: transparent;
   }
   &::-webkit-progress-value, &::-moz-progress-bar {
-    background-color: var(--blue);
+    background-color: $baseBlue;
   }
 }
 
@@ -361,7 +361,7 @@ article.post .bottom-navigation {
   display: block;
   width: 50%;
   height: inherit;
-  background-color: var(--blue);
+  background-color: $baseBlue;
 }
 
 .page-tags .tags:not(:first-child) {
@@ -378,6 +378,6 @@ article.post .bottom-navigation {
 
 footer {
   font-size: 0.8em;
-  color: var(--grey);
+  color: $baseGrey;
   line-height: 1.1em;
 }
