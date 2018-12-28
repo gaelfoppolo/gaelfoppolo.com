@@ -33,6 +33,7 @@ $warning-color: #f89406 !default;
 $danger-color: #ee5f5b !default;
 $info-color: #257ede !default;
 
+$background-color: #fff !default;
 $text-color: $dark-grey !default;
 $muted-text-color: mix(#fff, $text-color, 35%) !default;
 $code-background-color: #263238 !default;
@@ -60,3 +61,4 @@ $x-large: 1280px !default;
 /* Other */
 
 $border-radius: 8px !default;
+$box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125) !default;

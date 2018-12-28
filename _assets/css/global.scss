@@ -44,78 +44,6 @@ mark {
   background-color: #fdffb6;
 }
 
-button, input, optgroup, select, textarea {
-  margin: 0;
-  color: inherit;
-}
-
-button {
-  overflow: visible;
-  border: none;
-  text-transform: none;
-}
-
-select {
-  text-transform: none;
-}
-
-button, html input[type="button"] {
-  cursor: pointer;
-  -webkit-appearance: button;
-}
-
-input {
-  &[type="reset"], &[type="submit"] {
-    cursor: pointer;
-    -webkit-appearance: button;
-  }
-}
-
-button[disabled], html input[disabled] {
-  cursor: default;
-}
-
-button::-moz-focus-inner {
-  padding: 0;
-  border: 0;
-}
-
-input {
-  &::-moz-focus-inner {
-    padding: 0;
-    border: 0;
-  }
-  line-height: normal;
-  &:focus {
-    outline: none;
-  }
-  &[type="checkbox"], &[type="radio"] {
-    box-sizing: border-box;
-    padding: 0;
-  }
-  &[type="number"] {
-    &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
-      height: auto;
-    }
-  }
-  &[type="search"] {
-    box-sizing: content-box;
-    -webkit-appearance: textfield;
-    &::-webkit-search-cancel-button, &::-webkit-search-decoration {
-      -webkit-appearance: none;
-    }
-  }
-}
-
-legend {
-  padding: 0;
-  border: 0;
-}
-
-textarea {
-  overflow: auto;
-}
-
 table {
   border-spacing: 0;
   border-collapse: collapse;
@@ -170,17 +98,7 @@ audio, canvas, iframe, img, svg, video {
   vertical-align: middle;
 }
 
-fieldset {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
-textarea {
-  resize: vertical;
-}
-
-p, ul, ol, dl {
+ul, ol, dl {
   margin: 0 0 1.5em 0;
 }
 
@@ -229,9 +147,4 @@ dt {
 dd {
   margin: 0 0 5px 0;
   text-align: left;
-}
-
-input {
-  font-size: $type-size-5;
-  padding: 0.3em;
 }

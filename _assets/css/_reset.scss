@@ -6,7 +6,7 @@ html {
   /* apply a natural box layout model to all elements */
   box-sizing: border-box;
   font-size: 16px;
-  background: white;
+  background: $background-color;
 
   @include breakpoint($medium) {
     font-size: 18px;
@@ -137,6 +137,7 @@ ol, ul {
 
 button,
 input,
+optgroup,
 select,
 textarea {
   margin: 0;
