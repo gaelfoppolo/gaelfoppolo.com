@@ -35,7 +35,7 @@ The first ISO week of the year is calculated according to a bunch of properties,
 week is Monday, according to ISO 8601 specifications. You can retrieve these values from [minimumDaysInFirstWeek](https://developer.apple.com/documentation/foundation/calendar/2293094-minimumdaysinfirstweek) and [firstWeekDay](https://developer.apple.com/documentation/foundation/calendar/2293656-firstweekday).
 
 ```swift
-let calendar = Calendar.init(identifier: .iso8601)
+let calendar = Calendar(identifier: .iso8601)
 print(calendar.minimumDaysInFirstWeek, calendar.firstWeekday)
 ```
 
