@@ -79,11 +79,11 @@ Day 6 of week 52 of year 2018. Finally!
 
 # y vs Y
 
-**Typically you should use the calendar year format, `y`**.`Y`should be used only when you specifically need to work with an **ISO week date** system. This can be the case for fiscal years.
+**Typically you should use the calendar year format, `y`**.`Y` should be used only when you specifically need to work with an **ISO week date** system. This can be the case for fiscal years.
 
 Also, you should only use `y` and not `yyyy`. Unicode Technical Standard #35 explains this causes a forced padding, which you want to avoid if you work with non-Gregorian calendar. Using `y` will also enable forward compatibility.
 
-Obligatory XKCD: https://xkcd.com/1179/.
+[Obligatory XKCD](https://xkcd.com/1179/).
 
 # Reference
 
