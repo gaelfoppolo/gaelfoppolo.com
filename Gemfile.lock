@@ -51,6 +51,8 @@ GEM
       nokogiri (~> 1.8)
       pathutil (~> 0.16)
       sprockets (>= 3.3, < 4.1.beta)
+    jekyll-compose (0.9.0)
+      jekyll (~> 3.0)
     jekyll-feed (0.11.0)
       jekyll (~> 3.3)
     jekyll-font-awesome-sass (0.1.1)
@@ -114,6 +116,7 @@ DEPENDENCIES
   jekyll (~> 3.8.4)
   jekyll-archives
   jekyll-assets
+  jekyll-compose
   jekyll-feed
   jekyll-font-awesome-sass
   jekyll-paginate-v2

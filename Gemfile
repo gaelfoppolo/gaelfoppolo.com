@@ -12,4 +12,5 @@ group :jekyll_plugins do
   gem 'jekyll-feed'
   gem 'jekyll-font-awesome-sass'
   gem 'rouge'
+  gem 'jekyll-compose'
 end
