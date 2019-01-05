@@ -21,6 +21,9 @@
 /* Components */
 @import "buttons";
 @import "notices";
-@import "header";
-@import "footer";
 @import "syntax";
+
+/* Layout */
+@import "header";
+@import "main";
+@import "footer";

@@ -9,14 +9,6 @@ a:hover {
   color: $baseGrey;
 }
 
-main {
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: 0%;
-  flex-direction: column;
-  justify-content: center;
-}
-
 /* Small Screens */
 @media only screen and (max-width: 800px) {
   body {

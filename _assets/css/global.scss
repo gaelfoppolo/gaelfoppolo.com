@@ -40,17 +40,6 @@ mark {
 
 // --------------------------------
 
-body {
-  padding-left: $header-width;
-}
-
-main {
-  padding-left: $basePaddingContent;
-  padding-right: $basePaddingContent;
-  padding-top: $basePaddingContent;
-  padding-bottom: $basePaddingContent;
-}
-
 audio, canvas, iframe, img, svg, video {
   display: block;
   margin-left: auto;
