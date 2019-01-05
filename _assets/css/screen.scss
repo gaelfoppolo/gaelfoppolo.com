@@ -17,14 +17,6 @@ main {
   justify-content: center;
 }
 
-footer {
-  display: flex;
-  justify-content: center;
-  font-size: 0.8em;
-  color: $baseGrey;
-  line-height: 1.1em;
-}
-
 /* Small Screens */
 @media only screen and (max-width: 800px) {
   body {
@@ -39,7 +31,7 @@ footer {
     text-align: center;
     padding-bottom: 1em;
   }
-  main {
+  main, footer {
     margin-left: 0;
     padding: 2em 2em 1em 2em;
     width: auto;
@@ -48,7 +40,7 @@ footer {
 
 /* Tiny Screens */
 @media only screen and (max-width: 320px) {
-  header, main {
+  header, main, footer {
     padding: 1.2em 1.2em 0.6em 1.2em;
   }
   ul, ol {
