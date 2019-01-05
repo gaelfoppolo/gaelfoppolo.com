@@ -9,46 +9,6 @@ a:hover {
   color: $baseGrey;
 }
 
-header {
-  display: flex;
-  justify-content: flex-end;
-  flex-direction: column;
-  padding: 2em;
-  padding-bottom: 1em;
-  background: $baseDarkGrey;
-  * {
-    color: white;
-  }
-  h1, h2 {
-    font-size: $type-size-4;
-  }
-  h1.title {
-    font-size: 2em;
-    font-weight: 500;
-    margin-bottom: 0em;
-  }
-  .description {
-    margin-top: 0.2em;
-    margin-bottom: 0.8em;
-  }
-  a:hover {
-    color: $baseLightGrey;
-  }
-  a:visited {
-    color: white;
-  }
-  .navigation {
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    * {
-      margin-top: 0.5rem;
-    }
-  }
-}
-
 main {
   flex-grow: 1;
   flex-shrink: 1;

@@ -12,7 +12,6 @@ $baseBlue: #52ADC8 !default;
 // $basePink: #FA3A57 !default;
 // $baseBrown: #A3821A !default;
 
-$baseHeaderWidth: 18em !default;
 $basePaddingContent: 6em !default;
 
 sub {
@@ -42,7 +41,7 @@ mark {
 // --------------------------------
 
 body {
-  padding-left: $baseHeaderWidth;
+  padding-left: $header-width;
 }
 
 main {
@@ -50,14 +49,6 @@ main {
   padding-right: $basePaddingContent;
   padding-top: $basePaddingContent;
   padding-bottom: $basePaddingContent;
-}
-
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: $baseHeaderWidth;
 }
 
 footer {
