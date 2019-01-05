@@ -16,7 +16,7 @@ header {
   color: $background-color;
 
   h1 {
-    font-size: 2.68vw; /* magic number */
+    font-size: $type-size-3;
     margin-bottom: 0.5em;
   }
 
