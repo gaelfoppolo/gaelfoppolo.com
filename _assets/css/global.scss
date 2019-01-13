@@ -15,16 +15,6 @@ $basePaddingContent: 6em !default;
 
 // --------------------------------
 
-audio, canvas, iframe, img, svg, video {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 5px;
-  max-width: 100%;
-  max-height: 80vh;
-  vertical-align: middle;
-}
-
 li > p {
   margin: 0.5em 0;
 }
