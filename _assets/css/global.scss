@@ -7,36 +7,11 @@ $baseLightGrey: #CCCC !default;
 $baseBlue: #52ADC8 !default;
 // $baseGreen: #A4D037 !default;
 // $basePurple: #AD26B4 !default;
-// $baseYellow: #FECD35 !default;
 // $baseRed: #F05230 !default;
 // $basePink: #FA3A57 !default;
 // $baseBrown: #A3821A !default;
 
 $basePaddingContent: 6em !default;
-
-sub {
-  position: relative;
-  font-size: $type-size-7;
-  line-height: 0;
-  vertical-align: baseline;
-  bottom: -0.25em;
-}
-
-sup {
-  position: relative;
-  font-size: $type-size-7;
-  line-height: 0;
-  vertical-align: baseline;
-  top: -0.5em;
-}
-
-svg:not(:root) {
-  overflow: hidden;
-}
-
-mark {
-  background-color: #fdffb6;
-}
 
 // --------------------------------
 
@@ -50,53 +25,6 @@ audio, canvas, iframe, img, svg, video {
   vertical-align: middle;
 }
 
-ul, ol, dl {
-  margin: 0 0 1.5em 0;
-}
-
-ol, ul {
-  padding-left: 1.3em;
-  padding-right: 1.5em;
-  max-width: 100%;
-  margin-left: 1em;
-}
-
-ol ol {
-  margin: 0.5em 0 1em;
-}
-
-ul {
-  ul, ol {
-    margin: 0.5em 0 1em;
-  }
-}
-
-ol ul {
-  margin: 0.5em 0 1em;
-}
-
-ul {
-  list-style: disc;
-}
-
-ol {
-  list-style: decimal;
-}
-
 li > p {
   margin: 0.5em 0;
-}
-
-dt {
-  float: left;
-  margin: 0 20px 0 0;
-  width: 120px;
-  color: $baseDarkGrey;
-  font-weight: 500;
-  text-align: right;
-}
-
-dd {
-  margin: 0 0 5px 0;
-  text-align: left;
 }
