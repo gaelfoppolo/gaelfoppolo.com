@@ -97,12 +97,15 @@ a:hover {
   }
 }
 
-.taglist {
+.taglist * {
   display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 8px;
+  text-decoration: none;
 }
 
 .smallTag {
-  font-size: 0.6em;
+  font-size: $type-size-8;
 }
 
 .read-on {
@@ -128,10 +131,6 @@ article.post > .header {}
     line-height: 60px;
     padding-right: 5px;
   }
-}
-
-.footnotes {
-  border-top: 1px solid $baseLightGrey;
 }
 
 :root {
@@ -189,13 +188,5 @@ article.post > .header {}
 }
 
 .page-tags .tags:not(:first-child) {
-  margin-top: 1em;
-}
-
-.tag-template .tags {
-  margin-top: 0.5em;
-}
-
-.page-archives .tags {
   margin-top: 1em;
 }
