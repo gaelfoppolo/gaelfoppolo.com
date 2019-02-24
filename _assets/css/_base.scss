@@ -163,7 +163,6 @@ blockquote {
 /* links */
 
 a {
-  color: $link-color;
   font-weight: 700;
   text-decoration: none;
   
@@ -172,16 +171,28 @@ a {
   }
 
   &:hover {
-    color: $link-color-hover;
     outline: 0;
     text-decoration: none;
   }
+}
 
-  &:visited {
-    color: $link-color-visited;
+/* internal links */
+a { 
+  color: $link-color-internal;
+  
+  &:hover {
+    color: $link-color-hover-internal;
   }
 }
 
+/* external links */
+a[href*='//'] { 
+  color: $link-color-external;
+  
+  &:hover {
+    color: $link-color-hover-external;
+  }
+}
 /* buttons */
 
 button:focus {
@@ -376,7 +387,7 @@ figcaption {
 
   a {
     &:hover {
-      color: $link-color-hover;
+      color: $link-color-hover-internal;
     }
   }
 }

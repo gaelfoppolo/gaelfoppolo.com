@@ -17,9 +17,6 @@
 }
 
 .post-content {
-  a {
-    color: $link-color-content;
-  }
   > p:first-child:first-letter {
     color: $text-color;
     float: left;

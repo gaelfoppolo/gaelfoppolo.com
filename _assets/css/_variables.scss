@@ -45,6 +45,7 @@ $dark-grey: #222 !default;
 $grey: #808080 !default;
 $light-grey: #DDDD !default;
 $white: #FFFFFF !default;
+$main: #52ADC8 !default;
 
 $primary-color: $dark-grey !default;
 $success-color: #62c462 !default;
@@ -62,12 +63,11 @@ $code-background-color: $base00;
 $border-color: $light-grey !default;
 
 /* links */
-$link-color: $white !default; // dark theme
-// $link-color: $dark-grey !default; // light theme
-$link-color-hover: $light-grey !default;
-$link-color-visited: $white !default; // dark theme
-// $link-color-visited: $dark-grey !default; // light theme
-$link-color-content: #52ADC8 !default;
+$link-color-internal: $white !default; // dark theme
+// $link-color-internal: $dark-grey !default; // light theme
+$link-color-hover-internal: $light-grey !default;
+$link-color-external: $main !default;
+$link-color-hover-external: mix($main, $white, 75%) !default;
 
 /* YIQ color contrast */
 $yiq-contrasted-dark-default: $dark-grey !default;
