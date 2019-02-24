@@ -149,13 +149,15 @@ abbr[data-original-title] {
 /* blockquotes */
 
 blockquote {
-  margin: 1.5em 0;
-  border-left: $grey 0.25em solid;
-  padding-left: 1.2em;
+  background-color: $text-color;
+  color: $background-color;
   font-style: italic;
-  color: $grey;
+  
+  border-left: 6px solid $grey;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  
   p {
-    margin: 0.8em 0;
     font-size: $type-size-4;
   }
 }

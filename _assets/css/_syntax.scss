@@ -22,6 +22,10 @@ code, kbd, pre, samp {
   border-radius: $border-radius;
 }
 
+blockquote code {
+  background: transparent;
+}
+
 div.highlighter-rouge,
 figure.highlight {
   position: relative;
