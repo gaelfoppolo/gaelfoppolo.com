@@ -1,31 +1,38 @@
 
 /* Small Screens */
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: $medium) {
   body {
     padding: 0;
   }
+
   header {
-    border-right: none;
-    border-bottom: 1px #eee solid;
-    position: relative;
-    height: auto;
-    width: auto;
-    text-align: center;
-    padding-bottom: 1em;
+    padding: $header-padding-small;
   }
-  main, footer {
+  
+  main {
+    padding: $main-padding-top-small $main-padding-side-small $main-padding-down-small $main-padding-side-small; 
+  }
+  
+  footer {
     margin-left: 0;
     padding: 2em 2em 1em 2em;
     width: auto;
   }
-}
 
-/* Tiny Screens */
-@media only screen and (max-width: 320px) {
-  header, main, footer {
-    padding: 1.2em 1.2em 0.6em 1.2em;
+  h1 {
+    font-size: $type-size-3;
   }
-  ul, ol {
-    margin-left: 2em;
+
+  h2 {
+    font-size: $type-size-3;
   }
+
+  h3 {
+    font-size: $type-size-4;
+  }
+
+  h4 {
+    font-size: $type-size-5;
+  }
+
 }

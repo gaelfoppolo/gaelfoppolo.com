@@ -1,46 +1,29 @@
 /* == Header == */
 
 header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: $header-width;
-  padding: 2em;
-  
   display: flex;
-  justify-content: flex-end;
   flex-direction: column;
-  
-  background: $dark-grey;
-  color: $background-color;
+  align-items: center;
+  justify-content: center;
+  padding: $header-padding;
 
-  h1 {
-    font-size: $type-size-3;
-    margin-bottom: 0.5em;
-  }
+  color: $dark-grey;
 
-  .description {
+  border-bottom: 1px grey solid;
+
+  * {
     margin: 0;
   }
 
   nav {
   	display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-self: center;    
-    margin-top: 1em;
+    margin-top: 0.5em;
 
     * {
-    	font-size: $type-size-4;
+      margin: 0 0.5em;
     }
-
-  }
-  
-  a:hover {
-  	color: $light-grey;
   }
 
-  a:visited {
-    color: $background-color;
-  }
 }

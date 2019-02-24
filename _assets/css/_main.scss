@@ -1,9 +1,5 @@
 /* == Main == */
 
-body {
-  padding-left: $header-width;
-}
-
 main {
   flex-grow: 1;
   flex-shrink: 1;
@@ -11,7 +7,7 @@ main {
   flex-direction: column;
   justify-content: center;
 
-  padding: $main-padding;
+  padding: $main-padding-top $main-padding-side $main-padding-down $main-padding-side;
 }
 
 .footnotes {

@@ -93,5 +93,12 @@ $border-radius: 8px !default;
 $box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125) !default;
 
 /* Layout */
-$header-width: 18em !default;
-$main-padding: 6em !default;
+$header-padding: 2em !default;
+$main-padding-top: $header-padding;
+$main-padding-side: 6em !default;
+$main-padding-down: 3em !default;
+
+$header-padding-small: 1em !default;
+$main-padding-top-small: $header-padding-small;
+$main-padding-side-small: 1.5em !default;
+$main-padding-down-small: 0.75em !default;
