@@ -4,6 +4,7 @@ footer {
   display: flex;
   justify-content: center;
   padding: 1em;
+  flex-shrink: 0;
   
   font-size: $type-size-7;
   color: $grey;
