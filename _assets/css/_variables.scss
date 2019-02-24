@@ -23,6 +23,24 @@ $type-size-8: 0.625em !default; // ~10px
 
 /* Colors */
 
+/* dark syntax highlighting (base16) */
+$base00: #263238 !default;
+$base01: #2e3c43 !default;
+$base02: #314549 !default;
+$base03: #546e7a !default;
+$base04: #b2ccd6 !default;
+$base05: #eeffff !default;
+$base06: #eeffff !default;
+$base07: #ffffff !default;
+$base08: #f07178 !default;
+$base09: #f78c6c !default;
+$base0a: #ffcb6b !default;
+$base0b: #c3e88d !default;
+$base0c: #89ddff !default;
+$base0d: #82aaff !default;
+$base0e: #c792ea !default;
+$base0f: #ff5370 !default;
+
 $dark-grey: #222 !default;
 $grey: #808080 !default;
 $light-grey: #DDDD !default;
@@ -40,7 +58,7 @@ $background-color: $dark-grey !default; // dark theme
 $text-color: $white !default; // dark theme
 // $text-color: $dark-grey !default; // light theme
 $muted-text-color: mix($background-color, $text-color, 35%) !default;
-$code-background-color: #263238 !default;
+$code-background-color: $base00;
 $border-color: $light-grey !default;
 
 /* links */
@@ -65,24 +83,6 @@ $linkedin-color: #007bb6 !default;
 $rss-color: #fa9b39 !default;
 $stackoverflow-color: #fe7a15 !default;
 $twitter-color: #55acee !default;
-
-/* dark syntax highlighting (base16) */
-$base00: #263238 !default;
-$base01: #2e3c43 !default;
-$base02: #314549 !default;
-$base03: #546e7a !default;
-$base04: #b2ccd6 !default;
-$base05: #eeffff !default;
-$base06: #eeffff !default;
-$base07: #ffffff !default;
-$base08: #f07178 !default;
-$base09: #f78c6c !default;
-$base0a: #ffcb6b !default;
-$base0b: #c3e88d !default;
-$base0c: #89ddff !default;
-$base0d: #82aaff !default;
-$base0e: #c792ea !default;
-$base0f: #ff5370 !default;
 
 /* Breakpoints */
 
