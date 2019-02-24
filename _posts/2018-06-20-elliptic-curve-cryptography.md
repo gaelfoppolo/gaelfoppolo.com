@@ -40,6 +40,7 @@ A **trapdoor function** relies on mathematical problems that admit no efficient 
 RSA's trapdoor function is written as exponentiation modulo a composite number and is related to the problem of prime factorization. Put in simple words: it is very simple to multiply numbers together, but it can be very difficult to factor numbers.
 
 A quick example to illustrate: suppose I give you the number 3369993333393829974333376885877453834204643052817571560137951281149 [^bigPrime].  Can you tell me what are the two integers I multiply to get it, in a relative short amount of time? RSA works like that. Basically, the two prime numbers are the private key and the computed number is the public key.
+{: .notice--info}
 
 If we transpose to our trapdoor function:
 
@@ -206,11 +207,8 @@ A field $F$ is special type of ring, in which every nonzero element has a multip
 
 The rational numbers $\mathbb{Q}$, the real numbers $\mathbb{R}$, and the complex numbers $\mathbb{C}$ are all fields. For $\mathbb{R}$, the inverse of an element $x$ is $\frac{1}{x}$.
 
--------
-
 Okay, let's take a minute to digest that. Read again if needed, it's a lot to take in.
-
-------
+{: .notice--info}
 
 As you see, the design of mathematics encompasses a number of other principles that are also present in software engineering. Abstract algebra is essentially an exercise in object hierarchy design, where the goal is to use as few ingredients as possible, adding one more ingredient at a time, to see what kinds of interesting and useful constructs we can get.
 
@@ -325,9 +323,11 @@ This problem is known as the **logarithm problem**, and there no known "easy" al
 So far we only worked with a "simple" group. We did not use any of our properties, like cardinality, subgroup or cyclic. Let's see how it can help us here and improve our understanding.
 
 An essential property for cryptography is that a group has a finite number of points. Indeed, calculations over the real numbers are slow and inaccurate due to round-off approximations. Cryptographic applications require fast and precise  arithmetic. As finite fields are well-suited to computer calculations, they are used in elliptic curve ; thus elliptic curve groups over the finite fields of $\mathbb{F}_q$ are used in practice. We can now restrict elliptic over finite fields. Our equation from the begging now change to:
+
 $$
 E(\mathbb{F}_q) = \{ (x, y) \in (\mathbb{F}_q)^2 : y^2 \equiv x^3 + ax + b \pmod q \} \cup \{O\}
 $$
+
 In his 1901's paper *Sur les Propriétés Arithmétiques des Courbes Algébriques*, Poincaré stated the following theorem:
 
 > Let $\mathbb{F}$ be a field and $E$ an elliptic curve. Let $E(\mathbb{F})$ the set of points of $E$ with coordinates in $\mathbb{F}$. Then $E(\mathbb{F})$ is a subgroup of the group of all points of $E$.
@@ -346,10 +346,12 @@ Beautiful right? There is no curve now, but we can still see an imaginary horizo
 Since the curve consists of a few discrete points, it's not clear to understand how to "connect the dots" to make their graph look like a curve. It's not clear how geometric relationships can be applied. As a result, the geometry used in elliptic curve groups over real numbers cannot be used for elliptic curve groups over $\mathbb{F}_q$. Well, no, we can apply geometric relationships but it is odd. You can still draw a line through two dots and hit another. In case your not, you need to "wrap", like in the game Snake. If you hit left edge, you continue from the right edge, and vic versa. Same with top and bottom edges.
 
 However, the algebraic rules for the arithmetic can be adapted for elliptic curves over $\mathbb{F}_q$. Unlike elliptic curves over real numbers, computations over the field of $\mathbb{F}_q$ involve no round-off error. The coordinates from the previous section now change to:
+
 $$
 x_R = s^2 - x_P - x_Q \pmod q\\
 y_R =  s(x_P - x_R) - y_P \pmod q
 $$
+
 As you see, they are the same, we only added the modulus! Neat.
 
 Let's not tackle the real interesting part of all of this: points multiplication over finite fields.
@@ -363,6 +365,7 @@ On $\mathbb{F}_q$, we have an order. And remember that a group where the order i
 What we need now is a generator, to generate all the points in our subgroup. For practical usage of elliptic curves, we use a conventional generator $G$ which is a point on the curve. Finding a generator is not that hard, it's a relative simple process, but it can be time consuming. That why standard curves exist, see [Standards](#standards).
 
 We can now modify a little our equation to use our generator as the "base point" $P$, to generate all the points:
+
 $$
 G^n = Q\\
 \underbrace{G\cdot \ldots \cdot G}_{\text{n times}} = Q
@@ -370,7 +373,8 @@ $$
 
 And now I ask again: what about the other way around? Having $Q$, the last-produced point, $G$ and the origin point, can we find easily find $n$?
 
-Let me give you an intuitive example: let's say it's 8:54am on the clock, and call it $P$. Add 6h32min $n$ times. $n = 10^6$ or $n = 10^6 + 1$. This will produce a time $T$. I give you $P$ and $T$, what is $n$? Exactly. Reverting this process can only be done by trying out all possible $n$ and is impossible if $n$ is "large". 
+Let me give you an intuitive example: let's say it's 8:54am on the clock, and call it $P$. Add 6h32min $n$ times. $n = 10^6$ or $n = 10^6 + 1$. This will produce a time $T$. I give you $P$ and $T$, what is $n$? Exactly. Reverting this process can only be done by trying out all possible $n$ and is impossible if $n$ is "large".
+{: .notice--info}
 
 > Finding the order of the element of a group is at least as hard as factoring.
 >
@@ -445,7 +449,8 @@ For example the **ANSSI FRP256v1** elliptic curve is defined with the following 
 |     n     | 109454571331697278617670725030735128146004546811402412653072203207726079563233 |
 |     h     |                              1                               |
 
-*Note: ANSSI is the French Network and Information Security Agency.*
+ANSSI is the French Network and Information Security Agency.
+{: .notice--info}
 
 Cryptography is about trust. The problems begin when this trust is broken. And this is what happened in 2013. NSA internal memos leaked thanks to Edward Snowden, suggesting that an algorithm developed by them and used in the generation of elliptic curves by NIST was containing a weakness, a backdoor, only known by the NSA. Since then, many experts expressed their concern over the security of the NIST recommended elliptic curves and suggested to use other standards, such as academics.
 
