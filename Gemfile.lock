@@ -53,9 +53,6 @@ GEM
       sprockets (>= 3.3, < 4.1.beta)
     jekyll-feed (0.11.0)
       jekyll (~> 3.3)
-    jekyll-font-awesome-sass (0.1.1)
-      font-awesome-sass (>= 4)
-      jekyll (>= 2.5, < 4.0)
     jekyll-paginate-v2 (2.0.0)
       jekyll (~> 3.0)
     jekyll-sanity (1.2.0)
@@ -115,7 +112,6 @@ DEPENDENCIES
   jekyll-archives
   jekyll-assets
   jekyll-feed
-  jekyll-font-awesome-sass
   jekyll-paginate-v2
   jekyll-time-to-read
   rouge
