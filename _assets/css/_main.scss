@@ -8,6 +8,11 @@ main {
   justify-content: center;
 
   padding: $main-padding-top $main-padding-side $main-padding-down $main-padding-side;
+
+  > * {
+  	padding: 0em 3em;
+  }
+  
 }
 
 .footnotes {

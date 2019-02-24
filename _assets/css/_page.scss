@@ -15,3 +15,17 @@
   font-size: $type-size-7;
   font-weight: 400;
 }
+
+.post-content {
+  a {
+    color: $link-color-content;
+  }
+  > p:first-child:first-letter {
+    color: $text-color;
+    float: left;
+    font-size: 75px;
+    font-weight: 500;
+    line-height: 60px;
+    padding-right: 5px;
+  }
+}
