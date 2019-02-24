@@ -1,0 +1,31 @@
+
+/* Small Screens */
+@media only screen and (max-width: 800px) {
+  body {
+    padding: 0;
+  }
+  header {
+    border-right: none;
+    border-bottom: 1px #eee solid;
+    position: relative;
+    height: auto;
+    width: auto;
+    text-align: center;
+    padding-bottom: 1em;
+  }
+  main, footer {
+    margin-left: 0;
+    padding: 2em 2em 1em 2em;
+    width: auto;
+  }
+}
+
+/* Tiny Screens */
+@media only screen and (max-width: 320px) {
+  header, main, footer {
+    padding: 1.2em 1.2em 0.6em 1.2em;
+  }
+  ul, ol {
+    margin-left: 2em;
+  }
+}

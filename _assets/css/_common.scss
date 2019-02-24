@@ -1,41 +1,7 @@
-@import "global";
-
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900');
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,300,700');
+/* == Common == */
 
 a:hover {
-  color: $baseGrey;
-}
-
-/* Small Screens */
-@media only screen and (max-width: 800px) {
-  body {
-    padding: 0;
-  }
-  header {
-    border-right: none;
-    border-bottom: 1px #eee solid;
-    position: relative;
-    height: auto;
-    width: auto;
-    text-align: center;
-    padding-bottom: 1em;
-  }
-  main, footer {
-    margin-left: 0;
-    padding: 2em 2em 1em 2em;
-    width: auto;
-  }
-}
-
-/* Tiny Screens */
-@media only screen and (max-width: 320px) {
-  header, main, footer {
-    padding: 1.2em 1.2em 0.6em 1.2em;
-  }
-  ul, ol {
-    margin-left: 2em;
-  }
+  color: $grey;
 }
 
 .pagination {
@@ -48,9 +14,13 @@ a:hover {
   }
 }
 
+li > p {
+  margin: 0.5em 0;
+}
+
 .tags {
   * {
-    background-color: $baseDarkGrey;
+    background-color: $dark-grey;
     color: white;
     line-height: 1.5em;
     padding: 0.3em 0.6em 0.3em 0.6em;
@@ -63,7 +33,7 @@ a:hover {
     -webkit-border-radius: 0.3em;
   }
   a:hover {
-    background-color: $baseGrey;
+    background-color: $grey;
     color: white;
   }
   a {
@@ -89,14 +59,14 @@ a:hover {
 
 .post-content {
   h1 {
-    border-bottom: 1px solid $baseLightGrey;
+    border-bottom: 1px solid $light-grey;
     padding-bottom: 0.5rem;
   }
   a {
-    color: $baseBlue;
+    color: $link-color-content;
   }
   > p:first-child:first-letter {
-    color: $baseDarkGrey;
+    color: $dark-grey;
     float: left;
     font-size: 75px;
     font-weight: 500;

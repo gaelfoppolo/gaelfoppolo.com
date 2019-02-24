@@ -4,6 +4,9 @@
  * Licensed under MIT
 */
 
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300italic,700italic,300,700');
+
 /* Variables */
 @import "variables";
 
@@ -19,6 +22,7 @@
 @import "tables";
 
 /* Components */
+@import "common";
 @import "buttons";
 @import "notices";
 @import "syntax";
@@ -28,6 +32,7 @@
 @import "main";
 @import "footer";
 @import "progress";
+@import "screen";
 
 /* Layout specific */
 @import "page";
