@@ -25,7 +25,7 @@ $type-size-8: 0.625em !default; // ~10px
 
 $dark-grey: #222 !default;
 $grey: #808080 !default;
-$light-grey: #CCCC !default;
+$light-grey: #DDDD !default;
 $white: #FFFFFF !default;
 
 $primary-color: $dark-grey !default;
@@ -44,7 +44,7 @@ $border-color: $light-grey !default;
 /* links */
 $link-color: $white !default;
 $link-color-hover: $light-grey !default;
-$link-color-visited: $light-grey !default;
+$link-color-visited: $white !default;
 $link-color-content: #52ADC8 !default;
 
 /* YIQ color contrast */
