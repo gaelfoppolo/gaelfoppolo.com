@@ -23,9 +23,10 @@ $type-size-8: 0.625em !default; // ~10px
 
 /* Colors */
 
-$dark-grey: #282822 !default;
+$dark-grey: #222 !default;
 $grey: #808080 !default;
 $light-grey: #CCCC !default;
+$white: #FFFFFF !default;
 
 $primary-color: $dark-grey !default;
 $success-color: #62c462 !default;
@@ -34,16 +35,16 @@ $danger-color: #ee5f5b !default;
 $info-color: #257ede !default;
 $mark-color: #fecd35 !default;
 
-$background-color: #fff !default;
-$text-color: $dark-grey !default;
-$muted-text-color: mix(#fff, $text-color, 35%) !default;
+$background-color: $dark-grey !default;
+$text-color: $white !default;
+$muted-text-color: mix($background-color, $text-color, 35%) !default;
 $code-background-color: #263238 !default;
-$border-color: $dark-grey !default;
+$border-color: $light-grey !default;
 
 /* links */
-$link-color: $dark-grey !default;
-$link-color-hover: $grey !default;
-$link-color-visited: $dark-grey !default;
+$link-color: $white !default;
+$link-color-hover: $light-grey !default;
+$link-color-visited: $light-grey !default;
 $link-color-content: #52ADC8 !default;
 
 /* YIQ color contrast */
