@@ -35,16 +35,20 @@ $danger-color: #ee5f5b !default;
 $info-color: #257ede !default;
 $mark-color: #fecd35 !default;
 
-$background-color: $dark-grey !default;
-$text-color: $white !default;
+$background-color: $dark-grey !default; // dark theme
+// $background-color: $light-grey !default; // light theme
+$text-color: $white !default; // dark theme
+// $text-color: $dark-grey !default; // light theme
 $muted-text-color: mix($background-color, $text-color, 35%) !default;
 $code-background-color: #263238 !default;
 $border-color: $light-grey !default;
 
 /* links */
-$link-color: $white !default;
+$link-color: $white !default; // dark theme
+// $link-color: $dark-grey !default; // light theme
 $link-color-hover: $light-grey !default;
-$link-color-visited: $white !default;
+$link-color-visited: $white !default; // dark theme
+// $link-color-visited: $dark-grey !default; // light theme
 $link-color-content: #52ADC8 !default;
 
 /* YIQ color contrast */
