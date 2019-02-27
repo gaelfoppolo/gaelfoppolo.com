@@ -50,18 +50,17 @@ $main: #52ADC8 !default;
 $main-dark-color: $dark-grey;
 $main-light-color: $white;
 
-$background-color: $main-dark-color !default; // dark theme
-// $background-color: $main-light-color !default; // light theme
-$text-color: $main-light-color !default; // dark theme
-// $text-color: $main-dark-color !default; // light theme
+$lightTheme: true;
+
+$background-color: if($lightTheme, $main-light-color, $main-dark-color) !default;
+$text-color: if($lightTheme, $main-dark-color, $main-light-color) !default;
 
 $muted-text-color: mix($background-color, $text-color, 35%) !default;
 $code-background-color: $base00;
 $border-color: $text-color !default;
 
 /* links */
-$link-color-internal: $main-light-color !default; // dark theme
-// $link-color-internal: $main-dark-color !default; // light theme
+$link-color-internal: if($lightTheme, $main-dark-color, $main-light-color) !default;
 $link-color-external: $main !default;
 
 /* YIQ color contrast */
