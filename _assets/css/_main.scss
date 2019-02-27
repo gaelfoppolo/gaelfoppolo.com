@@ -8,6 +8,10 @@ main {
   justify-content: center;
 
   padding: $main-padding-top $main-padding-side $main-padding-down $main-padding-side;
+
+  section:not(:last-child) {
+  	margin-bottom: 2em;
+  }
   
 }
 
