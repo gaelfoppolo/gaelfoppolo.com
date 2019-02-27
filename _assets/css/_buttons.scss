@@ -27,8 +27,7 @@
   /* button colors */
   $buttoncolors:
   (primary, $primary-color),
-  (inverse, #fff),
-  (light-outline, transparent),
+  (inverse, $background-color),
   (success, $success-color),
   (warning, $warning-color),
   (danger, $danger-color),
@@ -38,20 +37,14 @@
 
   @each $buttoncolor, $color in $buttoncolors {
     &--#{$buttoncolor} {
-      $hoverColor: #000;
+      $hoverColor: $text-color;
       @include yiq-contrasted($color);
       @if ($buttoncolor == inverse) {
-        border: 1px solid $border-color;
-      }
-      @if ($buttoncolor == light-outline) {
-        border: 1px solid #fff;
+        border: 1px solid $text-color;
       }
 
       &:hover {
-        @if ($buttoncolor == primary) {
-          $hoverColor: #fff;
-        }
-        @include yiq-contrasted(mix($hoverColor, $color, 20%));
+        @include yiq-contrasted($color);
       }
 
       &:visited {
@@ -74,9 +67,9 @@
   &--disabled {
     pointer-events: none;
     cursor: not-allowed;
-    filter: alpha(opacity=65);
+    filter: alpha(opacity=35);
     box-shadow: none;
-    opacity: 0.65;
+    opacity: 0.35;
   }
 
   /* extra large button */

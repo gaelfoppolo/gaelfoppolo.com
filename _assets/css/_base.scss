@@ -173,27 +173,21 @@ a {
   }
 
   &:hover {
-    outline: 0;
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-color: currentcolor;
   }
 }
 
 /* internal links */
 a { 
   color: $link-color-internal;
-  
-  &:hover {
-    color: $link-color-hover-internal;
-  }
 }
 
 /* external links */
 a[href*='//'] { 
   color: $link-color-external;
-  
-  &:hover {
-    color: $link-color-hover-external;
-  }
 }
 /* buttons */
 
@@ -386,12 +380,6 @@ figcaption {
   color: $muted-text-color;
   font-family: $caption-font-family;
   font-size: $type-size-6;
-
-  a {
-    &:hover {
-      color: $link-color-hover-internal;
-    }
-  }
 }
 
 /* Fix IE9 SVG bug */

@@ -47,33 +47,35 @@ $light-grey: #DDDD !default;
 $white: #FFFFFF !default;
 $main: #52ADC8 !default;
 
-$primary-color: $dark-grey !default;
+$main-dark-color: $dark-grey;
+$main-light-color: $white;
+
+$background-color: $main-dark-color !default; // dark theme
+// $background-color: $main-light-color !default; // light theme
+$text-color: $main-light-color !default; // dark theme
+// $text-color: $main-dark-color !default; // light theme
+
+$muted-text-color: mix($background-color, $text-color, 35%) !default;
+$code-background-color: $base00;
+$border-color: $text-color !default;
+
+/* links */
+$link-color-internal: $main-light-color !default; // dark theme
+// $link-color-internal: $main-dark-color !default; // light theme
+$link-color-external: $main !default;
+
+/* YIQ color contrast */
+$yiq-contrasted-dark-default: $main-dark-color !default;
+$yiq-contrasted-light-default: $main-light-color !default;
+$yiq-contrasted-threshold: 175 !default;
+$yiq-debug: false !default;
+
+$primary-color: $text-color !default;
 $success-color: #62c462 !default;
 $warning-color: #f89406 !default;
 $danger-color: #ee5f5b !default;
 $info-color: #257ede !default;
 $mark-color: #fecd35 !default;
-
-$background-color: $dark-grey !default; // dark theme
-// $background-color: $light-grey !default; // light theme
-$text-color: $white !default; // dark theme
-// $text-color: $dark-grey !default; // light theme
-$muted-text-color: mix($background-color, $text-color, 35%) !default;
-$code-background-color: $base00;
-$border-color: $light-grey !default;
-
-/* links */
-$link-color-internal: $white !default; // dark theme
-// $link-color-internal: $dark-grey !default; // light theme
-$link-color-hover-internal: $light-grey !default;
-$link-color-external: $main !default;
-$link-color-hover-external: mix($main, $white, 75%) !default;
-
-/* YIQ color contrast */
-$yiq-contrasted-dark-default: $dark-grey !default;
-$yiq-contrasted-light-default: #fff !default;
-$yiq-contrasted-threshold: 175 !default;
-$yiq-debug: false !default;
 
 /* brands */
 $github-color: #171516 !default;
