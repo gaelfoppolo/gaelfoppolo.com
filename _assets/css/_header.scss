@@ -8,10 +8,16 @@ header {
   flex-shrink: 0;
   padding: $header-padding;
 
-  color: $text-color;
+  h1.title {
+    
+    a {
+     	font-weight: 500;
 
-  h1.title a {
-    font-weight: 500;
+      	&:hover {
+        	text-decoration: none;
+      	}
+
+    }
   }
 
   * {
@@ -26,9 +32,6 @@ header {
 
     * {
       margin: 0 0.5em;
-      border: 1px solid $text-color;
-      padding: 5px;
-      border-radius: 5px;
     }
   }
 
