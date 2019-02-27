@@ -17,17 +17,4 @@ pagination:
 	</section>
 {% endfor %}
 
-{% if paginator.total_pages > 1 %}
-<nav class="pagination" role="pagination">
-    {% if paginator.previous_page %}
-    <span class="newer-posts">
-    	<a href="{{ paginator.previous_page_path | prepend: site.baseurl }}">{{ site.data.index.pagination.previous }}</a>
-    </span>
-    {% endif %}
-    {% if paginator.next_page %}
-    <span class="older-posts">
-    	<a href="{{ paginator.next_page_path | prepend: site.baseurl }}">{{ site.data.index.pagination.next }}</a>
-    </span>
-    {% endif %}
-</nav>
-{% endif %}
+{% include paginator.html %}
