@@ -1,20 +1,5 @@
 /* == Page/post == */
 
-.page-title, 
-.post-title {
-  margin-top: 0;
-}
-
-.post-title {
-  margin: 0;
-}
-
-.post-subtitle {
-  margin-top: 0.5em;
-  font-size: $type-size-7;
-  font-weight: 400;
-}
-
 .post-content {
   > p:first-child:first-letter {
     color: $text-color;

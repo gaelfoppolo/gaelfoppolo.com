@@ -1,0 +1,11 @@
+<article class="post-title"> 
+	<h1><a href="{{ post.url }}" alt="{{ post.title }}">{{ post.title }}</a></h1>
+</article>
+<article class="post-subtitle">
+	<span>{{ post.date | date: site.date_format}}</span>
+	<span class="separator"> &middot; </span>
+	{{ post.content | reading_time_as_i }} 
+	<span class="separator"> &middot; </span> 
+	{% assign categories = post.categories %}
+	{% include inline-tags-list.html %}
+</article>
