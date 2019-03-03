@@ -1,91 +1,94 @@
 .pagination {
-  @include clearfix();
-  display: flex;
-  justify-content: center;
-  margin-top: 1em;
-  padding-top: 1em;
+	@include clearfix();
+	display: flex;
+	justify-content: center;
+	margin-top: 1em;
+	padding-top: 1em;
 
-  a {
-    color: $text-color;
-  }
+	a {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: $text-color;
+	}
 
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-  }
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+	}
 
-  li {
-    display: block;
-    float: left;
-    margin-left: -1px;
+	li {
+		display: block;
+		float: left;
+		margin-left: -1px;
 
-    a {
-      display: block;
-      margin-bottom: 0.25em;
-      padding: 0.5em 1em;
-      font-size: $type-size-8;
-      line-height: 1.5;
-      text-align: center;
-      color: $text-color;
-      border: 1px solid mix(#000, $border-color, 25%);
-      border-radius: 0;
+		a {
+			display: block;
+			margin-bottom: 0.25em;
+			padding: 0.5em 1em;
+			font-size: $type-size-8;
+			line-height: 1.5;
+			text-align: center;
+			color: $text-color;
+			border: 1px solid mix(#000, $border-color, 25%);
+			border-radius: 0;
 
-      &.current,
-      &.current.disabled {
-        color: $background-color;
-        background: $primary-color;
-      }
+			&.current,
+			&.current.disabled {
+				color: $background-color;
+				background: $primary-color;
+			}
 
-      &.disabled {
-        color: rgba($muted-text-color, 0.5);
-        pointer-events: none;
-        cursor: not-allowed;
-      }
-    }
+			&.disabled {
+				color: rgba($muted-text-color, 0.5);
+				pointer-events: none;
+				cursor: not-allowed;
+			}
+		}
 
-    &:first-child {
-      margin-left: 0;
+		&:first-child {
+			margin-left: 0;
 
-      a {
-        border-top-left-radius: $border-radius;
-        border-bottom-left-radius: $border-radius;
-      }
-    }
+			a {
+				border-top-left-radius: $border-radius;
+				border-bottom-left-radius: $border-radius;
+			}
+		}
 
-    &:last-child {
-      a {
-        border-top-right-radius: $border-radius;
-        border-bottom-right-radius: $border-radius;
-      }
-    }
-  }
+		&:last-child {
+			a {
+				border-top-right-radius: $border-radius;
+				border-bottom-right-radius: $border-radius;
+			}
+		}
+	}
 
-  /* next/previous buttons */
-  &--pager {
-    padding: 1em 1em;
-    width: 100vw;
-    font-size: $type-size-5;
-    text-align: center;
-    color: $text-color;
-    border: 1px solid mix(#000, $border-color, 25%);
-    border-radius: $border-radius;
+	/* next/previous buttons */
+	&--pager {
+		padding: 1em 1em;
+		width: 100vw;
+		font-size: $type-size-5;
+		text-align: center;
+		color: $text-color;
+		border: 1px solid mix(#000, $border-color, 25%);
+		border-radius: $border-radius;
 
-    &:first-child {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-    }
+		&:first-child {
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}
 
-    &:last-child {
-      margin-left: -1px;
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
+		&:last-child {
+			margin-left: -1px;
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+		}
 
-    &.disabled {
-      color: rgba($muted-text-color, 0.5);
-      pointer-events: none;
-      cursor: not-allowed;
-    }
-  }
+		&.disabled {
+			color: rgba($muted-text-color, 0.5);
+			pointer-events: none;
+			cursor: not-allowed;
+		}
+	}
 }
