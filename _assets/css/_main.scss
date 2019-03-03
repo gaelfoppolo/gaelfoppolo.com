@@ -1,20 +1,21 @@
 /* == Main == */
 
 main {
-  flex-grow: 1;
-  flex-shrink: 0;
-  flex-basis: 0%;
-  flex-direction: column;
-  justify-content: center;
+	flex-grow: 1;
+	flex-shrink: 0;
+	flex-basis: 0%;
+	flex-direction: column;
+	justify-content: center;
 
-  padding: $main-padding-top $main-padding-side $main-padding-down $main-padding-side;
+	padding: $main-padding-top $main-padding-side $main-padding-down $main-padding-side;
 
-  section:not(:last-child) {
-  	margin-bottom: 2em;
-  }
-  
+	section:not(:last-child) {
+		margin-bottom: 2em;
+	}
+
 }
 
 .footnotes {
-  border-top: 1px solid $light-grey;
+	font-size: $type-size-6;
+	border-top: 1px solid $light-grey;
 }
