@@ -148,33 +148,27 @@ abbr[data-original-title] {
 
 /* blockquotes */
 
-blockquote {
-  // background-color: $text-color;
-  // color: $background-color;
-  
+blockquote {  
   border-left: 6px solid $main;
   margin: 0;
   margin-right: 1.5em;
   padding-left: 1.5em;
   padding-right: 1.5em;
-
-  &:first-child {
-    margin-top: 0;
-  }
-
-  &:last-child {
-    margin-bottom: 0;
-  }
   
   p {
     font-style: italic;
 
-    &:first-child::before {
-      content: open-quote;
+    &:first-child {
+      margin-top: 0;
+      &::before {
+        content: open-quote;
+      }
+      &::after {
+        content: close-quote;
+      }
     }
-
-    &:last-child::after {
-      content: close-quote;
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }
