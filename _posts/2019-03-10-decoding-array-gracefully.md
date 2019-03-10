@@ -169,7 +169,7 @@ func decode<T>(_ type: [T].Type, from data: Data, invalidElementStrategy: Invali
 
 Unfortunately, we hit the limit of our possibilities. In order to decode the `Data` we would need access to the internal `_JSONDecoder` type, which is... internal. Without it, we cannot do more, unless rewriting our own `JSONDecoder`, which would be a terrible mistake and a waste, if you ask me.
 
-If you wish to know more about this, Greg Heo wrote a full article on how JSONDecoder works internally.
+If you wish to know more about this, Greg Heo wrote a [full article on how JSONDecoder works internally](https://swiftunboxed.com/stdlib/json-decoder-decodable/).
 {: .notice--info}
 
 ## What you can do
