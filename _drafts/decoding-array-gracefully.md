@@ -6,7 +6,7 @@ excerpt: todo
 
 Since the introduction of `Codable`, transforming APIs into data models has been a blessing. All you need is a simple conformance to the `Decodable` protocol, and let Swift do its magic.
 
-But sometimes, you need more control. Quickly, you end up declaring your coding keys or overriding the default implementation of `init(from: Decoder)`.
+But sometimes, you need more control. Quickly, you end up declaring your coding keys and overriding the default implementation of `init(from: Decoder)`, to state your own business logic.
 
 Eventually you'll get exactly what you want. Well, *almost* exactly.
 
@@ -51,23 +51,27 @@ do {
 }
 ```
 
-A rather simple data model and a quick JSON mock. 
+A naive data model and a quick JSON mock. A `SolarSystem` with a list of `Planet`. The JSON data contains a list of `SolarSystem`.
 
 Executing this code will throw a `DecodingError.dataCorrupted`, with the following, rather explicit, debug description : `Cannot initialize Planet from invalid String value pluto`.
 
-And this is where the problem lies. You either get a full list of items, or an error, if any of the item does not conform to the data model.
+And this is where the problem lies. You can't be sure the data will be valid.
 
-**What if you want something in between? A list of items that conform to the data model?**
+`Decodable` provides a great way to handle that when the data is a simple object, thanks to optional. But it does not provides one when the data is a list. You either get a full list of items, or an error, if any of the item does not conform to the item's data model.
+
+**What if we want something in between? The list of *valid* items, the items that conform to the data model?**
 
 We need to build a fault tolerant system, one that will allow lossy decoding of array elements.
 
 ## The idea
 
-The way `Decodale`works when processing a collection is the following : it will throw as soon as one of the children's collection throws. In our example, `Decodable` only throws at the very end, and all the data process before is *throw* away.
+The way `Decodale`works when processing a collection is simple : it will throw as soon as one of the children's collection throws. In our example, `Decodable` only throws at the very end, and all the data process before is *throw* away. A fail strategy.
 
-Our first step is to define this strategy to apply when encountering an invalid element while decoding. Two possible state: either we remove the faulty element, or we apply the standard behavior and fail.
+Our first step is to define new strategies. We start simple: either we remove the faulty element, or we apply the standard behavior and fail. 
 
-We'll use a generic enum to represent it. `T` is the type of the data model we wish to decode.
+We then need to use the choosen strategy to apply when encountering an invalid element while decoding.
+
+We'll use a generic enum to represent it.
 
 ```swift
 enum InvalidElementStrategy<T> {
@@ -88,6 +92,10 @@ enum InvalidElementStrategy<T> {
     }
 }
 ```
+
+The second step 
+
+a way to use a choosen strategy to apply when encountering an invalid element while decoding. Two possible state: .
 
 Now, we wish to apply the strategy when processing a collection. To do this, we have to create a new method in `KeyedDecodingContainer`.
 
