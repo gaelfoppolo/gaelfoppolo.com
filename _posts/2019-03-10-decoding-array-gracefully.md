@@ -1,12 +1,12 @@
 ---
 title: Decoding Array Gracefully
-categories: [ios; swift]
+categories: [ios, swift]
 excerpt: Codable already embed a remarkable fault tolerant decoding system, when working with plain objects. But when it comes to arrays, is it still the case?
 ---
 
 Since the introduction of `Codable`, transforming APIs into data models has been a blessing. All we need is a simple conformance to the `Decodable` protocol, and let Swift do its magic.
 
-But sometimes, we need more control. Quickly, we end up declaring your coding keys and overriding the default implementation of `init(from: Decoder)`, to state our own business logic.
+But sometimes, we need more control. Quickly, we end up declaring our coding keys and overriding the default implementation of `init(from: Decoder)`, to state our own business logic.
 
 Eventually we'll get exactly what we want. Well, *almost* exactly.
 
