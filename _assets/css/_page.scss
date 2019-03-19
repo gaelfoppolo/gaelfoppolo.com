@@ -10,3 +10,18 @@
     padding-right: 5px;
   }
 }
+
+.page__share {
+	display: flex;
+	flex-direction: row;
+  	align-items: center;
+  	justify-content: center;
+
+  	font-size: $type-size-5;
+
+  	margin-top: 2em;
+
+  	> * {
+      margin: 0 0.5em;
+    }
+}

@@ -13,7 +13,9 @@ layout: default
 	   {{ content }}
     </section>
 
-    {% include post-pagination.html %}    
+    {% if page.share %}{% include social-share.html %}{% endif %}
+
+    {% if page.pagination %}{% include post-pagination.html %}{% endif %} 
 
 </article>
 
