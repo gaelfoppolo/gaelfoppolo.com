@@ -6,13 +6,16 @@ layout: default
 
     <div class="header">
         <h1 class="page-title">{{ page.title }}</h1>
-        {% if page.last-updated %}
-        <h2 class="post-subtitle">Last updated on {{ page.last-updated | date: site.date_format }}</h2>
+        {% if page.subtitle %}
+        <h2 class="post-subtitle">{{ page.subtitle }}</h2>
         {% endif %}
     </div>
 
     <div class="page-content">
 	   {{ content }}
+	   {% if page.last-updated %}
+       	<p class="small">Last updated on {{ page.last-updated | date: site.date_format }}</p>
+       {% endif %}
     </div>
 
 </article>
