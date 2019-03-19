@@ -25,6 +25,8 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+      share: true
+      pagination: false
   - scope:
       path: ""
       types: ["pages", "meta"]
@@ -61,3 +63,12 @@ jekyll-archives:
     category: 'category'
   permalinks:
     category: '/category/:name/'
+
+# Assets Pipeline
+assets:
+  sources:
+    - _assets
+    - _assets/images
+    - _assets/js
+    - _assets/css
+    - _assets/fonts

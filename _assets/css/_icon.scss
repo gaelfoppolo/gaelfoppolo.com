@@ -1,0 +1,45 @@
+// Icons
+
+$icon-font-family: "icons" !default;
+$icon-font-path: "fonts" !default;
+
+@font-face {
+  font-family: '#{$icon-font-family}';
+  src:  url(asset_path('#{$icon-font-path}/#{$icon-font-family}.eot?qf1oo5'));
+  src:  url(asset_path('#{$icon-font-path}/#{$icon-font-family}.eot?qf1oo5#iefix')) format('embedded-opentype'),
+        url(asset_path('#{$icon-font-path}/#{$icon-font-family}.ttf?qf1oo5')) format('truetype'),
+        url(asset_path('#{$icon-font-path}/#{$icon-font-family}.woff?qf1oo5')) format('woff'),
+        url(asset_path('#{$icon-font-path}/#{$icon-font-family}.svg?qf1oo5##{$icon-font-family}')) format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  font-family: '#{$icon-font-family}' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1;
+  padding-right: 0.1em;
+  padding-left: 0.1em;
+}
+
+// Generate
+
+$icons:
+(github, "\e900"),
+(twitter, "\e901"),
+(linkedin, "\e902");
+
+  @each $icon, $content in $icons {
+    .icon-#{$icon} {
+      &:before {
+        content: $content; 
+      }
+    }
+  }
+
