@@ -11,7 +11,6 @@ permalink: /:title/
 author:
   name: Gaël Foppolo
   email: me@gaelfoppolo.com
-  twitter: gaelugio
 
 # Build
 markdown: kramdown
@@ -26,7 +25,7 @@ defaults:
     values:
       layout: "post"
       share: true
-      pagination: false
+      paginate: false
   - scope:
       path: ""
       types: ["pages", "meta"]

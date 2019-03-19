@@ -1,5 +1,11 @@
 <footer>
-	<p>
+	<hr>
+	<p class="social_links">
+	{% for social in site.data.social_links %}
+		<a href="{{ social[1] }}" alt="{{ social[0] }}" class="icon-{{ social[0] }}"></a>
+   	{% endfor %}
+	</p>
+	<p class="meta_links">
 	{% for item in site.meta %}
 		<a href="{{ item.url }}" alt="{{ item.title }}">{{ item.title }}</a>.
    	{% endfor %}
