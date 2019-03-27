@@ -53,7 +53,7 @@ do {
 }
 ```
 
-And we can't call `performArithmeticalOperation` using the `double` function, even if we know the function will never throw! A lot of unnecessary boilerplate code to come.
+And we can't call `performArithmeticalOperation` using the `double` function without a do catch block, even if we know the function will never throw! A lot of unnecessary boilerplate code to come.
 
 # Standard Library to the rescue!
 
