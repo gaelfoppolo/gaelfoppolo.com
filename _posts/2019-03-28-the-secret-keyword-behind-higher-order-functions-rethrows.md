@@ -72,7 +72,7 @@ Only a quick section of our favorite book, The Swift Programming Language, menti
 
 > A function or method can be declared with the `rethrows` keyword to indicate that it throws an error only if one of its function parameters throws an error.
 
-Using this keyword, the compiler is now able to check at compile time if the function parameter will throw an error. `double` will never, so it dot not need a try catch block. You'll even get a warning if you add it anyway.
+Using this keyword, the compiler is now able to check at compile time if the function parameter will throw an error. `double` will never, so it does not need a try catch block. You'll even get a warning if you add it anyway.
 
 ```swift
 func performArithmeticalOperation(_ x: Int, operation: (Int) throws -> Int) throws -> Int {
