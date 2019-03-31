@@ -15,7 +15,7 @@ But if you absolutely need one, here you go 🍪
 
 **I do not use any analytics tool.**
 
-I'm proud that this site generally doesn't make any requests to third-party servers that would allow web companies to track you. I try to self-host most of the content including stylesheets, scripts. ect.
+I'm proud that this site generally doesn't make any requests to third-party servers that would allow web companies to track you. I try to self-host most of the content including stylesheets, scripts, ect.
 
 #### Links to other websites
 
@@ -23,7 +23,7 @@ The website contains links to other websites. This privacy policy only applies t
 
 #### Changes to this policy
 
-I may change this privacy policy from time to time by updating this page. The date that this policy was last updated is shown at the top of this page.
+I may change this privacy policy from time to time by updating this page. The date that this policy was last updated is shown at the bottom of this page.
 
 #### Contact information
 
