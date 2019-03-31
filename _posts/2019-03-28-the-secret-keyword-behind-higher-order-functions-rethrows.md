@@ -75,7 +75,7 @@ Only a quick section of our favorite book, The Swift Programming Language, menti
 Using this keyword, the compiler is now able to check at compile time if the function parameter will throw an error. `double` will never, so it does not need a try catch block. You'll even get a warning if you add it anyway.
 
 ```swift
-func performArithmeticalOperation(_ x: Int, operation: (Int) throws -> Int) throws -> Int {
+func performArithmeticalOperation(_ x: Int, operation: (Int) throws -> Int) rethrows -> Int {
     return try operation(x)
 }
 
