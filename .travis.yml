@@ -10,7 +10,6 @@ before_install:
 install:
   - bundle install
   - gem install jekyll
-  - brew install lftp
 
 branches:
   only:
@@ -36,3 +35,7 @@ after_success:
   - bash journal.sh --publish || travis_terminate 1;
 
 sudo: false
+addons:
+  homebrew:
+    packages:
+    - lftp
