@@ -33,4 +33,4 @@ sudo: false
 addons:
   apt:
     packages:
-      - lftp
+      - lftp-4.8.4
