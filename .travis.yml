@@ -32,5 +32,6 @@ after_success:
 sudo: false
 addons:
   apt:
+    update: true
     packages:
-      - lftp-4.8.4
+      - lftp
