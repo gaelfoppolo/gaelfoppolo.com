@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Configuration
 BUNDLER_CMD="bundle exec"
@@ -6,12 +7,24 @@ JEKYLL_CMD="jekyll"
 BUNDLER_JEKYLL_CMD="$BUNDLER_CMD $JEKYLL_CMD"
 JEKYLL_CONFIG=" --config _config.yml"
 
+# Helper
+function includeDrafts {
+  DRAFT_SHORT="-d"
+  DRAFT_LONG="--draft"
+  if [[ "$1" == $DRAFT_SHORT || "$1" == $DRAFT_LONG ]]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
 # Build
 function fnBuild {
   echo "Running Jekyll build..."
+  BUILD_ACTION="build"
   BUILD_CMD="$BUNDLER_JEKYLL_CMD build $JEKYLL_CONFIG"
   
-  if [[ "$1" == "-d" || "$1" == "--draft" ]]; then
+  if includeDrafts $1; then
     echo "Including drafts..."
     BUILD_CMD+=" --drafts"
   fi
@@ -22,22 +35,51 @@ function fnBuild {
 # Clean
 function fnClean {
   echo "Running Jekyll clean.."
-  CLEAN_CMD="$BUNDLER_JEKYLL_CMD clean $JEKYLL_CONFIG"
+  CLEAN_ACTION="clean"
+  CLEAN_CMD="$BUNDLER_JEKYLL_CMD $CLEAN_ACTION $JEKYLL_CONFIG"
+  
   rm -rf .jekyll-cache
+  
   $CLEAN_CMD
 }
 
 # Server
 function fnServe {
   echo "Running Jekyll server..."
-  SERVE_CMD="$BUNDLER_JEKYLL_CMD serve --watch --livereload --incremental --open-url"
+  SERVE_ACTION="serve"
+  SERVE_OPTIONS="--watch --livereload --incremental --open-url"
+  SERVE_CMD="$BUNDLER_JEKYLL_CMD $SERVE_ACTION $SERVE_OPTIONS"
 
-  if [[ "$1" == "-d" || "$1" == "--draft" ]]; then
+  if includeDrafts $1; then
+    echo "Including drafts..."
     SERVE_CMD+=" --drafts"
   fi
 
   $SERVE_CMD
 
+}
+
+# Server
+function fnPublish {
+	echo "Publishing site to remote server..."
+	# call lftp using settings 
+	if [[ "$USERNAME" == "" || "$PASSWORD" == "" || "$HOST" == "" ]]; then
+		echo "  Error: Unable to determine settings to publish to remote server!"
+		echo ""
+		exit 1
+	else
+    	LOCALPATH='./_site'
+		REMOTEPATH='/www'
+
+		lftp -f "
+		set ssl:verify-certificate no
+		set sftp:auto-confirm yes
+		open sftp://$HOST
+		user $USERNAME $PASSWORD
+		mirror --continue --reverse --delete --verbose $LOCALPATH $REMOTEPATH
+		bye
+		" 
+	fi
 }
 
 # Help Info
@@ -52,7 +94,7 @@ function fnHelpInfo {
   echo "  -h, --help     displays help info for the script"
   echo "  -m, --move     moves a draft to post or post to draft status"
   echo "  -n, --new      creates a new post or draft"
-  echo "  -p, --publish  copies site via rcp/rsync to remote server"
+  echo "  -p, --publish  copies site via lftp to remote server"
   echo "  -s, --serve    runs the jekyll server"
   echo ""
   echo "Modifiers:"
@@ -131,9 +173,6 @@ case "$1" in
     fnServe "$2"
     ;;
   --serve)
-    fnServe "$2"
-    ;;
-  --server)
     fnServe "$2"
     ;;
   *)
