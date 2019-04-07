@@ -23,11 +23,11 @@ notifications:
 
 script:
   - chmod +x journal.sh
-  - journal.sh --build
+  - bash journal.sh --build
 
 after_success:
   - chmod +x journal.sh
-  - journal.sh --publish
+  - bash journal.sh --publish
 
 sudo: false
 addons:
