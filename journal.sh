@@ -69,13 +69,13 @@ function fnPublish {
 		exit 1
 	else
     	LOCALPATH='./_site'
-		REMOTEPATH='./www'
+		REMOTEPATH='/www'
 
-lftp -f "
-open -u $USERNAME,$PASSWORD ftp://$HOST
-mirror --continue --reverse --delete --verbose $LOCALPATH $REMOTEPATH
-bye
-" 
+		lftp -f "
+		open -u $USERNAME,$PASSWORD ftp://$HOST
+		mirror --continue --reverse --delete --verbose $LOCALPATH $REMOTEPATH
+		bye
+		" 
 	fi
 }
 
