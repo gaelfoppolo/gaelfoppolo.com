@@ -71,11 +71,12 @@ function fnPublish {
     	LOCALPATH='./_site'
 		REMOTEPATH='/www'
 
-lftp -f "
-open ftp://$HOST
-user $USERNAME $PASSWORD
-mirror --continue --reverse --delete $LOCALPATH $REMOTEPATH
-bye
+		lftp -f "
+		set ssl:verify-certificate no
+		set sftp:auto-confirm yes
+		open -u $USERNAME,$PASSWORD sftp://$HOST
+		mirror --continue --reverse --delete --verbose $LOCALPATH $REMOTEPATH
+		bye
 " 
 	fi
 }
