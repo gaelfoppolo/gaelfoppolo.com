@@ -9,7 +9,6 @@ before_install:
 
 install:
   - bundle install
-  - gem install jekyll
 
 branches:
   only:
