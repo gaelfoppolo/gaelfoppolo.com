@@ -2,7 +2,6 @@ ruby '2.5.0'
 source "https://rubygems.org"
 
 gem "jekyll", "~> 3.8.4"
-gem "font-awesome-sass", "~> 5.5.0"
 
 group :jekyll_plugins do
   gem 'jekyll-assets'
