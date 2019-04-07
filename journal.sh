@@ -62,7 +62,10 @@ function fnServe {
 # Server
 function fnPublish {
 	echo "Publishing site to remote server..."
-	# call lftp using settings 
+	# call lftp using settings
+	echo $USERNAME;
+	echo $PASSWORD;
+	echo $HOST;
 	if [[ "$USERNAME" == "" || "$PASSWORD" == "" || "$HOST" == "" ]]; then
 		echo "  Error: Unable to determine settings to publish to remote server!"
 		echo ""
