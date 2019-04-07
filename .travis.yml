@@ -1,3 +1,4 @@
+dist: xenial
 language: ruby
 rvm:
   - 2.5.0
@@ -33,4 +34,4 @@ sudo: false
 addons:
   apt:
     packages:
-      - lftp=4.8.4
+      - lftp
