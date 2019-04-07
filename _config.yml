@@ -43,7 +43,7 @@ collections:
 
 # Setup
 include: [".well-known"]
-exclude: ["README*", "LICENSE*", "Gemfile*", "journal.sh"]
+exclude: ["README*", "LICENSE*", "Gemfile*", "journal.sh", ".travis.yml"]
 
 # Pagination
 paginate_path: "/history/:num/"

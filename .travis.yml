@@ -1,0 +1,36 @@
+language: ruby
+rvm:
+  - 2.5.0
+
+install:
+  - bundle install
+  - gem install jekyll
+
+branches:
+  only:
+    - feature/scripts
+
+env:
+  global:
+    - JEKYLL_ENV=production
+
+notifications:
+  email:
+    recipients:
+      - gael.foppolo@gmail.com
+    on_success: always
+    on_failure: always
+
+script:
+  - chmod +x journal.sh
+  - journal.sh --build
+
+after_success:
+  - chmod +x journal.sh
+  - journal.sh --publish
+
+sudo: false
+addons:
+  apt:
+    packages:
+      - lftp
