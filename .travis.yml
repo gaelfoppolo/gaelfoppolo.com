@@ -23,11 +23,11 @@ notifications:
 
 script:
   - chmod +x journal.sh
-  - bash journal.sh --build
+  - bash journal.sh --build || travis_terminate 1;
 
 after_success:
   - chmod +x journal.sh
-  - bash journal.sh --publish
+  - bash journal.sh --publish || travis_terminate 1;
 
 sudo: false
 addons:
