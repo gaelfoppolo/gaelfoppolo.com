@@ -17,9 +17,7 @@ notifications:
 env:
   global:
   - JEKYLL_ENV=production
-
-addons:
-  ssh_known_hosts: $HOST
+  - DEPLOY_KEY=deploy_rsa
 
 before_install:
   - gem update --system
@@ -33,10 +31,11 @@ script:
   - bash journal.sh --build || travis_terminate 1;
 
 before_deploy:
-- openssl aes-256-cbc -K $encrypted_57051782bb65_key -iv $encrypted_57051782bb65_iv -in deploy_rsa.enc -out /tmp/deploy_rsa -d
+- ssh-keyscan $HOST >> $HOME/.ssh/known_hosts
+- openssl aes-256-cbc -K $encrypted_57051782bb65_key -iv $encrypted_57051782bb65_iv -in $DEPLOY_KEY.enc -out /tmp/$DEPLOY_KEY -d
 - eval "$(ssh-agent -s)"
-- chmod 600 /tmp/deploy_rsa
-- ssh-add /tmp/deploy_rsa
+- chmod 600 /tmp/$DEPLOY_KEY
+- ssh-add /tmp/$DEPLOY_KEY
 
 deploy:
   provider: script
