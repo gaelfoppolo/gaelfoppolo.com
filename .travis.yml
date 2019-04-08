@@ -45,6 +45,6 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: rsync --recursive --relative --delete-after --progress --stats $TRAVIS_BUILD_DIR/_site $USERNAME@$HOST:$REMOTE_PATH
+  script: rsync --recursive --relative --delete-after --progress --stats -e "ssh -l $USERNAME" $TRAVIS_BUILD_DIR/_site/ $HOST:$REMOTE_PATH
   on:
     branch: feature/scripts
