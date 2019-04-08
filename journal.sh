@@ -59,26 +59,6 @@ function fnServe {
 
 }
 
-# Server
-function fnPublish {
-	echo "Publishing site to remote server..."
-	# call lftp using settings
-	if [[ "$USERNAME" == "" || "$PASSWORD" == "" || "$HOST" == "" ]]; then
-		echo "  Error: Unable to determine settings to publish to remote server!"
-		echo ""
-		exit 1
-	else
-    	LOCALPATH='./_site'
-		REMOTEPATH='/www'
-
-		lftp -f "
-		open -u $USERNAME,$PASSWORD ftp://$HOST
-		mirror --continue --reverse --delete --verbose $LOCALPATH $REMOTEPATH
-		bye
-		" 
-	fi
-}
-
 # Help Info
 function fnHelpInfo {
   echo "Usage: journal.sh [OPTIONS]..."
@@ -91,7 +71,6 @@ function fnHelpInfo {
   echo "  -h, --help     displays help info for the script"
   echo "  -m, --move     moves a draft to post or post to draft status"
   echo "  -n, --new      creates a new post or draft"
-  echo "  -p, --publish  copies site via lftp to remote server"
   echo "  -s, --serve    runs the jekyll server"
   echo ""
   echo "Modifiers:"
@@ -119,9 +98,6 @@ function fnHelpInfo {
   echo ""
   echo "  journal.sh --build"
   echo "    Builds the site"
-  echo ""
-  echo "  journal.sh --publish"
-  echo "    Runs rcp/rsync to copy built site to a remote server"
   echo ""
   echo "  journal.sh --list \"*2019*\""
   echo "    Lists all posts that have '2019' in the file name"
@@ -159,12 +135,6 @@ case "$1" in
     ;;
   --new)
     fnNew "$2" "$3" "$4"
-    ;;
-  -p)
-    fnPublish
-    ;;
-  --publish)
-    fnPublish
     ;;
   -s)
     fnServe "$2"
