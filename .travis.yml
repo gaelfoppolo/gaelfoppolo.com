@@ -10,7 +10,7 @@ branches:
 notifications:
   email:
     recipients:
-    - gael.foppolo@gmail.com
+    - $EMAIL
     on_success: always
     on_failure: always
 
@@ -42,3 +42,5 @@ deploy:
   provider: script
   skip_cleanup: true
   script: rsync -r --delete-after --progress --stats $TRAVIS_BUILD_DIR/_site $USERNAME@$HOST:$REMOTE_PATH
+  on:
+    branch: feature/scripts
