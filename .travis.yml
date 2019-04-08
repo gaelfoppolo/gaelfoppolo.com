@@ -19,6 +19,11 @@ env:
   - JEKYLL_ENV=production
   - DEPLOY_KEY=deploy_rsa
 
+addons:
+  homebrew:
+    packages:
+    - rsync
+
 before_install:
   - gem update --system
   - gem update bundler
