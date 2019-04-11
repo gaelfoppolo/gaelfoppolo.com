@@ -2,7 +2,6 @@ os: osx
 language: ruby
 rvm: 2.5.0
 sudo: false
-cache: bundler
 
 notifications:
   email:
