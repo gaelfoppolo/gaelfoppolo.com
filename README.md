@@ -5,11 +5,11 @@ This is my personal site and blog. It mostly contains content about Swift and iO
 ## Requirements
 
 - Ruby 2.5.0+
-- [Bundler](https://bundler.io) 1.17.1+
+  - [Bundler](https://bundler.io) 2.0.1+
 
 ## Dependencies
 
-- [jekyll](https://jekyllrb.com) 3.8.4+
+- [jekyll](https://jekyllrb.com)
 - jekyll-assets
 - jekyll-time-to-read
 - jekyll-archives
