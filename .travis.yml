@@ -4,10 +4,6 @@ rvm: 2.5.0
 sudo: false
 cache: bundler
 
-branches:
-  only:
-  - master
-
 notifications:
   email:
     recipients:
@@ -48,6 +44,8 @@ deploy:
   provider: script
   skip_cleanup: true
   script: rsync --recursive --relative --delete-after --progress --stats $LOCAL_PATH $USERNAME@$HOST:$REMOTE_PATH
+  on:
+    branch: master
 
 after_deploy:
 - ssh-add -D /tmp/$DEPLOY_KEY
