@@ -6,7 +6,7 @@ cache: bundler
 
 branches:
   only:
-  - feature/scripts
+  - master
 
 notifications:
   email:
