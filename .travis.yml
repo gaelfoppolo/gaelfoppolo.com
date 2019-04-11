@@ -23,7 +23,6 @@ addons:
     - rsync
 
 before_install:
-  - gem update --system
   - gem update
 
 install:
