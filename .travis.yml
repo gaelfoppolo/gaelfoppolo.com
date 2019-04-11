@@ -1,8 +1,9 @@
 os: osx
 language: ruby
-rvm:
-  - 2.5.0
+rvm: 2.5.0
 sudo: false
+cache: bundler
+
 branches:
   only:
   - feature/scripts
@@ -18,6 +19,8 @@ env:
   global:
   - JEKYLL_ENV=production
   - DEPLOY_KEY=deploy_rsa
+  - LOCAL_PATH=_site
+  - JEKYLL_CONF=_config.yml
 
 addons:
   homebrew:
@@ -32,8 +35,7 @@ install:
   - bundle install
 
 script:
-  - chmod +x journal.sh
-  - bash journal.sh --build || travis_terminate 1;
+  - bundle exec jekyll build --config $JEKYLL_CONF
 
 before_deploy:
 - ssh-keyscan -t rsa -H $HOST >> $HOME/.ssh/known_hosts
@@ -45,6 +47,8 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: rsync --recursive --relative --delete-after --progress --stats _site $USERNAME@$HOST:$REMOTE_PATH
-  on:
-    branch: feature/scripts
+  script: rsync --recursive --relative --delete-after --progress --stats $LOCAL_PATH $USERNAME@$HOST:$REMOTE_PATH
+
+after_deploy:
+- ssh-add -D /tmp/$DEPLOY_KEY
+- rm /tmp/$DEPLOY_KEY
