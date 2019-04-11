@@ -24,7 +24,7 @@ addons:
 
 before_install:
   - gem update --system
-  - gem update bundler
+  - gem update
 
 install:
   - bundle install
