@@ -14,7 +14,7 @@ env:
   global:
   - JEKYLL_ENV=production
   - DEPLOY_KEY=deploy_rsa
-  - LOCAL_PATH=_site
+  - LOCAL_PATH=_site/
   - JEKYLL_CONF=_config.yml
 
 addons:
