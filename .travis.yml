@@ -14,7 +14,7 @@ env:
   global:
   - JEKYLL_ENV=production
   - DEPLOY_KEY=deploy_rsa
-  - LOCAL_PATH=_site/
+  - LOCAL_FOLDER=_site
   - JEKYLL_CONF=_config.yml
 
 addons:
@@ -30,6 +30,7 @@ install:
 
 script:
   - bundle exec jekyll build --config $JEKYLL_CONF
+  - mv $LOCAL_FOLDER $REMOTE_FOLDER
 
 before_deploy:
 - ssh-keyscan -t rsa -H $HOST >> $HOME/.ssh/known_hosts
@@ -41,7 +42,7 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: rsync --recursive --relative --delete-after --progress --stats $LOCAL_PATH $USERNAME@$HOST:$REMOTE_PATH
+  script: rsync --recursive --relative --delete-after --progress --stats $REMOTE_FOLDER $USERNAME@$HOST:$REMOTE_PATH
   on:
     branch: master
 
