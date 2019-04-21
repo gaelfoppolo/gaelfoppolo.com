@@ -11,4 +11,5 @@ group :jekyll_plugins do
   gem 'jekyll-feed', "= 0.12.1"
   gem 'rouge', "= 3.3.0"
   gem 'jekyll-compose', "= 0.11.0"
+  gem 'jekyll-analytics', "= 0.1.11"
 end
