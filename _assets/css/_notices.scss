@@ -1,13 +1,5 @@
 /* == NOTICE TEXT BLOCKS == */
 
-/**
- *  Default Kramdown usage (no indents!):
- *  <div class="notice" markdown="1">
- *  #### Headline for the Notice
- *  Text for the notice
- *  </div>
- */
-
 @mixin notice($notice-color) {
   margin: 2em 0 !important;  /* override*/
   padding: 1em;

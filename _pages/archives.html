@@ -9,7 +9,7 @@ title: Archives
 {% for post in site.posts %}
     {% assign currentDate = post.date | date: "%Y" %}
        {% if currentDate != myDate %}
-           {% unless forloop.first %}</ul>{% endunless %}
+           {% unless forloop.first %}{% endunless %}
            <h2>{{ currentDate }}</h2>
            {% assign myDate = currentDate %}
        {% endif %}
