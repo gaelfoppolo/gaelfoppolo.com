@@ -72,7 +72,7 @@ assets:
     - _assets/css
     - _assets/fonts
 
-jekyll_analytics:
-  Matomo:
-    url: analytics.gaelfoppolo.com
-    siteId: "1"
+# Analytics
+analytics:
+  url: analytics.gaelfoppolo.com
+  siteId: "1"
