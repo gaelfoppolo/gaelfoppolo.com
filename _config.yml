@@ -28,9 +28,14 @@ defaults:
       paginate: false
   - scope:
       path: ""
-      types: ["pages", "meta"]
+      type: "pages"
     values:
       layout: "page"
+  - scope:
+      path: ""
+      type: "meta"
+    values:
+      layout: "meta"
 
 # Collections
 collections:

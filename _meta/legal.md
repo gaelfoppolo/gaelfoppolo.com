@@ -1,6 +1,5 @@
 ---
 title: Legal
-last-updated: "2019-03-19"
 ---
 
 All views, thoughts, and opinions expressed on this site are solely my own and do not express the views or opinions of my employer.

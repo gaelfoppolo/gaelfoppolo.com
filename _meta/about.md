@@ -1,6 +1,5 @@
 ---
 title: About
-last-updated: "2019-03-19"
 ---
 
 Hi, I’m {{ site.author.name }} 👋. This is my blog.

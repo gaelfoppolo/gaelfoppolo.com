@@ -1,6 +1,5 @@
 ---
 title: Privacy
-last-updated: "2019-04-22"
 ---
 
 This Policy describes the information I collect from you and how I use that information. It also covers whether and how that information may be shared and your rights and choices regarding the information you provide. This Privacy Policy applies to the information that I obtain through your use of this website, **{{ site.title }}**.
