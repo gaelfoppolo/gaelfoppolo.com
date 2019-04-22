@@ -12,4 +12,5 @@ group :jekyll_plugins do
   gem 'rouge', "= 3.3.0"
   gem 'jekyll-compose', "= 0.11.0"
   gem 'jekyll-last-modified-at', "= 1.1.0"
+  gem 'html-proofer', "= 3.10.2"
 end
