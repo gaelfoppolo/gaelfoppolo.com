@@ -60,7 +60,7 @@ The complete (and up to date) list [can be found here](https://developer.apple.c
 
 # Conversion
 
-In order to convert our trained model to the `.mlmodel` format, Apple released an open source tool, [coremltools](https://pypi.python.org/pypi/coremltools) (the documentation [is here](http://pythonhosted.org/coremltools/generated/coremltools.converters.caffe.convert.html)).
+In order to convert our trained model to the `.mlmodel` format, Apple released an open source tool, [coremltools](https://pypi.python.org/pypi/coremltools) (the documentation [is here](https://apple.github.io/coremltools/generated/coremltools.converters.caffe.convert.html)).
 
 The last part of the [session 710](https://developer.apple.com/videos/play/wwdc2017/710) shows how to use it and convert a basic model. I used it as a base, and I encourage you to watch it.
 

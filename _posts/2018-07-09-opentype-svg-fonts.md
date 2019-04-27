@@ -178,7 +178,7 @@ let salmonFont = UIFont(descriptor: descriptor, size: 0.0)
 
 ## Where can I get these gorgeous color fonts? 
 
-Color fonts are still new and so hard to find. You can go to [colorsfont.wtf](colorsfont.wtf), which references most of them. And if you are inspired you can even create your own with a dedicated software, [Fontself](https://www.fontself.com/).
+Color fonts are still new and so hard to find. You can go to [colorfonts.wtf](https://www.colorfonts.wtf), which references most of them. And if you are inspired you can even create your own with a dedicated software, [Fontself](https://www.fontself.com/).
 
 ## What's next?
 
