@@ -30,7 +30,7 @@ install:
 
 script:
   - bundle exec jekyll build --config $JEKYLL_CONF
-  - bundle exec htmlproofer ./$LOCAL_FOLDER --check-favicon --check-html
+  - bundle exec htmlproofer ./$LOCAL_FOLDER --check-favicon --check-html --http_status_ignore 999
   - mv $LOCAL_FOLDER $REMOTE_FOLDER
 
 before_deploy:
