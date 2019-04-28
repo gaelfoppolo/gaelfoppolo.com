@@ -322,67 +322,50 @@ mark {
 
 audio, canvas, iframe, img, svg, video {
   display: block;
-  max-width: 100%;
-  max-height: 80vh;
   
   margin-left: auto;
   margin-right: auto;
-  border-radius: 5px;
+  border-radius: $border-radius;
   vertical-align: middle;
 }
 
 /* Figures and images */
 
 figure {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
-  -webkit-box-align: start;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  margin: 2em 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-  img,
-  iframe {
-    margin-bottom: 1em;
-  }
-
+  width: calc(100% - #{$figure-spacing} - #{$figure-spacing});
+  margin-left: calc(#{$figure-spacing});
+  margin-right: calc(#{$figure-spacing});
+  
   img {
-    width: 100%;
+    margin-bottom: 0.5em;
     border-radius: $border-radius;
     border: 0;
+    width: 100%;
   }
 
-  > a {
-    display: block;
+  &.fill {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 
-  &.half {
-    > a,
-    > img {
-      @include breakpoint($small) {
-        width: calc(50% - 0.5em);
-      }
-    }
-
-    figcaption {
-      width: 100%;
-    }
+  &.big {
+    width: calc(100% + #{$figure-spacing} + #{$figure-spacing});
+    margin-left: calc(-1 * #{$figure-spacing});
+    margin-right: calc(-1 * #{$figure-spacing});
   }
 
-  &.third {
-    > a,
-    > img {
-      @include breakpoint($small) {
-        width: calc(33.3333% - 0.5em);
-      }
-    }
-
-    figcaption {
-      width: 100%;
-    }
+  &.full {
+    width: calc(100% + #{$main-padding-side} + #{$main-padding-side});
+    margin-left: calc(-1 * #{$main-padding-side});
+    margin-right: calc(-1 * #{$main-padding-side});
   }
+
 }
 
 /* Figure captions */
@@ -391,7 +374,7 @@ figcaption {
   margin-bottom: 0.5em;
   color: $muted-text-color;
   font-family: $caption-font-family;
-  font-size: $type-size-6;
+  font-size: $type-size-7;
 }
 
 /* Fix IE9 SVG bug */

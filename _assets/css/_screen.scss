@@ -35,4 +35,12 @@
     font-size: $type-size-5;
   }
 
+  figure {
+    &.full {
+      width: calc(100% + #{$main-padding-side-small} + #{$main-padding-side-small});
+      margin-left: calc(-1 * #{$main-padding-side-small});
+      margin-right: calc(-1 * #{$main-padding-side-small});
+    }
+  }
+
 }
