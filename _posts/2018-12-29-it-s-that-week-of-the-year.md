@@ -41,11 +41,21 @@ print(calendar.minimumDaysInFirstWeek, calendar.firstWeekday)
 
 For example, 1 January 2019 is a Tuesday. Then the first year-week of 2019 starts on 31 December 2018 and ends on 6 January 2019. 
 
-{% asset yyyy-january-2019-monday.png %}
+{% include 
+	image.html 
+	src="yyyy-january-2019-monday.png"
+    alt="January 2019 starts on Tuesday"
+    caption="January 2019 starts on Tuesday"
+%}
 
 However, if the first day of the week was Thursday, then the first year-week of 2019 would have started on 3 January, and would have ended on 9 January. The first two days of 2019 would have then been part of year-week 53 of 2018.
 
-{% asset yyyy-january-2019-thursday.png %}
+{% include 
+	image.html 
+	src="yyyy-january-2019-thursday.png"
+    alt="January 2019 starts on Thursday"
+    caption="January 2019 starts on Thursday"
+%}
 
 ISO year 2019 starts in year 2018, meaning the first ISO week of 2019 is also considered as the week 53 of ISO year 2018.
 
@@ -55,7 +65,12 @@ Using the `Y` date format, you specify the year-week date format, which needs ad
 
 Without any other configuration, the formatter only consider the year, in a year-week calendar, and by default uses a zero based index for the day and the week: day 0 of week 0 of 2018 is 25 December 2017.
 
-{% asset yyyy-december-2018.png %}
+{% include 
+	image.html 
+	src="yyyy-december-2018.png"
+    alt="December 2018"
+    caption="December 2018"
+%}
 
 When using year-week date format, use `w` to specify the week of year (ordinal) and `e` to specify the day of week. 
 
