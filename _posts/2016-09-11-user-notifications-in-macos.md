@@ -9,9 +9,13 @@ categories: [macos]
 
 [Notification Center](https://support.apple.com/en-us/HT204079) provides an overview of notifications from applications. As we will see, it’s very easy to integrate and display basic notifications in it.
 
-Three display styles are available: **None**, **Banner** and **Alert**.
-
-{% asset user-notifications-style.png %}
+{% include 
+    image.html 
+    src="user-notifications-style.png"
+    alt="Three display styles are available: None, Banner and Alert."
+    caption="Three display styles are available: None, Banner and Alert."
+    style=""
+%}
 
 By default, User Notifications are displayed using the **Banner** style.
 
@@ -41,7 +45,12 @@ let notificationCenter = NSUserNotificationCenter.defaultUserNotificationCenter(
 notificationCenter.deliverNotification(notification)
 ```
 
-{% asset user-notifications-simple.png %}
+{% include 
+    image.html 
+    src="user-notifications-simple.png"
+    alt="A simple banner notification"
+    caption="A simple banner notification"
+%}
 
 ## Schedule
 
@@ -78,7 +87,12 @@ notification.hasReplyButton = true
 notification.responsePlaceholder = "Type you reply here"
 ```
 
-{% asset user-notifications-reply-all.png %}
+{% include 
+    image.html 
+    src="user-notifications-reply-all.png"
+    alt="A banner notification with reply — hover and focus"
+    caption="With reply — hover and focus"
+%}
 
 ### Handle response
 
@@ -122,7 +136,12 @@ On the contrary of banners, alerts aren’t dismissed automatically.
 
 To modify the notification style we need to add a property into `Info.plist`. Set `NSUserNotificationAlertStyle` as key with `alert` string value.
 
-{% asset user-notifications-infoplist.png %}
+{% include 
+    image.html 
+    src="user-notifications-infoplist.png"
+    alt="Info.plist"
+    caption="Info.plist"
+%}
 
 Same as banners, you need to configure `hasReplyButton` and `responsePlaceholder` properties, to enable reply, else you’ll have default buttons. You can configure them to display what you want instead of *Show/Close*:
 
@@ -132,7 +151,12 @@ notification.otherButtonTitle = "Marco"
 notification.actionButtonTitle = "Polo"
 ```
 
-{% asset user-notifications-buttons.png %}
+{% include 
+    image.html 
+    src="user-notifications-buttons.png"
+    alt="A notification with custom buttons title"
+    caption="Custom buttons title"
+%}
 
 ### Additional actions
 
@@ -157,7 +181,12 @@ actions.append(action3)
 notification.additionalActions = actions
 ```
 
-{% asset user-notifications-actions.png %}
+{% include 
+    image.html 
+    src="user-notifications-actions.png"
+    alt="A notification with additional actions displayed"
+    caption="Additional actions displayed"
+%}
 
 Currently, you need to **hold-click** the action button to display the additional actions and there is no little arrow on hover.
 
@@ -169,7 +198,12 @@ There is a workaround, to display like the *Reminders* app. But it’s ugly. It 
 notification.setValue(true, forKey: "_alwaysShowAlternateActionMenu")
 ```
 
-{% asset user-notifications-workaround.png %}
+{% include 
+    image.html 
+    src="user-notifications-workaround.png"
+    alt="Arrow on hover"
+    caption="Workaround: arrow on hover"
+%}
 
 You don’t longer have access to the action button with this workaround.
 

@@ -31,7 +31,13 @@ If you don’t have an AWS account, take a look at AWS Free Tier, you can test A
 
 Ok now that we settle the requirements, here what we are going to do: a simple Hadoop cluster with 4 nodes, a master and three data nodes.
 
-{% asset hadoop-our-cluster.png %}
+{% include 
+    image.html 
+    src="hadoop-our-cluster.png"
+    alt="Our Hadoop cluster"
+    caption="Our Hadoop cluster"
+    style="half"
+%}
 
 Let’s take a look at what we are going to do in details:
 
@@ -49,7 +55,12 @@ We are going to create an EC2 instance using the latest Ubuntu Server as OS.
 
 After logging on AWS, go to *AWS Console*, choose the *EC2* service. On the EC2 Dashboard, click on **Launch Instance**. You can check *Free tier only* if you like (no cost, as promised). In the list select the latest Ubuntu Server. Currently, it’s 16.04 LTS.
 
-{% asset hadoop-select-ami.png %}
+{% include 
+    image.html 
+    src="hadoop-select-ami.png"
+    alt="Select Ubuntu Server AMI"
+    caption="Select Ubuntu Server AMI"
+%}
 
 Choose the **t2.micro** instance type. It is enough for our purposes at the moment. Click on *Next: Configure Instance Details*.
 
@@ -69,7 +80,12 @@ This step lets us define rules regarding the incoming or outgoing access of the 
 
 Select *Create a new security group* name it as you like (e.g.: *HadoopSecurityGroup*) and give it a useful description. For the purpose of testing, we are going to open everything to avoid network errors. Configure as the following image.
 
-{% asset hadoop-group-security.png %}
+{% include 
+    image.html 
+    src="hadoop-group-security.png"
+    alt="AWS Security Group (without security 😇)"
+    caption="AWS Security Group (without security 😇)"
+%}
 
 Finally, click on *Review and Launch*.
 
@@ -91,7 +107,12 @@ ssh -i path/to/your/key.pem ubuntu@ec2-19-124-171-90.eu-central-1.compute.amazon
 
 *Note*: if you see a message like this, it is because the key you’re trying to use is too accessible to users on the system. You need to restrict the access by simply run the following command: `chmod 600 path/to/your/key.pem`
 
-{% asset hadoop-ssh-security.png %}
+{% include 
+    image.html 
+    src="hadoop-ssh-security.png"
+    alt="SSH security, chmod required"
+    caption="SSH security, chmod required"
+%}
 
 We will also use scp to transfer files. From terminal you can use:
 
@@ -418,11 +439,22 @@ hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.
 
 You can then follow the job in the terminal:
 
-{% asset hadoop-ssh-job.png %}
+{% include 
+    image.html 
+    src="hadoop-ssh-job.png"
+    alt="MapReduce job (SSH)"
+    caption="MapReduce job (SSH)"
+%}
 
 You can also see it in the browser by accessing: `<public DNS master node>::8088`
 
-{% asset hadoop-web-job.png %}
+{% include 
+    image.html 
+    src="hadoop-web-job.png"
+    alt="MapReduce job (Web)"
+    caption="MapReduce job (Web)"
+    style="fill"
+%}
 
 *Bonus*: you can also view the job on data nodes, by accessing: `<public DNS data node>:8042`.
 

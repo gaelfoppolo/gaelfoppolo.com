@@ -24,7 +24,12 @@ In order to perform speech recognition using the framework, it is mandatory to f
 
 Add a property into `Info.plist`. Set your custom message for the `Privacy — Speech Recognition Usage Description` key.
 
-{% asset speech-recognition-plist-usage.png %}
+{% include 
+    image.html 
+    src="speech-recognition-plist-usage.png"
+    alt="Authorization message for Speech Recognition"
+    caption="Authorization message for Speech Recognition"
+%}
 
 Now we need to *actually* ask the permission. I recommend *calling* this method only when you need to trigger speech recognition.
 
@@ -100,7 +105,12 @@ Configuration was pretty simple, now let’s see **input data**!
 
 Like speech recognition, user’s permission is required to use the microphone. Add a new property into `Info.plist`, `Privacy — Microphone Usage Description` and provide a message.
 
-{% asset speech-recognition-plist-microphone.png %}
+{% include 
+    image.html 
+    src="speech-recognition-plist-microphone.png"
+    alt="Authorization message for Microphone"
+    caption="Authorization message for Microphone"
+%}
 
 Start by adding these two objects:
 
@@ -212,7 +222,12 @@ Finally, launch the recognition. Assume we bind this method to an `UIButton`:
 
 Start only occurs when microphone is not already running, so we only have one task running at a time.
 
-{% asset speech-recognition-demo.gif %}
+{% include 
+    image.html 
+    src="speech-recognition-demo.gif"
+    alt="Demo project"
+    caption="Demo project"
+%}
 
 The project (based on Apple’s sample code *SpeakToMe*) [is available on GitHub](https://github.com/gaelfoppolo/SpeakToMe).
 

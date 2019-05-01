@@ -7,11 +7,22 @@ OTP are becoming a security requirement nowadays. There are an essential part of
 
 Unfortunately the flow can be very tedious. The code is requested and received. Either you have a blasting memory and can type the code during the short amount of time of the notification. Or you switch to the Messages app and copy the code, and again back in the app.
 
-{% asset security-code-autofill-before.png %}
+{% include 
+    image.html 
+    src="security-code-autofill-before.png"
+    alt="Before Security Code AutoFill"
+    caption="Before Security Code AutoFill"
+%}
 
 With iOS 12, you can ease this process for your user, by providing an in-app AutoFill option, directly to the QuickType bar. Users can fill them with one tap. With zero effort. 
 
-{% asset security-code-autofill-now.png %}
+{% include 
+    image.html 
+    src="security-code-autofill-now.png"
+    alt="With Security Code AutoFill"
+    caption="With Security Code AutoFill"
+    style="half"
+%}
 
 ## Show me the code
 
@@ -49,7 +60,13 @@ There are a couple of things to keep in mind, if you want to support this:
 
 This type of code is usually used for financial transaction. If your message contains an amount of money and, if detected, QuickType bar will also display this information.
 
-{% asset security-code-autofill-amount.png %}
+{% include 
+    image.html 
+    src="security-code-autofill-amount.png"
+    alt="QuickType bar with an amount of money"
+    caption="QuickType bar with an amount of money"
+    style="half"
+%}
 
 This is a simple addition, but very useful for users, as it helps them identify security codes and confirm their validity.
 

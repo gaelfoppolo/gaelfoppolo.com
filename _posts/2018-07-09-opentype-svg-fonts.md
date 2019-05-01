@@ -5,7 +5,13 @@ categories: [ios, macos]
 excerpt: While browsing the headers of the new Xcode 10 beta 2, I noticed a completely new framework in CoreText, confirming the upcoming support of color fonts in Apple ecosystem.
 ---
 
-{% asset opentype-fonts-cover.png alt="Gilbert, NTBixa and Abelone fonts" %}
+{% include 
+    image.html 
+    src="opentype-fonts-cover.png"
+    alt="Gilbert, NTBixa and Abelone fonts"
+    caption="Gilbert, NTBixa and Abelone fonts"
+    style="big"
+%}
 
 Fonts, as we know them, only contain a single color information, using either vector or bitmaps. We call them monochromatic fonts. They do not contain any other color information. That's why a glyph (usually a character) can only have one color, by default black. 
 
@@ -21,7 +27,12 @@ We also refer to OTS fonts as “**color fonts**”, and you've been using them 
 
 The Unicode Standard began to add emoji in its sixth version, in late 2011. A lot of actors integrated them in their products and platforms, but this was just a start. Unicode emoji are handled as text, and color is an essential aspect of the emoji experience. This led to a need to create mechanisms for displaying multicolor glyphs. Each actor then created its own format to display it own emojis. So emojis are color fonts.
 
-{% asset opentype-fonts-emoji.png alt="Emoji are SVG fonts" %}
+{% include 
+    image.html 
+    src="opentype-fonts-emoji.png"
+    alt="Emoji are SVG fonts"
+    caption="Emoji are SVG fonts"
+%}
 
 ## Color font formats
 
@@ -41,7 +52,13 @@ As you see, no real consensus existed on that topic.
 
 To address this fragmentation, Mozilla and Adobe decided to work on a new format, taking the best of all. Google and Microsoft also joined the battle, and in 2016, the OTS standard was born.
 
-{% asset opentype-svg-logo.png alt="OpenType logo" %}
+{% include 
+    image.html 
+    src="opentype-svg-logo.png"
+    alt="OpenType logo"
+    caption="OpenType logo"
+    style="half"
+%}
 
 OTS is both SVG and bitmap compatible.
 
@@ -55,9 +72,19 @@ Again some headers exploring, a quick search on the Internet and I stumble upon 
 
 You can also find the related new [data types](https://developer.apple.com/documentation/coretext/core_text_data_types?changes=latest_major&language=objc) and [functions](https://developer.apple.com/documentation/coretext/core_text_functions?changes=latest_major&language=objc) online.
 
-{% asset opentype-core-text-datatypes.png %}
+{% include 
+    image.html 
+    src="opentype-core-text-datatypes.png"
+    alt="CoreText datatypes"
+    caption="GCoreText datatypes"
+%}
 
-{% asset opentype-core-text-functions.png %}
+{% include 
+    image.html 
+    src="opentype-core-text-functions.png"
+    alt="CoreText functions"
+    caption="CoreText functions"
+%}
 
 This new framework is available on iOS 12.0+, macOS 10.14+, watchOS 5.0+, tvOS 12.0+ starting Xcode 10 beta 2.
 
@@ -70,13 +97,23 @@ label.text = "An OpenType SVG font on iOS!"
 label.font = UIFont(name: "PlayboxRegular", size: 30)
 ```
 
-{% asset opentype-playbox-ios12.png %}
+{% include 
+    image.html 
+    src="opentype-playbox-ios12.png"
+    alt="Playbox font on iOS 12"
+    caption="Playbox font on iOS 12"
+%}
 
 ### What about retrocompatibility?
 
 iOS 11 and previous **will not crash**, they'll just display a plain black version of the glyphs. That's neat, right?
 
-{% asset opentype-playbox-ios11.png %}
+{% include 
+    image.html 
+    src="opentype-playbox-ios11.png"
+    alt="Playbox font on iOS 11"
+    caption="Playbox font on iOS 11"
+%}
 
 ### Font features
 
@@ -174,7 +211,12 @@ Finally we create a new font with this new feature.
 let salmonFont = UIFont(descriptor: descriptor, size: 0.0)
 ```
 
-{% asset opentype-trajan.png %}
+{% include 
+    image.html 
+    src="opentype-trajan.png"
+    alt="Trajan font"
+    caption="Trajan font"
+%}
 
 ## Where can I get these gorgeous color fonts? 
 
@@ -184,7 +226,12 @@ Color fonts are still new and so hard to find. You can go to [colorfonts.wtf](ht
 
 At the moment, the **OTSVG.framework** is only available in Objective-C, so I encourage you to browse the header of the framework if you want to go further. Watch closely the new betas and the documentation.
 
-{% asset opentype-framework.png %}
+{% include 
+    image.html 
+    src="opentype-framework.png"
+    alt="OTSVG.framework"
+    caption="OTSVG.framework"
+%}
 
 There is still a lot to talk about and explore about color fonts and I hope these colorful fonts will appear on some iOS app in next fall!
 

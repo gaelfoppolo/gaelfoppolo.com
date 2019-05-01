@@ -34,7 +34,13 @@ Well, let’s try to create our own flower classifier!
 
 The traditional workflow to create a model from scratch can be represented as follows:
 
-{% asset coreml-workflow.png %}
+{% include 
+    image.html 
+    src="coreml-workflow.png"
+    alt="Source: WWDC 2017 — session 710"
+    caption="Source: WWDC 2017 — session 710"
+    style="fill"
+%}
 
 The final model is contained in a `.mlmodel` file. This is a new open file format that describes the layers in your model, the inputs and outputs, the class labels, and any preprocessing that needs to be done on the data. It also contains all the learned parameters (the weights and biases).
 
@@ -64,7 +70,13 @@ In order to convert our trained model to the `.mlmodel` format, Apple released a
 
 The last part of the [session 710](https://developer.apple.com/videos/play/wwdc2017/710) shows how to use it and convert a basic model. I used it as a base, and I encourage you to watch it.
 
-{% asset coreml-models.png %}
+{% include 
+    image.html 
+    src="coreml-models.png"
+    alt="Source: WWDC 2017 — session 703"
+    caption="Source: WWDC 2017 — session 703"
+    style="fill"
+%}
 
 ## Installation
 
@@ -175,7 +187,12 @@ python my-script.py
 
 You should have a `FlowerClassifier.mlmodel` file! A working, offline PlantNet application! To try it out, I made a sample app and the results are speaking for themselves:
 
-{% asset coreml-result.png %}
+{% include 
+    image.html 
+    src="coreml-result.png"
+    alt="Project sample"
+    caption="Project sample"
+%}
 
 This sample app and the script to convert the model are [available on a GitHub repo](https://github.com/gaelfoppolo/CoreML-Flowers)! Drag your `FlowerClassifier.mlmodel` and your’re good!
 

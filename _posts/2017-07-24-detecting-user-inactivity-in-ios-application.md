@@ -8,7 +8,7 @@ excerpt: iOS already offers an auto-lock system but what if you need more contro
 
 One of my main task nowadays is to develop new applications from scratch.
 
-The company I work for provide numerous health services and this new app I was asked to create is one of them. And of course, as any service, it has to deal with data.
+The company I currently work for provide numerous health services and this new app I was asked to create is one of them. And of course, as any service, it has to deal with data.
 
 However, health is one of these fields where privacy is one of the top priority. Guidelines must be follow regarding security, to keep data safe and private.
 
@@ -46,7 +46,12 @@ So basically, in Swift app, the main file is not needed when using this attribut
 
 A little chart to synthesis what we saw:
 
-{% asset ios-uiapplication-lifecyle.png %}
+{% include 
+    image.html 
+    src="ios-uiapplication-lifecyle.png"
+    alt="Default behavior"
+    caption="Default behavior of UIApplication"
+%}
 
 When the app is launched, the `UIApplication` is created and then when everything is ready, the delegate `UIApplicationDelegate` is called, thanks to its delegate method `application(didFinishLaunchingWithOptions:)` allowing us to perform custom setup (or not if you’re using Storyboard). I will assume you know how to do this part.
 
@@ -207,7 +212,12 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 The method `applicationDidTimeout` will be call after a certain time of inactivity and you can perform your custom actions.
 
-{% asset ios-our-uiapplication-lifecyle.png %}
+{% include 
+    image.html 
+    src="ios-our-uiapplication-lifecyle.png"
+    alt="Our behavior of UIApplication"
+    caption="Our behavior of UIApplication"
+%}
 
 # Review
 

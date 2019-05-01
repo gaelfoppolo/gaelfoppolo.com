@@ -136,7 +136,12 @@ We now use this with the double floating point arithmetic implementation of Swif
 
 With this precision, as $i$ increases, the result converges toward 100. Great, we found the limit!
 
-{% asset muller-recurrence-double.png alt="Muller's Recurrence, using Double" %}
+{% include 
+    image.html 
+    src="muller-recurrence-double.png"
+    alt="Muller's Recurrence, using Double"
+    caption="Muller's Recurrence, using Double"
+%}
 
 Unfortunately, this recurrence actually converges to 5.
 
@@ -208,7 +213,12 @@ Same as before, we run the program but now using fractions of `Int`.
 |  23  |  $\frac{29802463602463553}{5960511549128476}$  | ~4.9999842055202727079241797881426658531 |
 |  24  | $\frac{149012035582781284}{29802463602463553}$ | ~4.9999905232822276594072074700221895687 |
 
-{% asset muller-recurrence-fraction-integer.png alt="Muller's Recurrence, using fractions of Int" %}
+{% include 
+    image.html 
+    src="muller-recurrence-fraction-integer.png"
+    alt="Muller's Recurrence, using fractions of Int"
+    caption="Muller's Recurrence, using fractions of Int"
+%}
 
 Great! Looks like we're on the right path! But what happens for $x_{25}$ and so on?
 
@@ -229,7 +239,12 @@ After some tests, I lost precision of my approximation at $x_{173}$. I completel
 
 Finally, I was able to reach $x_{1000}$ in matter of seconds.
 
-{% asset muller-recurrence-fraction-big.png alt="Muller's Recurrence, with $n=1000$" %}
+{% include 
+    image.html 
+    src="muller-recurrence-fraction-big.png"
+    alt="Muller's Recurrence, with $n=1000$"
+    caption="Muller's Recurrence, with $n=1000$"
+%}
 
 ## Wrapping up
 

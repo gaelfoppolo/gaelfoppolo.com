@@ -96,11 +96,22 @@ with $O$ of coordinates $(0,1,0)$.
 
 No really useful yeah? Let's see so graphical representation of an elliptic curve in $\mathbb{R}$, with $a = -1$ and $b = 1$ which is denoted by $E(\mathbb{R})$.
 
-{% asset ecc-elliptic-curve-real.png alt='Elliptic-curve in $\mathbb{R}$'%}
+{% include 
+    image.html 
+    src="ecc-elliptic-curve-real.png"
+    alt="Elliptic-curve in $\mathbb{R}$"
+    caption="Elliptic-curve in $\mathbb{R}$"
+%}
 
 The curve can also have two separate components. We can also have a representation in $\mathbb{C}$, denoted by $E(\mathbb{C})$, where the points form a torus (the mathematical term for the surface of a donut).
 
-{% asset ecc-torus.png alt='Elliptic-curve in $\mathbb{C}$'%}
+{% include 
+    image.html 
+    src="ecc-torus.png"
+    alt="Elliptic-curve in $\mathbb{C}$"
+    caption="Elliptic-curve in $\mathbb{C}$"
+    style="half"
+%}
 
 A quick note: the equation above is a special form, the **reduced/short Weierstrass normal form**. There are also a couple of interesting forms:
 
@@ -163,7 +174,13 @@ Two interesting properties:
 
 A subgroup is a group which is a subset of another group. 
 
-{% asset ecc-subgroup.png alt='H is a subgroup of G' %}
+{% include 
+    image.html 
+    src="ecc-subgroup.png"
+    alt="H is a subgroup of G"
+    caption="H is a subgroup of G"
+    style="half"
+%}
 
 $H$ is a subgroup of $G$. Yeah, that was easy.
 
@@ -212,7 +229,12 @@ Okay, let's take a minute to digest that. Read again if needed, it's a lot to ta
 
 As you see, the design of mathematics encompasses a number of other principles that are also present in software engineering. Abstract algebra is essentially an exercise in object hierarchy design, where the goal is to use as few ingredients as possible, adding one more ingredient at a time, to see what kinds of interesting and useful constructs we can get.
 
-{% asset ecc-hierar-algebraic-structure.png %}
+{% include 
+    image.html 
+    src="ecc-hierar-algebraic-structure.png"
+    alt="Algebraic hierarchy"
+    caption="Algebraic hierarchy"
+%}
 
 With that inheritance, a field can be finite, infinite, cyclic or not. But what is interesting us here are finite fields.
 
@@ -263,7 +285,13 @@ Given $P$ and $Q$ on the curve, we can write $P + Q = -R$. In details, the nomin
 - Draw a line through them and compute the third point $-R$, the intersection of the curve and the line.
 - Take $R$ by by reflecting $-R$ it across the $x$-axis.
 
-{% asset ecc-geometrically.png %}
+{% include 
+    image.html 
+    src="ecc-geometrically.png"
+    alt="Group law representation"
+    caption="Group law representation"
+    style="half"
+%}
 
 There are a few odd cases, such as $P = Q$, $P = -Q$, $P = 0$, etc. that are easily resolved thanks to the point of infinity $O$, the neutral element of the group. Neat.
 
@@ -334,10 +362,15 @@ In his 1901's paper *Sur les Propriétés Arithmétiques des Courbes Algébrique
 
 But remember a finite field $\mathbb{F}_q$ have a limited number of elements. So the curve cannot contain more than $q^2+1$ points (including the point at infinity), which means that the elliptic curve is also a finite set of points. [Hasse's theorem](https://en.wikipedia.org/wiki/Hasse%27s_theorem_on_elliptic_curves) provides an estimate of the number of points on an elliptic curve over a finite field, if you're interested.
 
-Let's see a graphical representation. This is the elliptic curve with $a = -1$ and $b = 0$ as parameters, in the finite field $\mathbb{F}_{61}$ (61 is a prime number).
+Let's see a graphical representation.
 
-
-{% asset ecc-over-z.png %}
+{% include 
+    image.html 
+    src="ecc-over-z.png"
+    alt="This is the elliptic curve with $a = -1$ and $b = 0$ as parameters, in the finite field $\mathbb{F}_{61}$ (61 is a prime number)"
+    caption="This is the elliptic curve with $a = -1$ and $b = 0$ as parameters, in the finite field $\mathbb{F}_{61}$ (61 is a prime number)"
+    style="fill"
+%}
 
 Beautiful right? There is no curve now, but we can still see an imaginary horizontal line that mirror the graph.
 
@@ -409,7 +442,12 @@ You might think that with all these parameters, the size of the public would be 
 
 >  With every doubling of the RSA key length, **decryption is 6-7 times slower**. 
 
-{% asset ecc-rsa-decryption-time.png %}
+{% include 
+    image.html 
+    src="ecc-rsa-decryption-time.png"
+    alt="RSA Decryption time by key length"
+    caption="RSA Decryption time by key length"
+%}
 
 ECC in the other hand require much less storage, hence smaller keys, to ensure the same level of security. Here a comparative table between keys size in bits.
 
@@ -467,7 +505,12 @@ These algorithms are used in many applications such as iMessage, Apple Pay, SSH,
 
 For example, when you browse a website and check their SSL certificate, you could see something like this:
 
-{% asset ecc-ssl.png %}
+{% include 
+    image.html 
+    src="ecc-ssl.png"
+    alt="SSL using ECC"
+    caption="SSL using ECC"
+%}
 
 This is ECDH at work. How to retrieve the parameters for that standard curve? From a terminal, with `openssl` installed:
 
@@ -475,7 +518,12 @@ This is ECDH at work. How to retrieve the parameters for that standard curve? Fr
 openssl ecparam -name secp256r1 -param_enc explicit -text -noout
 ```
 
-{% asset ecc-ssl-terminal.png %}
+{% include 
+    image.html 
+    src="ecc-ssl-terminal.png"
+    alt="Parameters of secp256r1"
+    caption="Parameters of secp256r1"
+%}
 
 And as a bonus, the list of available curves like so:
 
