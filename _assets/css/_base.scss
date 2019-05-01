@@ -322,7 +322,6 @@ mark {
 
 audio, canvas, iframe, img, svg, video {
   display: block;
-  
   margin-left: auto;
   margin-right: auto;
   border-radius: $border-radius;
@@ -337,9 +336,9 @@ figure {
   justify-content: center;
   align-items: center;
 
-  width: calc(100% - #{$figure-spacing} - #{$figure-spacing});
-  margin-left: calc(#{$figure-spacing});
-  margin-right: calc(#{$figure-spacing});
+  // 100% - variable spacing
+  width: calc(100% - #{$figure-spacing-side} - #{$figure-spacing-side});
+  margin: calc(#{$figure-spacing-topbottom}) calc(#{$figure-spacing-side});
   
   img {
     margin-bottom: 0.5em;
@@ -348,22 +347,28 @@ figure {
     width: 100%;
   }
 
+  // 50%
+  &.half {
+    width: 50%;
+    margin: calc(#{$figure-spacing-topbottom}) 25%;
+  }
+
+  // 100%
   &.fill {
     width: 100%;
-    margin-left: 0;
-    margin-right: 0;
+    margin: calc(#{$figure-spacing-topbottom}) 0;
   }
 
+  // 100% + variable spacing
   &.big {
-    width: calc(100% + #{$figure-spacing} + #{$figure-spacing});
-    margin-left: calc(-1 * #{$figure-spacing});
-    margin-right: calc(-1 * #{$figure-spacing});
+    width: calc(100% + #{$figure-spacing-side} + #{$figure-spacing-side});
+    margin: calc(#{$figure-spacing-topbottom}) calc(-1 * #{$figure-spacing-side});
   }
 
+  // screen width
   &.full {
     width: calc(100% + #{$main-padding-side} + #{$main-padding-side});
-    margin-left: calc(-1 * #{$main-padding-side});
-    margin-right: calc(-1 * #{$main-padding-side});
+    margin: calc(#{$figure-spacing-topbottom}) calc(-1 * #{$main-padding-side});
   }
 
 }
