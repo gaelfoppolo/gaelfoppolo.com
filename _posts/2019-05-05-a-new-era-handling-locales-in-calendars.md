@@ -19,7 +19,7 @@ print(dateFormatter.string(from: Date()))
 
 For example, this piece of code will show `平成31年5月5日`. Which is wrong. Why?
 
-The Hensei era (平成) ended the 30/05/2019 and a new one began the 01/05/2019, the Reiwa era (令和). The corretc displayed date should be  `令和1年5月5日`.
+The Hensei era (平成) ended the 30/04/2019 and a new one began the 01/05/2019, the Reiwa era (令和). The corretc displayed date should be  `令和1年5月5日`.
 
 The fact is, with these non-deterministic calendars, software manufacturers need to update their system with this new era to support it. For example, Apple issued the following in their latest beta software:
 
