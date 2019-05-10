@@ -5,10 +5,18 @@ pagination:
 ---
 
 {% for post in paginator.posts %}
-	<section id="{{ post.id }}" class="post post-list">
-		{% include post-header.html %}
-		<article>{{ post.excerpt }}</article>
-	</section>
+	{% assign page = post %}
+	
+	<article id="{{ page.id }}">
+
+	    {% include page-header.html %}
+
+	    <section class="content">
+		   {{ post.excerpt }}
+	    </section>
+
+	</article>
+
 {% endfor %}
 
 {% include paginator.html %}

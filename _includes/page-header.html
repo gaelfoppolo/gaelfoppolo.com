@@ -1,0 +1,28 @@
+<section class="header">    
+
+	<article class="title"> 
+		<h1>
+			<a href="{{ page.url }}" alt="{{ page.title }}">
+			{{ page.title }}
+			</a>
+		</h1>
+	</article>
+
+	{% if page.layout == 'post' %}
+	<article class="subtitle">
+		<span>{{ page.date | date: site.date_format }}</span>
+		
+		{% unless page.content == nill %}
+			<span class="separator"> &middot; </span>
+			{{ page.content | reading_time_as_i }} 
+		{% endunless %}
+
+		{% assign categories = page.categories %}
+		{% unless categories == empty %}
+			<span class="separator"> &middot; </span> 
+			{% include inline-tags-list.html %}
+		{% endunless %}
+	</article>
+	{% endif %}
+
+</section>

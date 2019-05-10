@@ -2,18 +2,15 @@
 layout: default
 ---
 
-<article id="{{ page.id }}" class="page">
+<article id="{{ page.id }}">
 
-    <div class="header">
-        <h1 class="page-title">{{ page.title }}</h1>
-        {% if page.subtitle %}
-        <h2 class="post-subtitle">{{ page.subtitle }}</h2>
-        {% endif %}
-    </div>
+    {% include page-header.html %}
 
-    <div class="page-content">
+    <section class="content">
 	   {{ content }}
-    </div>
+    </section>
+
+    <p class="small last-updated">Last updated on {{ page.last_modified_at | date: site.date_format }}</p>
 
 </article>
 

@@ -35,7 +35,7 @@ defaults:
       path: ""
       type: "meta"
     values:
-      layout: "meta"
+      layout: "page"
 
 # Collections
 collections:

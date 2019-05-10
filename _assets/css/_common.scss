@@ -1,8 +1,16 @@
 /* == Common == */
 
-.post-subtitle {
-  font-size: $type-size-7;
-  font-weight: 400;
+main {
+
+	section.header {
+	  
+	 	article.subtitle {
+			font-size: $type-size-7;
+			font-weight: 400;
+	  	}
+	  	
+  	}
+
 }
 
 li > p {
@@ -11,24 +19,24 @@ li > p {
 
 .tags {
   * {
-    background-color: $text-color;
-    color: $background-color;
-    line-height: 1.5em;
-    padding: 0.3em 0.6em 0.3em 0.6em;
-    vertical-align: 20%;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-radius: 0.3em;
-    -moz-border-radius: 0.3em;
-    -webkit-border-radius: 0.3em;
+	background-color: $text-color;
+	color: $background-color;
+	line-height: 1.5em;
+	padding: 0.3em 0.6em 0.3em 0.6em;
+	vertical-align: 20%;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	border-radius: 0.3em;
+	-moz-border-radius: 0.3em;
+	-webkit-border-radius: 0.3em;
   }
   a:hover {
-    background-color: $link-color-internal;
-    color: $background-color;
+	background-color: $link-color-internal;
+	color: $background-color;
   }
   a {
-    color: $background-color;
+	color: $background-color;
   }
 }
 

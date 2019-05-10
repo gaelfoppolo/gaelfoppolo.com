@@ -1,22 +1,9 @@
 ---
-layout: default
+layout: page
 ---
 
-<article id="{{ page.id }}" class="post">
+{{ content }}
 
-    <section class="header">
-        {% assign post = page %}
-        {% include post-header.html %}
-    </section>
+{% if page.share %}{% include social-share.html %}{% endif %}
 
-    <section class="post-content">
-	   {{ content }}
-    </section>
-
-    {% if page.share %}{% include social-share.html %}{% endif %}
-
-    {% if page.paginate %}{% include post-pagination.html %}{% endif %} 
-
-</article>
-
-{% include floatting-header.html %}
+{% if page.paginate %}{% include post-pagination.html %}{% endif %}
