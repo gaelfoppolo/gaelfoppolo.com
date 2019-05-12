@@ -1,5 +1,49 @@
 /* == BUTTONS == */
 
+@mixin buttonsAdditions() {
+
+	/* fills width of parent container */
+	&--block {
+		display: block;
+		width: 100%;
+
+		+.btn--block {
+			margin-top: 0.25em;
+		}
+	}
+
+	/* disabled */
+	&--disabled {
+		pointer-events: none;
+		cursor: not-allowed;
+		filter: alpha(opacity=35);
+		box-shadow: none;
+		opacity: 0.35;
+	}
+
+	/* extra large button */
+	&--x-large {
+		font-size: $type-size-4;
+	}
+
+	/* large button */
+	&--large {
+		font-size: $type-size-5;
+	}
+
+	/* small button */
+	&--small {
+		font-size: $type-size-7;
+	}
+}
+
+@mixin buttonTheme($background-color, $text-color) {
+	background-color: $background-color;
+	color: $text-color;
+	border: 1px solid $text-color;
+}
+
+
 /* Default button */
 
 a.btn,
@@ -26,8 +70,6 @@ a.btn,
 
   /* button colors */
   $buttoncolors:
-  (primary, $primary-color),
-  (inverse, $background-color),
   (success, $success-color),
   (warning, $warning-color),
   (danger, $danger-color),
@@ -37,53 +79,40 @@ a.btn,
 
   @each $buttoncolor, $color in $buttoncolors {
     &--#{$buttoncolor} {
-      $hoverColor: $text-color;
-      @include yiq-contrasted($color);
-      @if ($buttoncolor == inverse) {
-        border: 1px solid $text-color;
-      }
+		
+		@include buttonTheme($color, yiq-contrasted($color));
+		  
+		&:hover {
+			@include buttonTheme(yiq-contrasted($color), $color);
+		}
 
-      &:hover {
-        @include yiq-contrasted($color);
-      }
+		&:visited {
+		  	@include buttonTheme($color, yiq-contrasted($color));
+		}
 
-      &:visited {
-        @include yiq-contrasted($color);
-      }
+		@include buttonsAdditions();
+      
     }
   }
 
-  /* fills width of parent container */
-  &--block {
-    display: block;
-    width: 100%;
+  /* theme */
+  $themebuttons: 
+  (inverse, var(--background-color), var(--text-color)),
+  (primary, var(--text-color), var(--background-color));
 
-    + .btn--block {
-      margin-top: 0.25em;
-    }
-  }
+  @each $name, $bg, $txt in $themebuttons {
+  	&--#{$name} {
 
-  /* disabled */
-  &--disabled {
-    pointer-events: none;
-    cursor: not-allowed;
-    filter: alpha(opacity=35);
-    box-shadow: none;
-    opacity: 0.35;
-  }
+		@include buttonTheme($bg, $txt);
 
-  /* extra large button */
-  &--x-large {
-    font-size: $type-size-4;
-  }
+		&:hover {
+			@include buttonTheme($txt, $bg);
+		}
 
-  /* large button */
-  &--large {
-    font-size: $type-size-5;
-  }
+  		@include buttonsAdditions();
 
-  /* small button */
-  &--small {
-    font-size: $type-size-7;
+  	}
   }
+  
 }
+

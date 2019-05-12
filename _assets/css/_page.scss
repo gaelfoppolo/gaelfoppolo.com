@@ -2,7 +2,7 @@
 
 .post-content {
   > p:first-child:first-letter {
-    color: $text-color;
+    color: var(--text-color);
     float: left;
     font-size: 75px;
     font-weight: 500;

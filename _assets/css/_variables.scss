@@ -47,21 +47,8 @@ $light-grey: #DDDD !default;
 $white: #FFFFFF !default;
 $main: #52ADC8 !default;
 
-$main-dark-color: $dark-grey;
 $main-light-color: $white;
-
-$lightTheme: true;
-
-$background-color: if($lightTheme, $main-light-color, $main-dark-color) !default;
-$text-color: if($lightTheme, $main-dark-color, $main-light-color) !default;
-
-$muted-text-color: mix($background-color, $text-color, 35%) !default;
-$code-background-color: $base00;
-$border-color: $text-color !default;
-
-/* links */
-$link-color-internal: if($lightTheme, $main-dark-color, $main-light-color) !default;
-$link-color-external: $main !default;
+$main-dark-color: $dark-grey;
 
 /* YIQ color contrast */
 $yiq-contrasted-dark-default: $main-dark-color !default;
@@ -69,7 +56,9 @@ $yiq-contrasted-light-default: $main-light-color !default;
 $yiq-contrasted-threshold: 175 !default;
 $yiq-debug: false !default;
 
-$primary-color: $text-color !default;
+$code-background-color: $base00;
+$link-color-external: $main !default;
+
 $success-color: #62c462 !default;
 $warning-color: #f89406 !default;
 $danger-color: #ee5f5b !default;

@@ -18,8 +18,8 @@ code, kbd, pre, samp {
 
 :not(pre) > code {
   font-size: $type-size-6;
-  background-color: $background-color;
-  color: $muted-text-color;
+  background-color: var(--background-color);
+  color: var(--muted-text-color);
   border-radius: $border-radius;
 }
 

@@ -9,7 +9,7 @@ table {
   border-collapse: collapse;
   table-layout: fixed;
   word-wrap: break-word;
-  border: 2px $border-color solid;
+  border: 2px var(--text-color) solid;
 
   & + table {
     margin-top: 1em;
@@ -17,18 +17,18 @@ table {
 }
 
 thead {
-  border-bottom: 2px solid mix(#000, $border-color, 25%);
+  border-bottom: 2px solid var(--text-color);
 }
 
 th {
   padding: 0.5em;
   font-weight: bold;
-  border-bottom: 1px $border-color solid;
+  border-bottom: 1px var(--text-color) solid;
 }
 
 td {
   padding: 0.5em;
-  border-bottom: 1px solid mix(#000, $border-color, 25%);
+  border-bottom: 1px solid var(--text-color);
 }
 
 tr,

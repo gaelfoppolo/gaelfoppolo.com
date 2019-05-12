@@ -9,7 +9,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		color: $text-color;
+		color: var(--text-color);
 
 		&:hover {
         	text-decoration: none;
@@ -34,13 +34,13 @@
 			font-size: $type-size-8;
 			line-height: 1.5;
 			text-align: center;
-			color: $text-color;
-			border: 1px solid mix(#000, $border-color, 25%);
+			color: var(--text-color);
+			border: 1px solid var(--text-color);
 			border-radius: 0;
 
 			&.current,
 			&.current.disabled {
-				background: $primary-color;
+				background: var(--text-color);
 			}
 
 			&.disabled {
@@ -73,8 +73,8 @@
 		width: 100vw;
 		font-size: $type-size-5;
 		text-align: center;
-		color: $text-color;
-		border: 1px solid mix(#000, $border-color, 25%);
+		color: var(--text-color);
+		border: 1px solid var(--text-color);
 		border-radius: $border-radius;
 
 		&:first-child {
@@ -95,10 +95,10 @@
 	}
 
 	.disabled {
-		color: rgba($muted-text-color, 0.5);
+		color: rgba(var(--muted-text-color), 0.5);
 	}
 
 	.current.disabled {
-		color: $background-color;
+		color: var(--background-color);
 	}
 }

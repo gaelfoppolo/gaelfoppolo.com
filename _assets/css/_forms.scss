@@ -17,7 +17,7 @@ form {
     margin-bottom: 5px * 2;
     *margin-left: -7px;
     padding: 0;
-    color: $text-color;
+    color: var(--text-color);
     border: 0;
     white-space: normal;
   }
@@ -56,7 +56,7 @@ textarea {
 label {
   display: block;
   margin-bottom: 0.25em;
-  color: $text-color;
+  color: var(--text-color);
   cursor: pointer;
 
   small {
@@ -77,9 +77,9 @@ select {
   width: 100%;
   padding: 0.25em;
   margin-bottom: 0.5em;
-  color: $text-color;
-  background-color: $background-color;
-  border: $border-color;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  border: var(--text-color);
   border-radius: $border-radius;
   box-shadow: $box-shadow;
 }
@@ -209,11 +209,11 @@ textarea[readonly] {
 
 input:focus,
 textarea:focus {
-  border-color: $primary-color;
+  border-color: var(--text-color);
   outline: 0;
   outline: thin dotted \9;
-  box-shadow: inset 0 1px 3px rgba($text-color, 0.06),
-    0 0 5px rgba($primary-color, 0.7);
+  box-shadow: inset 0 1px 3px rgba(var(--text-color), 0.06),
+    0 0 5px rgba(var(--text-color), 0.7);
 }
 
 input[type="file"]:focus,

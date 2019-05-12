@@ -1,0 +1,22 @@
+// default (no support of prefers-color-scheme yet)
+:root {
+	--background-color: #{$main-light-color};
+	--text-color: #{$main-dark-color};
+	--muted-text-color: mix(#{$main-light-color}, #{$main-dark-color}, 35%);
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		--background-color: #{$main-light-color};
+		--text-color: #{$main-dark-color};
+		--muted-text-color: mix(#{$main-light-color}, #{$main-dark-color}, 35%);
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background-color: #{$main-dark-color};
+		--text-color: #{$main-light-color};
+		--muted-text-color: mix(#{$main-dark-color}, #{$main-light-color}, 35%);
+	}
+}

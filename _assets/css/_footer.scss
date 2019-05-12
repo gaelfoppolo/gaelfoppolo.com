@@ -18,11 +18,11 @@ footer {
   	font-size: $type-size-4;
 
   	a {
-  		color: $text-color;
+  		color: var(--text-color);
   		
   		&:hover {
     		text-decoration: none;
-    		color: $muted-text-color;
+    		color: var(--muted-text-color);
     	}
   	}
   }
