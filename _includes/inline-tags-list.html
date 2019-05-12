@@ -1,9 +1,10 @@
-<span class='tags taglist smallTag'>
+<span class='tags small'>
    	{% for category in categories %}
    		{% assign category_name = category %}
    		{% if category[0] != nil %}
 			{% assign category_name = category[0] %}
 		{% endif %}
-  		<a href='{{ site.baseurl }}/category/{{ category_name | replace: " ", "-" }}' alt='{{ category_name }}'>{{ category_name }}</a>
+  		<a class='btn btn--inverse' href='{{ site.baseurl }}/category/{{ category_name | replace: " ", "-" }}'
+  			alt='{{ category_name }}'>{{ category_name }}</a>
 	{% endfor %}
 </span>
