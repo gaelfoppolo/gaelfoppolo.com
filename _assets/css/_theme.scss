@@ -1,9 +1,7 @@
-@media (prefers-color-scheme: no-preference) {
-	:root {
-		--background-color: #{$main-light-color};
-		--text-color: #{$main-dark-color};
-		--muted-text-color: mix(#{$main-light-color}, #{$main-dark-color}, 35%);
-	}
+:root {
+	--background-color: #{$main-light-color};
+	--text-color: #{$main-dark-color};
+	--muted-text-color: mix(#{$main-light-color}, #{$main-dark-color}, 35%);
 }
 
 @media (prefers-color-scheme: light) {
