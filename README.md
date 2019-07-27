@@ -5,7 +5,7 @@ This is my personal site and blog. It mostly contains content about Swift and iO
 ## Requirements
 
 - Ruby 2.5.0+
-  - [Bundler](https://bundler.io) 2.0.1+
+- [Bundler](https://bundler.io) 2.0.1+
 
 ## Dependencies
 
@@ -43,8 +43,13 @@ $ bundle exec jekyll build --config _config.yml
 
 ```terminal
 $ bundle exec jekyll serve --watch --drafts --livereload  --incremental --open-url
-# Will open your browser to localhost:4000
 ```
+
+This will open your browser to [localhost:4000](localhost:4000).
+
+### Content writing
+
+See [jekyll-compose](https://github.com/jekyll/jekyll-compose).
 
 ## Deploying
 
