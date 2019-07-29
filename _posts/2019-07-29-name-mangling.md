@@ -1,9 +1,9 @@
 ---
 title: Name mangling
-categories: [swift]
-
+categories:
+- swift
+date: 2019-07-29 20:46 +0200
 ---
-
 During our iOS debugging sessions, we have to search though infinite stack traces, hopefully to find some evidence. We all do this. But on some occasions, we may stumble upon some cryptic strings like, looking like this.
 
 ```
