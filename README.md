@@ -4,7 +4,7 @@ This is my personal site and blog. It mostly contains content about Swift and iO
 
 ## Requirements
 
-- Ruby 2.5.0+
+- Ruby 2.4.0+
 - [Bundler](https://bundler.io) 2.0.1+
 
 ## Dependencies
