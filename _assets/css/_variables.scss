@@ -49,12 +49,6 @@ $main: #52ADC8 !default;
 $main-light-color: $white;
 $main-dark-color: $dark-grey;
 
-/* YIQ color contrast */
-$yiq-contrasted-dark-default: $main-dark-color !default;
-$yiq-contrasted-light-default: $main-light-color !default;
-$yiq-contrasted-threshold: 175 !default;
-$yiq-debug: false !default;
-
 $code-background-color: $base00;
 $link-color-external: $main !default;
 
