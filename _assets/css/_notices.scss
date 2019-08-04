@@ -8,6 +8,11 @@
 		color: $notice-color;
 	}
 
+	&::before {
+		border: 5px solid rgba($notice-color, var(--alpha));
+		color: $notice-color;
+	}
+
 }
 
 .notice {
@@ -22,22 +27,56 @@
 
 	&.standard {
 		@include notice($default-color);
+
+		&::before {
+			content: "?";
+		}
 	}
 
 	&.info {
 		@include notice($info-color);
+
+		&::before {
+			content: "ℹ️";
+		}
 	}
 
 	&.warning {
 		@include notice($warning-color);
+		
+		&::before {
+			content: "⚠️";
+		}
 	}
 
 	&.success {
 		@include notice($success-color);
+
+		&::before {
+			content: "✅";
+		}
 	}
 
 	&.error {
 		@include notice($error-color);
+
+		&::before {
+			content: "❌";
+		}
 	}
  
+}
+
+.notice::before {
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	margin: -25px 0 0 -25px;
+	border-radius: 20px;
+	text-align: center;
+	background: var(--background-color);
+	font-weight: bold;
+	font-size: $type-size-5;
+	font-family: $monospace;
+	line-height: 1.75;
 }
