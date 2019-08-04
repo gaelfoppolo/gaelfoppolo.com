@@ -42,7 +42,6 @@ $base0e: #c792ea !default;
 $base0f: #ff5370 !default;
 
 $dark-grey: #222 !default;
-$grey: #808080 !default;
 $light-grey: #DDDD !default;
 $white: #FFFFFF !default;
 $main: #52ADC8 !default;
@@ -59,11 +58,14 @@ $yiq-debug: false !default;
 $code-background-color: $base00;
 $link-color-external: $main !default;
 
-$success-color: #62c462 !default;
-$warning-color: #f89406 !default;
-$danger-color: #ee5f5b !default;
-$info-color: #257ede !default;
+$default-color:#808080 !default;
+$success-color: #4aa64a !default;
+$warning-color: #dfb036 !default;
+$error-color: #f5569d !default;
+$info-color: #3799f0 !default;
 $mark-color: #fecd35 !default;
+$alpha-light: 0.2;
+$alpha-dark: 0.4;
 
 /* brands */
 $github-color: #171516 !default;

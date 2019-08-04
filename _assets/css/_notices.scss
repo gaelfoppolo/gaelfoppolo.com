@@ -1,83 +1,43 @@
 /* == NOTICE TEXT BLOCKS == */
 
-@mixin noticeTheme($color) {
-	background-color: $color;
-	color: yiq-contrasted($color);
-}
-
 @mixin notice($notice-color) {
-  margin: 2em 0 !important;  /* override*/
-  padding: 1em;
-  @include noticeTheme($notice-color);
-  font-family: $global-font-family;
-  font-size: $type-size-6 !important;
-  text-indent: initial; /* override*/
-  border-radius: $border-radius;
 
-  h4 {
-    margin-top: 0 !important; /* override*/
-    margin-bottom: 0.75em;
-  }
+	background-color: rgba($notice-color, var(--alpha));
 
-  @at-root .page__content #{&} h4 {
-    /* using at-root to override .page-content h4 font size*/
-    margin-bottom: 0;
-    font-size: 1em;
-  }
+	a {
+		color: $notice-color;
+	}
 
-  p {
-    &:last-child {
-      margin-bottom: 0 !important; /* override*/
-    }
-  }
-
-  a {
-    @include noticeTheme($notice-color);
-  }
-
-  h4 + p {
-    /* remove space above paragraphs that appear directly after notice headline*/
-    margin-top: 0;
-    padding-top: 0;
-  }
-
-  code {
-    @include noticeTheme($notice-color);
-  }
-
-  ul {
-    &:last-child {
-      margin-bottom: 0; /* override*/
-    }
-  }
 }
-
-/* Default notice */
 
 .notice {
-  @include notice($grey);
-}
 
-/* Info notice */
+	font-family: $global-font-family;
+	font-size: $type-size-6;
+	text-indent: initial;
+	border-radius: $border-radius;
 
-.notice--info {
-  @include notice($info-color);
-}
+	margin: 2em 0;
+	padding: 1em;
 
-/* Warning notice */
+	&.standard {
+		@include notice($default-color);
+	}
 
-.notice--warning {
-  @include notice($warning-color);
-}
+	&.info {
+		@include notice($info-color);
+	}
 
-/* Success notice */
+	&.warning {
+		@include notice($warning-color);
+	}
 
-.notice--success {
-  @include notice($success-color);
-}
+	&.success {
+		@include notice($success-color);
+	}
 
-/* Danger notice */
-
-.notice--danger {
-  @include notice($danger-color);
+	&.error {
+		@include notice($error-color);
+	}
+ 
 }
