@@ -3,7 +3,7 @@
 @mixin buttonsAdditions() {
 
 	/* fills width of parent container */
-	&--block {
+	&.block {
 		display: block;
 		width: 100%;
 
@@ -13,7 +13,7 @@
 	}
 
 	/* disabled */
-	&--disabled {
+	&.disabled {
 		pointer-events: none;
 		cursor: not-allowed;
 		filter: alpha(opacity=35);
@@ -22,17 +22,17 @@
 	}
 
 	/* extra large button */
-	&--x-large {
+	&.x-large {
 		font-size: $type-size-4;
 	}
 
 	/* large button */
-	&--large {
+	&.large {
 		font-size: $type-size-5;
 	}
 
 	/* small button */
-	&--small {
+	&.small {
 		font-size: $type-size-7;
 	}
 }
@@ -60,48 +60,23 @@ a.btn,
   border-radius: $border-radius;
   cursor: pointer;
 
-  .icon {
+  &.icon {
     margin-right: 0.5em;
   }
 
-  .icon + .hidden {
+  &.icon + &.hidden {
     margin-left: -0.5em; /* override for hidden text*/
-  }
-
-  /* button colors */
-  $buttoncolors:
-  (success, $success-color),
-  (warning, $warning-color),
-  (error, $error-color),
-  (info, $info-color),
-  (twitter, $twitter-color),
-  (linkedin, $linkedin-color);
-
-  @each $buttoncolor, $color in $buttoncolors {
-    &--#{$buttoncolor} {
-		
-		@include buttonTheme($color, yiq-contrasted($color));
-		  
-		&:hover {
-			@include buttonTheme(yiq-contrasted($color), $color);
-		}
-
-		&:visited {
-		  	@include buttonTheme($color, yiq-contrasted($color));
-		}
-
-		@include buttonsAdditions();
-      
-    }
   }
 
   /* theme */
   $themebuttons: 
   (inverse, var(--background-color), var(--text-color)),
-  (primary, var(--text-color), var(--background-color));
+  (primary, var(--text-color), var(--background-color)),
+  (twitter, $twitter-color, var(--background-color)),
+  (linkedin, $linkedin-color, var(--background-color));
 
   @each $name, $bg, $txt in $themebuttons {
-  	&--#{$name} {
+  	&.#{$name} {
 
 		@include buttonTheme($bg, $txt);
 
@@ -110,7 +85,6 @@ a.btn,
 		}
 
   		@include buttonsAdditions();
-
   	}
   }
   
