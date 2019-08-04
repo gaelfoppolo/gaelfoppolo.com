@@ -6,9 +6,9 @@
 		
 		<nav>
    			{% for item in site.pages %}
-				<a href="{{ item.url }}" alt="{{ item.title }}" class="btn btn--inverse">{{ item.title }}</a>
+				<a href="{{ item.url }}" alt="{{ item.title }}" class="btn inverse">{{ item.title }}</a>
    			{% endfor %}
-   			<a href="{{ site.data.rss.url }}" alt="{{ site.data.rss.title }}" class="btn btn--inverse">{{ site.data.rss.title }}</a>
+   			<a href="{{ site.data.rss.url }}" alt="{{ site.data.rss.title }}" class="btn inverse">{{ site.data.rss.title }}</a>
 		</nav>
 
 	</header>

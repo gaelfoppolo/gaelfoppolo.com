@@ -4,7 +4,7 @@
    		{% if category[0] != nil %}
 			{% assign category_name = category[0] %}
 		{% endif %}
-  		<a class='btn btn--inverse' href='{{ site.baseurl }}/category/{{ category_name | replace: " ", "-" }}'
+  		<a class='btn inverse' href='{{ site.baseurl }}/category/{{ category_name | replace: " ", "-" }}'
   			alt='{{ category_name }}'>{{ category_name }}</a>
 	{% endfor %}
 </span>
