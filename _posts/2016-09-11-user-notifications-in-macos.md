@@ -162,8 +162,9 @@ notification.actionButtonTitle = "Polo"
 
 It’s sometimes useful to offer multiple actions to users, directly from the notification, as a non-breaking workflow.
 
-It’s not possible to have both reply field and additional actions. Reply will be shown if hasActionButton and hasReplyButton are both true.
-{: .notice--info}
+{% info %}
+It’s not possible to have both reply field and additional actions. Reply will be shown if `hasActionButton` and `hasReplyButton` are both true.
+{% endinfo %}
 
 Additional actions are an array of `NSUserNotificationAction`:
 
@@ -190,8 +191,8 @@ notification.additionalActions = actions
 
 Currently, you need to **hold-click** the action button to display the additional actions and there is no little arrow on hover.
 
+{% error %}
 There is a workaround, to display like the *Reminders* app. But it’s ugly. It uses the **private** API so I highly recommend using with **precautions** especially in production application:
-{: .notice--danger}
 
 ```swift
 // WARNING, private API
@@ -206,6 +207,7 @@ notification.setValue(true, forKey: "_alwaysShowAlternateActionMenu")
 %}
 
 You don’t longer have access to the action button with this workaround.
+{% enderror %}
 
 ### Handle actions
 

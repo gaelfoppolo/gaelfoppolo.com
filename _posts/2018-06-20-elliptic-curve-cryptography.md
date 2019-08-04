@@ -39,8 +39,9 @@ A **trapdoor function** relies on mathematical problems that admit no efficient 
 
 RSA's trapdoor function is written as exponentiation modulo a composite number and is related to the problem of prime factorization. Put in simple words: it is very simple to multiply numbers together, but it can be very difficult to factor numbers.
 
+{% info %}
 A quick example to illustrate: suppose I give you the number 3369993333393829974333376885877453834204643052817571560137951281149 [^bigPrime].  Can you tell me what are the two integers I multiply to get it, in a relative short amount of time? RSA works like that. Basically, the two prime numbers are the private key and the computed number is the public key.
-{: .notice--info}
+{% endinfo %}
 
 If we transpose to our trapdoor function:
 
@@ -224,8 +225,9 @@ A field $F$ is special type of ring, in which every nonzero element has a multip
 
 The rational numbers $\mathbb{Q}$, the real numbers $\mathbb{R}$, and the complex numbers $\mathbb{C}$ are all fields. For $\mathbb{R}$, the inverse of an element $x$ is $\frac{1}{x}$.
 
+{% standard %}
 Okay, let's take a minute to digest that. Read again if needed, it's a lot to take in.
-{: .notice--info}
+{% endstandard %}
 
 As you see, the design of mathematics encompasses a number of other principles that are also present in software engineering. Abstract algebra is essentially an exercise in object hierarchy design, where the goal is to use as few ingredients as possible, adding one more ingredient at a time, to see what kinds of interesting and useful constructs we can get.
 
@@ -406,8 +408,9 @@ $$
 
 And now I ask again: what about the other way around? Having $Q$, the last-produced point, $G$ and the origin point, can we find easily find $n$?
 
+{% info %}
 Let me give you an intuitive example: let's say it's 8:54am on the clock, and call it $P$. Add 6h32min $n$ times. $n = 10^6$ or $n = 10^6 + 1$. This will produce a time $T$. I give you $P$ and $T$, what is $n$? Exactly. Reverting this process can only be done by trying out all possible $n$ and is impossible if $n$ is "large".
-{: .notice--info}
+{% endinfo %}
 
 > Finding the order of the element of a group is at least as hard as factoring.
 >
@@ -487,8 +490,9 @@ For example the **ANSSI FRP256v1** elliptic curve is defined with the following 
 |     n     | 109454571331697278617670725030735128146004546811402412653072203207726079563233 |
 |     h     |                              1                               |
 
+{% info %}
 ANSSI is the French Network and Information Security Agency.
-{: .notice--info}
+{% endinfo %}
 
 Cryptography is about trust. The problems begin when this trust is broken. And this is what happened in 2013. NSA internal memos leaked thanks to Edward Snowden, suggesting that an algorithm developed by them and used in the generation of elliptic curves by NIST was containing a weakness, a backdoor, only known by the NSA. Since then, many experts expressed their concern over the security of the NIST recommended elliptic curves and suggested to use other standards, such as academics.
 

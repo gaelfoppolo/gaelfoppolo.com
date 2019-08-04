@@ -33,8 +33,9 @@ The fact is, with these non-deterministic calendars, software manufacturers need
 
 At the moment I do not own a device with either of these betas, so I could not verify the update.
 
+{% info %}
 Fun fact: 2019 is both year 31 (Hensei) and year 1 (Reiwa), depending on the date.
-{: .notice--info}
+{% endinfo %}
 
 ## Atypical calendar localization
 
@@ -60,9 +61,10 @@ We do this using the `dateFormat` property. Replace the instruction containing `
 ```swift
 dateFormatter.dateFormat = "dd/MM/yyyy"
 ```
-
+{% warning %}
 [Always use `yyyy`](https://gaelfoppolo.com/it-s-that-week-of-the-year/).
-{: .notice--info}
+{% endwarning %}
+
 
 | Calendar / Locale |   ja_JP    |   en_US    |
 | :---------------: | :--------: | :--------: |

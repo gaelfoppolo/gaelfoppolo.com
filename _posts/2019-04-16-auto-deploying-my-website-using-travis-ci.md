@@ -28,8 +28,9 @@ Our workflow will be simple, a single job with several phases.
 3. Building the site
 4. Deploying
 
+{% standard %}
 The complete job lifecycle in Travis is [described here](https://docs.travis-ci.com/user/job-lifecycle#the-job-lifecycle).
-{: .notice}
+{% endstandard %}
 
 ### Configure
 
@@ -56,8 +57,9 @@ This is quite self-explanatory. We want to use macOS, our project is Ruby based 
 
 The first phase also takes place, before installing our dependencies, we make our Gems up-to-date.
 
+{% info %}
 Notice the `$EMAIL` variable. With Travis we can declare environment variables, which can be used to hold information. The e-mail is a sensitive information, hence we use a "Repository Environment Variable". To define variables, make sure you’re logged in, navigate to the repository in Travis, choose “Settings” from the cog menu, and click on “Add new variable” in the [“Environment Variables” section](https://docs.travis-ci.com/user/environment-variables#defining-variables-in-repository-settings).
-{: .notice--info}
+{% endinfo %}
 
 ### Install
 
