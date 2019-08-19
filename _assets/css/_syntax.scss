@@ -6,9 +6,6 @@
 
 code, kbd, pre, samp {
   font-family: $monospace;
-  font-size: 1em;
-  white-space: -moz-pre-wrap !important;
-  white-space: pre-wrap !important;
 }
 
 .author__urls.social-icons .svg-inline--fa,
@@ -17,7 +14,6 @@ code, kbd, pre, samp {
 }
 
 :not(pre) > code {
-  font-size: $type-size-6;
   background-color: var(--background-color);
   color: var(--muted-text-color);
   border-radius: $border-radius;
