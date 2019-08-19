@@ -4,7 +4,7 @@ date: 2016-09-26
 categories: [ios]
 ---
 
-At WWDC 2016, Apple introduced the Speech framework, an API which allows app developers to incorporate speech recognition in their apps. The exciting fact about this API is that it can perform real-time or recorded speech recognition, in almost 50 languages.
+At WWDC 2016, Apple introduced the Speech framework, an API which allows app developers to incorporate speech recognition in their app. The exciting fact about this API is that it can perform real time or recorded speech recognition, in almost 50 languages.
 
 Nowadays, many speech recognition frameworks are available, but most of them are expensive.
 
@@ -33,7 +33,7 @@ Add a property into `Info.plist`. Set your custom message for the `Privacy — S
 Now we need to *actually* ask the permission. I recommend *calling* this method only when you need to trigger speech recognition.
 
 ```swift
-private func askForSpeechRecognitionPermissions() {
+private func askForSpeechRecognitionAuthorization() {
     SFSpeechRecognizer.requestAuthorization { authStatus in
             
     	var enabled: Bool = false
@@ -187,7 +187,7 @@ Let's break down the parts.
 
 1. Cancel current speech recognition task if one is running
 2. Prepare for the audio recording, `AVAudioEngine` is required to process the input audio signals
-3. Init speech recognition request ; here we choose to retrieve partial results as soon as they’re available (when words are recognized), because it can take some time (several seconds) for the server to finalize the result of recognition and finally send it back
+3. Initialize speech recognition request ; here we choose to retrieve partial results as soon as they’re available (when words are recognized), because it can take some time (several seconds) for the server to finalize the result of recognition and finally send it back
 4. Set the speech recognition task with the request: the completion handler will be called each time its state change (cancelled, new input, final results, etc.)
 5. Check if partial results are available and display it
 6. Final results: stop microphone and clean speech recognition objects
@@ -231,7 +231,7 @@ Start only occurs when microphone is not already running, so we only have one ta
 
 The sample project above (based on Apple’s sample code *SpeakToMe*) [is available on GitHub](https://github.com/gaelfoppolo/SpeakToMe).
 
-# Using anoter input
+# Listen to this
 
 It is also possible to use file as data input. Even if the API wasn’t designed for that purpose, it can be useful to transcript lyrics, podcast or [generate live subtitles of a video](https://github.com/zats/SpeechRecognition).
 
