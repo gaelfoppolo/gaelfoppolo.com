@@ -30,29 +30,44 @@ blockquote code {
 div.highlighter-rouge,
 figure.highlight {
   position: relative;
+  width: 100%;
   margin: 1em 0 1em 0;
   background: $base00;
   color: $base05;
   font-family: $monospace;
-  font-size: $type-size-6;
-  line-height: 1.8;
+  font-size: $type-size-7;
   border-radius: $border-radius;
-
-  /*width: 90vw;
-  margin-left: -45vw;
-  margin-right: -45vw;
-  left: 50%;
-  right: 50%;*/
 
   > pre,
   pre.highlight {
     margin: 0;
-    padding: 1em;
+	padding: 1em;
+	
+	code[data-lang] {
+		&:before {
+			content: attr(data-lang);
+			position: absolute;
+			right: 24px;
+			top: -10px;
+			min-width: 40px;
+			text-align: center;
+			padding-left: 7.5px;
+			padding-right: 7.5px;
+			border: 1px solid;
+			border-color: var(--muted-text-color);
+			border-radius: $border-radius;
+			color: var(--muted-text-color);
+			background-color: var(--background-color); 
+		}
+	}
+
   }
 }
 
 .highlight table {
-  margin-bottom: 0;
+
+  width: auto;
+  margin: 0;
   font-size: 1em;
   border: 0;
 
