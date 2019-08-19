@@ -22,7 +22,7 @@ We use two objects:
 - `NSUserNotification`: to create and manage the notification
 - `NSUserNotificationCenter`: to display the notification
 
-```swift
+{% highlight swift %}
 import Cocoa
 
 // Create the notification and setup information
@@ -42,23 +42,22 @@ let notificationCenter = NSUserNotificationCenter.default
 // Manually display the notification
 
 notificationCenter.deliver(notification)
-```
+{% endhighlight %}
 
 However this piece of code does not really display the notification, the *Notification Center* decides if it should be displayed or not. Usually, the notification it’s not display if the app is already in focus. 
 
-To do that, we need to implement `NSUserNotificationCenterDelegate` protocol. `AppDelegate`’s `applicationDidFinishLaunching` method is a good candidate.
+To do that, we need to implement `NSUserNotificationCenterDelegate` protocol. `AppDelegate`’s `applicationDidFinishLaunching` method is a good candidate. You can force a notification to be displayed, thanks to `userNotificationCenter:shouldPresent`.
 
-```swift
+{% highlight swift %}
+
 notificationCenter.delegate = self
-```
 
-You can force a notification to be displayed, thanks to `userNotificationCenter:shouldPresent`.
+[...]
 
-```swift
 func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
 	return true
 }
-```
+{% endhighlight %}
 
 # Banner
 
@@ -97,10 +96,10 @@ To modify the notification style we need to add a property into `Info.plist`. Se
 
 We can add a reply field with a custom placeholder.
 
-```swift
+{% highlight swift %}
 notification.hasReplyButton = true
 notification.responsePlaceholder = "Type you reply here"
-```
+{% endhighlight %}
 
 {% include 
     image.html 
@@ -120,7 +119,7 @@ notification.responsePlaceholder = "Type you reply here"
 
 After the user validated his response, the Notification Center will call `userNotificationCenter:didActivate`, we just need to check the activation type:
 
-```swift   
+{% highlight swift %}
 func userNotificationCenter(_ center: NSUserNotificationCenter, didActivate notification: NSUserNotification) {
     switch (notification.activationType) {
         case .replied:
@@ -130,7 +129,7 @@ func userNotificationCenter(_ center: NSUserNotificationCenter, didActivate noti
             break;
     }
 }
-```
+{% endhighlight %}
 
 {% info %}
 
@@ -142,11 +141,11 @@ See [ActivationType](https://developer.apple.com/library/mac/documentation/Found
 
 By default, on alert you’ll have default buttons, like displayed before. We can configure them, to match what you want.
 
-```swift
+{% highlight swift %}
 notification.hasActionButton = true
 notification.otherButtonTitle = "Marco"
 notification.actionButtonTitle = "Polo"
-```
+{% endhighlight %}
 
 {% include 
     image.html 
@@ -165,13 +164,13 @@ It’s sometimes useful to offer multiple actions to users, directly from the no
 
 Additional actions are an array of `NSUserNotificationAction`:
 
-```swift
+{% highlight swift %}
 notification.additionalActions = [
     NSUserNotificationAction(identifier: "action1", title: "Action 1"),
     NSUserNotificationAction(identifier: "action2", title: "Action 2"),
     NSUserNotificationAction(identifier: "action3", title: "Action 3")
 ]
-```
+{% endhighlight %}
 
 {% include 
     image.html 
@@ -185,10 +184,10 @@ Currently, you need to **hold-click** the action button to display the additiona
 {% error %}
 There is a workaround, to display like the *Reminders* app. But it’s ugly. It uses the **private** API so I highly recommend using with **precautions** especially in production application.
 
-```swift
+{% highlight swift %}
 // WARNING, private API
 notification.setValue(true, forKey: "_alwaysShowAlternateActionMenu")
-```
+{% endhighlight %}
 
 {% include 
     image.html 
@@ -204,7 +203,7 @@ You don’t longer have access to the action button with this workaround.
 
 Go back to `userNotificationCenter:didActivateNotification` and add these switch cases:
 
-```swift
+{% highlight swift %}
 case .additionalActionClicked:
     guard let choosen = notification.additionalActivationAction, let title = choosen.title else { return }
     print("Action: \(title)")
@@ -212,29 +211,23 @@ case .actionButtonClicked:
     print("Action button (Polo)")
 case .contentsClicked:
     print("Contents clicked")
-```
+{% endhighlight %}
 
 # Scheduling
 
-Now, let’s say we want to schedule the display to be **10 seconds** later. We just need to add a property.
+Finally, let’s say we want to schedule the display to be **10 seconds** later and then to repeat it every day.
 
-```swift
+{% highlight swift %}
 notification.deliveryDate = NSDate(timeIntervalSinceNow: 10)
-```
 
-And we need to modify the display method.
-
-```swift
-notificationCenter.scheduleNotification(notification)
-```
-
-To repeat a notification, like *Reminders*, it is also very easy. Let’s say I want to repeat every day.
-
-```swift
 let repeatInt = NSDateComponents()
 repeatInt.day = 1
 notification.deliveryRepeatInterval = repeatInt
-```
+
+notificationCenter.schedule(notification)
+{% endhighlight %}
+
+Notice, that instead of `deliver`, we used `schedule` function.
 
 {% info %}
 
