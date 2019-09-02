@@ -15,21 +15,19 @@ During this process, **I document everything**. Every piece of information that 
 
 This post is the result of this first step in the Big Data world. This post is intended to **beginners**, like me, that want to discover the Big Data world, with a practical example.
 
-## Prerequisites
+# Getting started
 
 I’m going to assume only a couple of things here:
 
 * you know the basic components of Hadoop
-
 * you know how to use SSH
-
 * you have an AWS account
 
 If you don’t have an AWS account, take a look at AWS Free Tier, you can test AWS services during a year, for free. No money will be required.
 
-## What will we do?
+# What will we do?
 
-Ok now that we settle the requirements, here what we are going to do: a simple Hadoop cluster with 4 nodes, a master and three data nodes.
+Now that we settle the requirements, here what we are going to do: a simple Hadoop cluster with 4 nodes, a master and three data nodes.
 
 {% include 
     image.html 
@@ -42,16 +40,16 @@ Ok now that we settle the requirements, here what we are going to do: a simple H
 Let’s take a look at what we are going to do in details:
 
 * setup & config instances on AWS
-
 * setup & config a Hadoop cluster on these instances
-
 * try our Hadoop cluster
 
-Let’s get started! ✌️
+{% warning %}
+The AWS website may have changed since I wrote this guide. It may differ from the reality.
+{% endwarning %}
 
 # Setup AWS instance
 
-We are going to create an EC2 instance using the latest Ubuntu Server as OS.
+We are going to create an EC2 instance using the latest Ubuntu Server (at the time) as OS.
 
 After logging on AWS, go to *AWS Console*, choose the *EC2* service. On the EC2 Dashboard, click on **Launch Instance**. You can check *Free tier only* if you like (no cost, as promised). In the list select the latest Ubuntu Server. Currently, it’s 16.04 LTS.
 
@@ -68,7 +66,9 @@ Leave other options as they are. Click on *Next: Add Storage*.
 
 Default is 8Gb, and it’s fine for our purpose at the moment. We can increase the size of the EBS volume later so that’s OK.
 
-*Note*: you can also uncheck **Delete on Termination** if you want to keep your data after terminating the EC2 instance.
+{% info %}
+You can also uncheck **Delete on Termination** if you want to keep your data after terminating the EC2 instance.
+{% endinfo %}
 
 Click on *Next: Add Tags*.
 
@@ -97,15 +97,16 @@ Click on *Launch*. On the next page, you can directly click on *View Instances*.
 
 ## First connection
 
-To connect to our instance we use SSH. On the *AWS Console*, retrieve the *Public DNS*, should be something like: `ec2–19–124–171–90.eu-central-1.compute.amazonaws.com`.
+To connect to our instance we will use SSH. On the *AWS Console*, retrieve the *Public DNS*, should be something like: `ec2–xx–xxx-xx-xxx.eu-central-1.compute.amazonaws.com`.
 
-The default user is `ubuntu` on Ubuntu AMI OS. You can either use a GUI client or a terminal. With a terminal, use this command to connect:
+The default user is `ubuntu` on Ubuntu AMI OS. You can either use a GUI client or a terminal to connect.
 
-```sh
-ssh -i path/to/your/key.pem ubuntu@ec2-19-124-171-90.eu-central-1.compute.amazonaws.com
-```
+{% highlight sh %}
+ssh -i path/to/your/key.pem ubuntu@ec2–xx–xxx-xx-xxx.eu-central-1.compute.amazonaws.com
+{% endhighlight %}
 
-*Note*: if you see a message like this, it is because the key you’re trying to use is too accessible to users on the system. You need to restrict the access by simply run the following command: `chmod 600 path/to/your/key.pem`
+{% info %}
+If you see a message like this, it is because the key you’re trying to use is too accessible to users on the system.
 
 {% include 
     image.html 
@@ -114,14 +115,18 @@ ssh -i path/to/your/key.pem ubuntu@ec2-19-124-171-90.eu-central-1.compute.amazon
     caption="SSH security, chmod required"
 %}
 
-We will also use scp to transfer files. From terminal you can use:
+You need to restrict the access by simply run the following command: `chmod 600 path/to/your/key.pem`
 
-```sh
+{% endinfo %}
+
+We will also use `scp` to transfer files.
+
+{% highlight sh %}
 # download remote file to current local folder
 scp -i key.pem ubuntu@<public DNS>:path/to/file .
 # upload local file to remote folder
 scp -i key.pem path/to/file ubuntu@<public DNS>:path/to/folder
-```
+{% endhighlight %}
 
 And that’s it, you created and connected to your first EC2 instance on AWS! 🎉
 
@@ -131,38 +136,34 @@ We are going to create a template instance, that we can replicate, and dodge the
 
 We already have a running instance, no need to create a new one. ***We will assume that this instance is the master.*** SSH into it and run the following commands.
 
-In order to work, **each node** in the cluster **must have** Java and Hadoop installed. First Java:
+In order to work, **each node** in the cluster **must have** Java and Hadoop installed. 
 
-```sh
+{% highlight sh %}
 sudo apt-get install default-jdk
-```
-
-Then Hadoop, download, decompress and move it to `/usr/local/` folder.
-
-```sh
 wget [http://apache.crihan.fr/dist/hadoop/common/hadoop-2.8.2/hadoop-2.8.2.tar.gz](http://apache.crihan.fr/dist/hadoop/common/hadoop-2.8.2/hadoop-2.8.2.tar.gz)
 sudo tar xzf hadoop-2.8.2.tar.gz 
 sudo mv hadoop-2.8.2 /usr/local/hadoop
 sudo chown -R ubuntu /usr/local/hadoop/
-```
+{% endhighlight %}
 
-*Note*: you can change the Hadoop version to a more recent one, but I cannot guaranty that the following instructions will work perfectly
+{% warning %}
+You can change the Hadoop version to a more recent one, but I cannot guaranty that the following instructions will work perfectly.
+{% endwarning %}
 
-*Note²*: why `/usr/local/`? The `/usr/local` hierarchy is used when installing software locally. It needs to be safe from being overwritten when the system software is updated. It may be used for programs and data that are shareable among a group of hosts. This is perfect for Hadoop.
+Why `/usr/local/`? The `/usr/local` hierarchy is used when installing software locally. It needs to be safe from being overwritten when the system software is updated. It may be used for programs and data that are shareable among a group of hosts. This is perfect for Hadoop.
+
 
 ## Global configuration
 
-Now that Hadoop is installed, we need to configure the global environment variables. Edit `~/.profile` and append the following at the end of it:
+Now that Hadoop is installed, we need to configure the global environment variables. Add the following to `~/.profile`.
 
-```sh
+{% highlight text %}
 # Hadoop configuration
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 export PATH="PATH:JAVA_HOME/bin"
 export HADOOP_HOME=/usr/local/hadoop
 export PATH=PATH:HADOOP_HOME/bin
-```
-
-*Note:* change the JVM path according to yours.
+{% endhighlight %}
 
 Finally, reload with: `. .profile`
 
@@ -170,36 +171,29 @@ Finally, reload with: `. .profile`
 
 This section will cover the Hadoop cluster configuration. **Six main files** must be configured in order to specify to Hadoop various configurations. Here we are going to configure it to launch in a fully distributed mode (multi nodes cluster).
 
-Each file is located in the `etc/hadoop` of the Hadoop install folder. For us the full path is : `/usr/local/hadoop/etc/hadoop`.
+Each file is located in the `etc/hadoop` folder of the Hadoop install folder. 
+For us the full path is : `/usr/local/hadoop/etc/hadoop`.
 
-First modify hadoop-env.sh:
+First, we modify `hadoop-env.sh`.
 
-```sh
+{% highlight text %}
 export JAVA_HOME=${JAVA_HOME}
-```
-
-to
-
-```sh
+{% endhighlight %}
+{% highlight text %}
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
-```
+{% endhighlight %}
 
-*Note:* change the JVM path according to yours.
-
-### `core-site.xml`
+### core-site.xml
 
 This file contains the configuration settings for Hadoop Core (eg I/O) that are common to HDFS and MapReduce. It also informs Hadoop daemon where NameNode (the master) runs in the cluster. So each node must have this file completed.
 
 Replace these two lines with the next block, and complete the master’s private IP with your own (this instance if you remember).
 
-```xml
+{% highlight xml %}
     <configuration>
     </configuration>
-```
-
-with
-
-```xml
+{% endhighlight %}
+{% highlight xml %}
     <configuration>
         <property>
             <name>fs.default.name</name>
@@ -211,11 +205,13 @@ with
             <description>A base for other temporary directories.</description>
         </property>
     </configuration>
-```
+{% endhighlight %}
 
+{% warning %}
 Don’t forget to create the `/home/ubuntu/hadooptmp` folder!
+{% endwarning %}
 
-### `hdfs-site.xml`
+### hdfs-site.xml
 
 This file contains the configuration settings for HDFS daemons: the NameNode and the DataNodes. We can specify default block replication and permission checking on HDFS.
 
@@ -225,14 +221,11 @@ The `namenode` and `datanode` folders will be created on respectively the master
 
 Replace these two lines with the next block.
 
-```xml
+{% highlight xml %}
     <configuration>
     </configuration>
-```
-
-with
-
-```xml
+{% endhighlight %}
+{% highlight xml %}
     <configuration>
       <property>
         <name>dfs.replication</name>
@@ -247,9 +240,9 @@ with
         <value>/usr/local/hadoop/hdfs/datanode</value>
       </property>
     </configuration>
-```
+{% endhighlight %}
 
-### `mapred-site.xml`
+### mapred-site.xml
 
 This file contains the configuration settings for MapReduce daemons: the job tracker and the task-trackers.
 
@@ -257,23 +250,20 @@ Since MapReduce v2, YARN became the default resource management system. YARN tak
 
 First rename `mapred-site.xml.template` to `mapred-site.xml`. Replace these two lines with the next block, to specify YARN as the default resource management system.
 
-```xml
+{% highlight xml %}
     <configuration>
     </configuration>
-```
-
-with
-
-```xml
+{% endhighlight %}
+{% highlight xml %}
     <configuration>
         <property>
             <name>mapreduce.framework.name</name>
             <value>yarn</value>
         </property>
     </configuration>
-```
+{% endhighlight %}
 
-### `yarn-site.xml`
+### yarn-site.xml
 
 This file contains the configuration settings for YARN. Since we specify YARN as our default resource management system, we need to configure it.
 
@@ -283,14 +273,11 @@ Finally, we specify the **private** IP address of the master node (still this in
 
 Replace these two lines with the next block.
 
-```xml
+{% highlight xml %}
     <configuration>
     </configuration>
-```
-
-with
-
-```xml
+{% endhighlight %}
+{% highlight xml %}
     <configuration>
       <property>
           <name>yarn.nodemanager.aux-services</name>
@@ -302,11 +289,11 @@ with
       </property>
       <property>
           <name>yarn.resourcemanager.hostname</name>
-          <value><master's_private_IP></value>
+          <value><master_private_IP></value>
           <description>The hostname of the Ressource Manager.</description>
       </property>
     </configuration>
-```
+{% endhighlight %}
 
 ### SSH configuration
 
@@ -316,7 +303,7 @@ After the creation of the instances from the AMI, we will be able to connect to 
 
 But accessing via SSH requires a password, so in order to avoid having to type the password for each SSH access to nodes in the cluster, we are going to set a password-less SSH access. Still on the master instance, type the following commands:
 
-```sh
+{% highlight sh %}
 # generate keys file (public and private)
 ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
 # add the public key in the list of the authorized keys
@@ -324,7 +311,7 @@ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 # download the private key & remove it from the node
 scp -i key.pem ubuntu@<public DNS>:~/.ssh/id_rsa .
 rm ~/.ssh/id_rsa
-```
+{% endhighlight %}
 
 Why remove the private key from the template? ☝️ Well, in our cluster, only the master talk to nodes, not nodes between themselves. Also, security purpose, if one data node is compromised, the attacker can’t gain access to the master node or at least, not this way.
 
@@ -341,21 +328,18 @@ From the list of your AMIs, select the AMI and click **Launch**. You can then ch
 After the creation, rename the instances as follows:
 
 * HadoopNameNode (Master)
-
 * HadoopDataNode1 (Slave #1)
-
 * HadoopDataNode2 (Slave #2)
-
 * HaddopDataNode3 (Slave #3)
 
 ### SSH config (again!)
 
 As said earlier, the master node needs to communicate with the data nodes. We need to upload the private key (`id_rsa`) back on the master.
 
-```sh
+{% highlight sh %}
 # upload the private key
 scp -i key.pem id_rsa ubuntu@<public DNS master node>:~/.ssh/
-```
+{% endhighlight %}
 
 ## Hadoop config
 
@@ -389,9 +373,9 @@ The following files (masters and slaves) have to be created in `/usr/local/hadoo
 
 After all that configuration, it is now time to test drive the cluster. First, we need to format the HDFS file system on the NameNode. For the HDFS NameNode to start, it needs to initialize the directory where it will hold its data. The format process will use the value assigned to `dfs.namenode.name.dir` in `etc/hadoop/hdfs-site.xml` earlier. Formatting destroys everything in the directory and sets up a new file system.
 
-```sh
+{% highlight sh %}
 /usr/local/hadoop/bin/hdfs namenode -format
-```
+{% endhighlight %}
 
 **Do this only once!**
 
@@ -401,17 +385,17 @@ If everything is good, it should end with `Exiting with status 0` and `Shutting 
 
 Once formatting is successful, the HDFS and YARN services must be started.
 
-```sh
+{% highlight sh %}
 /usr/local/hadoop/sbin/start-dfs.sh 
 /usr/local/hadoop/sbin/start-yarn.sh
-```
+{% endhighlight %}
 
 And to stop them:
 
-```sh
+{% highlight sh %}
 /usr/local/hadoop/sbin/stop-yarn.sh 
 /usr/local/hadoop/sbin/stop-dfs.sh
-```
+{% endhighlight %}
 
 To test if everything is good, on each node use the command `jps`. On master node, you will see master's process and on data nodes, you will see data's process.
 
@@ -419,25 +403,25 @@ To test if everything is good, on each node use the command `jps`. On master nod
 
 The moment you expect since the beginning. To test the installation, we can run the sample `pi` program that calculates the value of pi using a quasi-Monte Carlo method and MapReduce. The program takes two arguments, the number maps and the number of samples and submits a MapReduce job to YARN. Here an example:
 
-```sh
+{% highlight sh %}
 hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.8.2.jar pi 10 1000
-```
+{% endhighlight %}
 
-*Note:* change the jar path (version) according to yours.
+Change the jar path (version) according to yours.
 
 You can also follow the job on the webpage. If the program worked correctly, the following should be displayed at the end of the program output stream:
 
-```sh
+{% highlight sh %}
 Estimated value of Pi is 3.14250000000000000000
-```
+{% endhighlight %}
 
 The JAR file contains several sample applications to test the YARN installation. Simply use the following command to the full list:
 
-```sh
+{% highlight sh %}
 hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.8.2.jar
-```
+{% endhighlight %}
 
-You can then follow the job in the terminal:
+You can then follow the job in the terminal.
 
 {% include 
     image.html 
@@ -456,7 +440,7 @@ You can also see it in the browser by accessing: `<public DNS master node>::8088
     style="fill"
 %}
 
-*Bonus*: you can also view the job on data nodes, by accessing: `<public DNS data node>:8042`.
+You can also view the job on data nodes, by accessing: `<public DNS data node>:8042`.
 
 And that’s it! You did it, you have a basic, but running, Hadoop cluster! 🎉
 
@@ -472,6 +456,4 @@ Well, the next step is **automation**. If we have a cluster with hundreds of ins
 
 Is there a solution that can handle **provisioning**, **managing**, **monitoring** and **deploying** of Hadoop cluster for us?
 
-Short answer, **yes.** **Ambari**. Long answer, maybe in a future post ✌️
-
-Thanks for reading! 🚀
+Short answer, **yes.** **Ambari**. Long answer, maybe another time ✌️
