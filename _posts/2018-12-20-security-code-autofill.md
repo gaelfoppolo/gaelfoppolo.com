@@ -24,39 +24,31 @@ With iOS 12, you can ease this process for your user, by providing an in-app Aut
     style="half"
 %}
 
-## Show me the code
+# Show me the code
 
-```swift
+{% highlight swift %}
 let otpTextField = UITextField() 
 otpTextField.textContentType = .oneTimeCode
-```
+{% endhighlight %}
 
-That's it. Reference: [UITextContentType.oneTimeCode](https://developer.apple.com/documentation/uikit/uitextcontenttype/2980930-onetimecode).
-
-**This is not mandatory.**  
+That's it **and this is not mandatory.** 
 
 As of iOS 12, all `UITextField` can display this AutoFill option by default, when the system detects a security code. 
 
-However, if your view displays several text fields, using this specific `UITextContentType` will help the system, by providing an indication, a hint. iOS will then only display the AutoFill option in the specified text field tagged with security code content type.
+However, if your view displays several text fields, using this specific [`UITextContentType`](https://developer.apple.com/documentation/uikit/uitextcontenttype/2980930-onetimecode) will help the system, by providing an indication, a hint. iOS will then only display the AutoFill option in the specified text field tagged with security code content type.
 
-## Limitations
+# Limitations
 
 There are a couple of things to keep in mind, if you want to support this:
 
 - iOS **12.0**+
-
-- **System keyboard** required. 
-
-  If you use a third-party keyboard, like SwiftKey, iOS will switch back to the system keyboard when a code is detected.
+- **System keyboard** required. If you use a third-party keyboard, like SwiftKey, iOS will switch back to the system keyboard when a code is detected.
 
 - iOS will show the code for up to **three** minutes after it has been received.
 
-- iOS will only show a code if one is detected (**parsed**). 
+- iOS will only show a code if one is detected (meaning **parsed**). To ensure yours is supported, verify the message contains an underlined security code and tap on the code. If a Copy Code option appears, the system has recognized the code.
 
-  To ensure yours is supported, verify the message contains an underlined security code and tap on the 
-  code. If a Copy Code option appears, the system has recognized the code.
-
-## Bonus
+# Bonus
 
 This type of code is usually used for financial transaction. If your message contains an amount of money and, if detected, QuickType bar will also display this information.
 
@@ -69,13 +61,5 @@ This type of code is usually used for financial transaction. If your message con
 %}
 
 This is a simple addition, but very useful for users, as it helps them identify security codes and confirm their validity.
-
-## Reference
-
-[WWDC 2018 — Session 204](https://developer.apple.com/videos/play/wwdc2018/204/)
-
-[Apple Documentation — About the Password AutoFill Workflow](https://developer.apple.com/documentation/security/password_autofill/about_the_password_autofill_workflow)
-
-[When Convenience Creates Risk: Taking a Deeper Look at Security Code AutoFill on iOS 12 and macOS Mojave](https://www.benthamsgaze.org/2018/10/17/when-convenience-creates-risk-taking-a-deeper-look-at-security-code-autofill-on-ios-12-and-macos-mojave/)
 
 *[OTP]: One Time Password
