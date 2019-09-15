@@ -8,7 +8,7 @@ As of most years, this year ends in the middle of a week. And according to the d
 
 It's the perfect time to remind everybody that date formatting can be tricky, if you are not looking closely enough.
 
-```swift
+{% highlight swift %}
 let formattery = DateFormatter()
 formattery.dateFormat = "d-MM-y"
 let datey = formattery.date(from: "29-12-2018")
@@ -16,11 +16,11 @@ let datey = formattery.date(from: "29-12-2018")
 let formatterY = DateFormatter()
 formatterY.dateFormat = "d-MM-Y"
 let dateY = formatterY.date(from: "29-12-2018")
-```
+{% endhighlight %}
 
 This will yield the following results:
 
-```swift
+```
 "29 Dec 2018 at 00:00" (datey)
 "25 Dec 2017 at 00:00" (dateY)
 ```
@@ -34,10 +34,11 @@ As defined in ISO 8601, a year-week calendar has 52 or 53 full weeks. Meaning a 
 The first ISO week of the year is calculated according to a bunch of properties, and in the end, can begin from 29 December to 4 January. The minimum days in a week is 4 and first day of the 
 week is Monday, according to ISO 8601 specifications. You can retrieve these values from [minimumDaysInFirstWeek](https://developer.apple.com/documentation/foundation/calendar/2293094-minimumdaysinfirstweek) and [firstWeekDay](https://developer.apple.com/documentation/foundation/calendar/2293656-firstweekday).
 
-```swift
+{% highlight swift %}
 let calendar = Calendar(identifier: .iso8601)
-print(calendar.minimumDaysInFirstWeek, calendar.firstWeekday)
-```
+// calendar.minimumDaysInFirstWeek
+// calendar.firstWeekday
+{% endhighlight %}
 
 For example, 1 January 2019 is a Tuesday. Then the first year-week of 2019 starts on 31 December 2018 and ends on 6 January 2019. 
 
@@ -74,21 +75,21 @@ Without any other configuration, the formatter only consider the year, in a year
 
 When using year-week date format, use `w` to specify the week of year (ordinal) and `e` to specify the day of week. 
 
-```swift
+{% highlight swift %}
 let formatterY = DateFormatter()
 formatterY.dateFormat = "e-w-Y"
 let dateY = formatterY.date(from: "29-12-2018")
-```
+{% endhighlight %}
 
-And you'll get: `"19 Mar 2018 at 00:00"`. Why?
+And you'll get **`"19 Mar 2018 at 00:00"`**. Why?
 
-We changed the date format but not the date representation! The formatter is now using year-week date format ; what it  reads is: day 1 ($29 \bmod 7 = 1$) of week 12 of year 2018. You can check yourself, it's 19 March 2018.
+We changed the date format but forget the date representation! The formatter is now using year-week date format ; what it reads is: day 1 ($29 \bmod 7 = 1$) of week 12 of year 2018. And this is 19 March 2018.
 
 We need to update the date representation to respect that format.
 
-```swift
+{% highlight swift %}
 let dateY = formatterY.date(from: "6-52-2018")
-```
+{% endhighlight %}
 
 Day 6 of week 52 of year 2018. Finally!
 
@@ -98,7 +99,14 @@ Day 6 of week 52 of year 2018. Finally!
 
 Also, you should only use `y` and not `yyyy`. Unicode Technical Standard #35 explains this causes a forced padding, which you want to avoid if you work with non-Gregorian calendar. Using `y` will also enable forward compatibility.
 
-[Obligatory XKCD](https://xkcd.com/1179/).
+{% include 
+	image.html 
+	srcabs="https://imgs.xkcd.com/comics/iso_8601_2x.png"
+	url="https://xkcd.com/1179/"
+    alt="XKCD #1179"
+    caption="XKCD #1179"
+	style="half"
+%}
 
 # Reference
 
