@@ -10,19 +10,19 @@ Among other things, enumerations are great to represent sets of options.
 
 Let's take as example `UIViewAnimationOptions`. This type describes the available options to animate an `UIView`. You can combine these options, sometimes it is even mandatory.
 
-In Objective-C, this type is defined as an enumeration. To combine multiple options together, you need to "pipe" them, aka using a bitwise OR:
+In Objective-C, this type is defined as an enumeration. To combine multiple options together, you need to "pipe" them, aka using a bitwise OR.
 
-```objc
+{% highlight objc %}
 UIViewAnimationOptions options = UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionCurveEaseInOut;
-```
+{% endhighlight %}
 
 However, in Swift this type is defined and used differently: it is a `struct` conforming to the `OptionSet` protocol, and you use it like a set.
 
-```swift
+{% highlight swift %}
 var options: UIView.AnimationOptions = [.repeat, .autoreverse, .curveEaseInOut]
-```
+{% endhighlight %}
 
-## OptionSet
+# OptionSet
 
 Enumerations have one problem, you can only set one option at the time. This is the soul of an enumeration. The Objective-C version of `UIViewAnimationOptions` is expressed in a hacky-way, hijacking the prime goal of the enumeration.
 
@@ -30,17 +30,17 @@ OptionSet was designed to solve this very problem: a set where you can *set* mul
 
 Conforming to OptionSet only requires to provide a `rawValue` property of **integer** type. This type will be used as the underlying storage for the bit field. Indeed, integers are stored as a series of bits in memory. The size of the integer type will determine the maximum number of options you can define for your set to work *accurately*.  
 
-```swift
+{% highlight swift %}
 struct MyOptionSet: OptionSet {
     let rawValue: Int8
 }
-```
+{% endhighlight %}
 
-MyOptionSet uses `Int8` and will be able to represent up to 8 options *accurately*.
+`MyOptionSet` uses `Int8` and will be able to represent up to 8 options *accurately*.
 
-Note that each option represents a single bit of the `rawValue`. In order to represent these options correctly, we need to assign ascending powers of two to each option: 1, 2, 4, 8, 16, etc.
+Each option represents a single bit of the `rawValue`. In order to represent these options correctly, we need to assign ascending powers of two to each option: 1, 2, 4, 8, 16, etc.
 
-```swift
+{% highlight swift %}
 struct MyOptionSet: OptionSet {
     let rawValue: Int8
 	
@@ -49,46 +49,46 @@ struct MyOptionSet: OptionSet {
     static let option3 = MyOptionSet(rawValue: 4)
     static let option4 = MyOptionSet(rawValue: 8)
 }
-```
+{% endhighlight %}
 
 Now when combining two or more options (aka bit mask), there is no overlapping.
 
-```swift
+{% highlight swift %}
 var options: MyOptionSet = [.option1, .option2] // 1 + 2 = 3
 var anotherOptions: MyOptionSet = [.option1, .option2, .option3] // 1 + 2 + 4 = 7
 var oddOptions: MyOptionSet = [.option1, .option3] // 1 + 4 = 5
-```
+{% endhighlight %}
 
-OptionSet conforms to `SetAlgebra`, meaning you can manipulate it with multiple mathematical set operations: insert, remove, contains, intersection, etc.
+`OptionSet` conforms to `SetAlgebra`, meaning you can manipulate it with multiple mathematical set operations: insert, remove, contains, intersection, etc.
 
-## Bitwise left shifting
+# Bitwise left shifting
 
 Integers are stored as bitfield. For example, using `Int8`, the value 6 (decimal) or 0x40 (hexadecimal) is stored like so:
 
-```sh
+{% highlight sh %}
 00000110
-```
+{% endhighlight %}
 
 A common bitwise operation is left shifting, noted `<<`. 
 
 Left shifting shift the digits to the left according to the offset specified and fill the right empty spaces with zeros. Shifting this bit pattern to the left from one position (`6 << 1`) result in the number 12 (decimal):
 
-```sh
+{% highlight sh %}
 00001100
-```
+{% endhighlight %}
 
 Left shifting is equivalent to multiplication by powers of 2, regarding the offset. Shifting 6 from three positions (`6 << 3`) result in the number 48 ($6 \times 2^3$).
 
-Using left shifting is pretty common good practice when describing OptionSet options ; just increase the shifting position and let the math do the rest.
+Using left shifting is pretty common good practice when describing `OptionSet` options ; just increase the shifting position and let the math do the rest.
 
-```swift
+{% highlight swift %}
 static let option1 = MyOptionSet(rawValue: 1 << 0) // 1
 static let option2 = MyOptionSet(rawValue: 1 << 1) // 2
-```
+{% endhighlight %}
 
-## Feature flags
+# Feature flags
 
-Let's look at a worked example. Feature flags is a technique allowing to modify system behavior without changing code. They can help us to deliver new functionality to users rapidly and safely.
+Let's look at a real-world example. Feature flags is a technique allowing to modify system behavior without changing code. They can help us to deliver new functionality to users rapidly and safely.
 
 For example, you could be in the process of rewriting a part of your app to improve its efficiency. This work will take some time, probably multiple weeks, but you don't want to impact your team, that will continue to work on other parts of the app. Branching is a no go, thanks to previous experiences of merging long-lived branches. Instead, the people working on that rewrite will use a specific feature flag to use the new implementation, while the other will continue to use the current one as usual.
 
@@ -100,7 +100,7 @@ Feature flags can be implemented in many ways, but all of them will introduce ad
 
 Let's see how `OptionSet` can help us reduce this complexity.
 
-```swift
+{% highlight swift %}
 struct FeatureFlags: OptionSet {
 
     let rawValue: Int
@@ -114,31 +114,31 @@ struct FeatureFlags: OptionSet {
     static let feature7 = FeatureFlags(rawValue: 1 << 6) // 64
 
 }
-```
+{% endhighlight %}
 
 Fundamentally, that's all what we need.
 
-Now, let's say we want a particular combination of these flags, a feature groups. We can use the array notation like `UIView.AnimationOptions` or we can take advantage of the capabilities offer by OptionSet. We can add the following to our `FeatureFlags` type, and use it like the other option:
+Now, let's say we want a particular combination of these flags, a feature groups. We can use the array notation like `UIView.AnimationOptions` or we can take advantage of the capabilities offer by `OptionSet`. We can add the following to our `FeatureFlags` type, and use it like any other option.
 
-```swift
+{% highlight swift %}
 static let evenFeature: FeatureFlags = [.feature2, .feature4, .feature6] // 2 + 8 + 32 = 42
-```
+{% endhighlight %}
 
-Usually, you retrieve these flags from an API, where each flag is represented by a boolean value. This is where the magic of`OptionSet` begin : instead of list of boolean flags, you can use a single integer value representing all your flags!
+Usually, you retrieve these flags from an API, where each flag is represented by a boolean value. This is where the magic of`OptionSet` begin: instead of list of boolean flags, you can use a single integer value representing all your flags!
 
-```swift
+{% highlight swift %}
 var options = FeatureFlags(rawValue: 97)
-```
+{% endhighlight %}
 
 The variable `options` now contains `feature1` , `feature6` and `feature7` ($1+32+64 = 97$). 
 
 You even can have several `FeatureFlags`: a global one, one for each of your key functionalities, one specific to your user, etc. And of course, combine them!
 
-## One More Thing
+# One More Thing
 
-OptionSet isn't a collection. You can't count them or iterate over them. However, since we only define them with integer values, we can improve the protocol to help us work with them.
+`OptionSet` isn't a collection. You can't count them or iterate over them. However, since we only define them with integer values, we can improve the protocol to help us work with them.
 
-```swift
+{% highlight swift %}
 protocol OptionSetCountable: OptionSet {
     static var count: Int { get }
 }
@@ -153,13 +153,13 @@ extension OptionSetCountable where Self.RawValue == Int {
         return Array(0 ..< type(of: self).count).compactMap { self.rawValue & (1 << $0) != 0 ? Self(rawValue: 1 << $0) : nil }
     }
 }
-```
+{% endhighlight %}
 
 `all` produces an instance of your type with all options, while `members` computes the list of all options of a particular instance, practical to iterate.
 
 Let's update the conformance and add the new property to our type. We also add conformance to `CustomStringConvertible` for debug purpose.
 
-```swift
+{% highlight swift %}
 struct FeatureFlags: OptionSetCountable {
 
     let rawValue: Int
@@ -201,45 +201,47 @@ extension FeatureFlags: CustomStringConvertible {
     }
 }
 
-```
+{% endhighlight %}
 
-You can try it with a set of examples:
+Let's try with a set of examples.
 
-```swift
+{% highlight swift %}
 let fullSet = FeatureFlags.all
+
+// [Feature 1, Feature 2, Feature 3, Feature 4, Feature 5, Feature 6, Feature 7] 
+
 let option = FeatureFlags(rawValue: 97)
+
+// [Feature 1, Feature 6, Feature 7]
+
 let option2 = FeatureFlags(arrayLiteral: [.feature6, .feature7])
+
+// [Feature 6, Feature 7]
+
 let options = [fullSet, option, option2]
 
 for option in options {
     print(option.members)
 }
 
+// [Feature 1, Feature 2, Feature 3, Feature 4, Feature 5, Feature 6, Feature 7]
+
 let max = Int(pow(Double(2), Double(FeatureFlags.count)))
 for _ in 0...10 {
     let random = Int.random(in: 1 ..< max)
     print(FeatureFlags(rawValue: random).members)
 }
-```
 
-And a set of results:
+// [Feature 2, Feature 5, Feature 6]
+// [Feature 3, Feature 7]
+// [Feature 1, Feature 4, Feature 5, Feature 6]
+// [Feature 3, Feature 5]
+// [Feature 2, Feature 5]
+// [Feature 3, Feature 6]
+// [Feature 2, Feature 3]
+// [Feature 4, Feature 7]
+// [Feature 3, Feature 5, Feature 7]
+// [Feature 1, Feature 2, Feature 4]
+// [Feature 4, Feature 6, Feature 7]
 
-```sh
-[Feature 1, Feature 2, Feature 3, Feature 4, Feature 5, Feature 6, Feature 7] // fullSet
-[Feature 1, Feature 6, Feature 7] // option
-[Feature 6, Feature 7] // option 2
-
-// random option
-
-[Feature 2, Feature 5, Feature 6]
-[Feature 3, Feature 7]
-[Feature 1, Feature 4, Feature 5, Feature 6]
-[Feature 3, Feature 5]
-[Feature 2, Feature 5]
-[Feature 3, Feature 5]
-[Feature 2, Feature 3]
-[Feature 4, Feature 7]
-[Feature 3, Feature 5, Feature 7]
-[Feature 1, Feature 2, Feature 4]
-[Feature 4, Feature 6, Feature 7]
-```
+{% endhighlight %}
