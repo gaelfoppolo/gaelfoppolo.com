@@ -107,11 +107,3 @@ Also, you should only use `y` and not `yyyy`. Unicode Technical Standard #35 exp
     caption="XKCD #1179"
 	style="half"
 %}
-
-# Reference
-
-[https://www.iso.org/iso-8601-date-and-time-format.html](https://www.iso.org/iso-8601-date-and-time-format.html)
-
-[http://unicode.org/reports/tr35/tr35-10.html#Date_Format_Patterns](http://unicode.org/reports/tr35/tr35-10.html#Date_Format_Patterns)
-
-[https://developer.apple.com/documentation/foundation/dateformatter](https://developer.apple.com/documentation/foundation/dateformatter)
