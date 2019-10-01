@@ -12,7 +12,7 @@ _TFC16MyProjectExample7MyClass10myFunctionfS0_FT1xSi_Si
 
 This is the result of the object code, and is called **name mangling**. The good news is, Xcode embed a tool to retrieve the original form. But first, let's dive a little into the concept.
 
-## A unique symbol
+# A unique symbol
 
 In computer programming, when we wish to compile our program, the compiler goes by a numerous steps before producing a working executable file. The last step involves the **linker**, which will try to resolve all the references of the entities previously compiled (object code), and merge them into your executable file.
 
@@ -24,7 +24,7 @@ Same applies in programming. **Name mangling** solves the problem. With this tec
 
 For example, dSYM files contain theses *mangled* symbols.
 
-## What are the rules?
+# What are the rules?
 
 Let's take a quick closer look on how this works for Swift. If you ever wrote a parser, it will be easy. You just have to know the rules.
 
@@ -50,13 +50,13 @@ _TFC16MyProjectExample7MyClass10myFunctionfS0_FT1xSi_Si
 
 All the rules are [on the Swift repo](https://github.com/apple/swift/blob/master/lib/Demangling/Demangler.cpp), if you want to keep having fun.
 
-## A new tool
+# A new tool
 
 The good news is, you can easily *unmangle* your string using a simple command, included in every Xcode:
 
-```shell
+{% highlight shell %}
 $ xcrun swift-demangle -compact _TFC16MyProjectExample7MyClass10myFunctionfS0_FT1xSi_Si
 MyProjectExample.MyClass.myFunction(MyProjectExample.MyClass) -> (x: Swift.Int) -> Swift.Int
-```
+{% endhighlight %}
 
 or you can use the [online demangler](https://www.swiftdemangler.com)!
