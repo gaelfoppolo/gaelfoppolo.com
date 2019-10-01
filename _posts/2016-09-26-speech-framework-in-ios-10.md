@@ -4,23 +4,22 @@ date: 2016-09-26
 categories: [ios]
 ---
 
-At WWDC 2016, Apple introduced the Speech framework, an API which allows app developers to incorporate speech recognition in their apps. The exciting fact about this API is that it can perform real-time or recorded speech recognition, in almost 50 languages.
+At WWDC 2016, Apple introduced the Speech framework, an API which allows app developers to incorporate speech recognition in their app. The exciting fact about this API is that it can perform real time or recorded speech recognition, in almost 50 languages.
 
 Nowadays, many speech recognition frameworks are available, but most of them are expensive.
 
-In this post, I will show you how to use the Speech framework in **live** scenarios: with the microphone. You can also read a file (audio or video) as data input. First let’s see what we need to begin.
+In this post, we will see how to use the Speech framework in a **live** scenario, using the microphone, but also by reading a file (audio or video) as a data input. First let’s see what we need to begin.
 
-# Permission
+# Asking for permission
 
-To start, import the framework and conform to the `SFSpeechRecognizerDelegate` protocol.
+To start, import the `Speech` framework and conform to the `SFSpeechRecognizerDelegate` protocol.
 
-```swift
+{% highlight swift %}
 import Speech
-import UIKit
-public class ViewController: UIViewController, SFSpeechRecognizerDelegate {}
-```
+public class MySpeechObject: SFSpeechRecognizerDelegate {}
+{% endhighlight %}
 
-In order to perform speech recognition using the framework, it is mandatory to first ask for the user permission. **Why?** The framework is based on SiriKit, all data are sent and processed on Apple’s servers. You need to inform the user and ask its permission.
+In order to perform speech recognition using the framework, it is mandatory to first ask for the user permission. The framework is based on SiriKit, all data are sent and processed on Apple’s servers. You need to inform the user and ask its permission.
 
 Add a property into `Info.plist`. Set your custom message for the `Privacy — Speech Recognition Usage Description` key.
 
@@ -33,8 +32,8 @@ Add a property into `Info.plist`. Set your custom message for the `Privacy — S
 
 Now we need to *actually* ask the permission. I recommend *calling* this method only when you need to trigger speech recognition.
 
-```swift
-private func askForSpeechRecognitionPermissions() {
+{% highlight swift %}
+private func askForSpeechRecognitionAuthorization() {
     SFSpeechRecognizer.requestAuthorization { authStatus in
             
     	var enabled: Bool = false
@@ -65,31 +64,33 @@ private func askForSpeechRecognitionPermissions() {
         }
     }
 }
-```
+{% endhighlight %}
 
-# Speech Recognition
+# Getting ready
 
-Declare two objects, required to perform speech recognition:
+We declare two objects, required to perform speech recognition:
 
-```swift
+{% highlight swift %}
 private var speechRecognizer: SFSpeechRecognizer!
 private var recognitionTask: SFSpeechRecognitionTask?
-```
+{% endhighlight %}
 
-* `speechRecognizier`: handles speech recognition (*oh really?*)
+* `speechRecognizier`: handles speech recognition 
 
-* `recognizitionTask`: gives the result of the recognition. Task can be cancelled or stopped
+* `recognizitionTask`: gives the result of the recognition ; the task can be cancelled or stopped
 
-Now, the setup, to let the recognizer know what language the user is speaking and to make it our delegate:
+We need to let the recognizer know what language the user is speaking and to make it our delegate:
 
-```swift
+{% highlight swift %}
 speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))!
 speechRecognizer.delegate = self
-```
+{% endhighlight %}
 
-*Note*: Speech recognition **will not work** unless you are running on a **physical device** (currently). My best guess is, as it is Siri based, only real devices have the capabilities. Hopefully we have a property, [`isAvailable`](https://developer.apple.com/reference/speech/sfspeechrecognizer/1649885-isavailable), to find out if the recognizer is available. A method, `availabilityDidChange`, is also provided by the delegate, that notify when the availability of the speech recognizer has changed:
+{% info %}
 
-```swift
+Speech recognition **will not work** unless you are running on a **physical device** (currently). My best guess is, as it is Siri based, only real devices have the capabilities. Hopefully we have a property, [`isAvailable`](https://developer.apple.com/reference/speech/sfspeechrecognizer/1649885-isavailable), to find out if the recognizer is available. A method, `availabilityDidChange`, is also provided by the delegate, that notify when the availability of the speech recognizer has changed:
+
+{% highlight swift %}
 public func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
 	if available {
     	// e.g. enable record button
@@ -97,11 +98,13 @@ public func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilit
        // e.g. disable record button
     }
 }
-```
+{% endhighlight %}
+
+{% endinfo %}
 
 Configuration was pretty simple, now let’s see **input data**!
 
-## Microphone
+# Are you listening?
 
 Like speech recognition, user’s permission is required to use the microphone. Add a new property into `Info.plist`, `Privacy — Microphone Usage Description` and provide a message.
 
@@ -114,138 +117,120 @@ Like speech recognition, user’s permission is required to use the microphone. 
 
 Start by adding these two objects:
 
-```swift
+{% highlight swift %}
 private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
 private let audioEngine = AVAudioEngine()
-```
+{% endhighlight %}
 
-* `recognitionRequest`: handles the speech recognition request and provides an audio source (buffer) to the speech recognizer.
+* `recognitionRequest`: handles the speech recognition request and provides an audio source (buffer) to the speech recognizer
 
-* `audioEngine`: provides your audio input, here the microphone.
+* `audioEngine`: provides your audio input, here the microphone
 
-## Implementing
+Complete with this piece of code:
 
-```swift
+{% highlight swift linenos %}
 private func startRecording() throws {
-        // 1
-        if let recognitionTask = self.recognitionTask {
-            recognitionTask.cancel()
+
+    if let recognitionTask = self.recognitionTask {
+        recognitionTask.cancel()
+        self.recognitionTask = nil
+    }
+   
+    let audioSession = AVAudioSession.sharedInstance()
+    try audioSession.setCategory(AVAudioSessionCategoryRecord)
+    try audioSession.setMode(AVAudioSessionModeMeasurement)
+    try audioSession.setActive(true, with: .notifyOthersOnDeactivation)
+    guard let inputNode = audioEngine.inputNode else { fatalError("Audio engine has no input node") }
+
+    self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+    guard let recognitionRequest = recognitionRequest else { fatalError("Unable to created a SFSpeechAudioBufferRecognitionRequest object") }
+    self.recognitionRequest.shouldReportPartialResults = true
+
+    self.recognitionTask = self.speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in 
+
+        var isFinal = false
+            
+        if let result = result {
+            self.textView.text = result.bestTranscription.formattedString
+            isFinal = result.isFinal
+        }
+            
+        if error != nil || isFinal {
+            self.audioEngine.stop()
+            inputNode.removeTap(onBus: 0)
+            self.recognitionRequest = nil
             self.recognitionTask = nil
+            self.recordButton.isEnabled = true
         }
+   }
         
-        // 2
-        let audioSession = AVAudioSession.sharedInstance()
-        try audioSession.setCategory(AVAudioSessionCategoryRecord)
-        try audioSession.setMode(AVAudioSessionModeMeasurement)
-        try audioSession.setActive(true, with: .notifyOthersOnDeactivation)
-        guard let inputNode = audioEngine.inputNode else { fatalError("Audio engine has no input node") }
-        
-        // 3
-        self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-        guard let recognitionRequest = recognitionRequest else { fatalError("Unable to created a SFSpeechAudioBufferRecognitionRequest object") }
-        self.recognitionRequest.shouldReportPartialResults = true
-        
-        // 4
-        self.recognitionTask = self.speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in 
-            
-            var isFinal = false
-            
-            // 5
-            if let result = result {
-                self.textView.text = result.bestTranscription.formattedString
-                isFinal = result.isFinal
-            }
-            
-            // 6
-            if error != nil || isFinal {
-                self.audioEngine.stop()
-                inputNode.removeTap(onBus: 0)
-                
-                self.recognitionRequest = nil
-                self.recognitionTask = nil
-                
-                self.recordButton.isEnabled = true
-            }
-        }
-        
-        // 7
-        let recordingFormat = inputNode.outputFormat(forBus: 0)
-        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
-            self.recognitionRequest?.append(buffer)
-        }
-  
-        audioEngine.prepare()
-        
-        try audioEngine.start()
+    let recordingFormat = inputNode.outputFormat(forBus: 0)
+    inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
+        self.recognitionRequest?.append(buffer)
+    }
+
+    audioEngine.prepare()
+    try audioEngine.start()
 }
-```
+{% endhighlight %}
 
-1. Cancel current speech recognition task if running
+Let's break down the parts.
 
-2. Prepare for the audio recording, `AVAudioEngine` is required to process the input audio signals
+* Lines 3-6: cancel current speech recognition task if one is running
+* Lines 8-12: prepare for the audio recording, `AVAudioEngine` is required to process the input audio signals
+* Lines 14-16: initialize speech recognition request ; here we choose to retrieve partial results as soon as they’re available (when words are recognized), because it can take some time (several seconds) for the server to finalize the result of recognition and finally send it back
+* Lines 18: set the speech recognition task with the request: the completion handler will be called each time its state change (cancelled, new input, final results, etc.)
+* Lines 22-25: check if partial results are available and display it
+* Lines 27-33: final results: stop microphone and clean speech recognition objects
+* Lines 36-42: add microphone input to speech recognition request and start microphone
 
-3. Init speech recognition request ; here we choose to retrieve partial results as soon as they’re available (when words are recognized), because it can take some time (several seconds) for the server to finalize the result of recognition and finally send it back
-
-4. Set the speech recognition task with the request: the completion handler will be called each time its state change (cancelled, new input, final results, etc.)
-
-5. Check if partial results are available and display it
-
-6. Final results: stop microphone and clean speech recognition objects
-
-7. Add microphone input to speech recognition request and start microphone
-
-## Task delegate
+{% info %}
 
 What if you want more control over speech recognition task? A delegate is available! Just conform to `SFSpeechRecognitionTaskDelegate` protocol. Here a few methods available:
 
 * `speechRecognitionTask(_:didHypothesizeTranscription:)`: a new transcription is available
-
 * `speechRecognitionTask(_:didFinishRecognition:)`: final recognition completed
-
 * `speechRecognitionTaskFinishedReadingAudio(_:)`: no longer accepting input data
 
-## Triggering
+{% endinfo %}
 
-Finally, launch the recognition. Assume we bind this method to an `UIButton`:
+Finally, we launch the recognition. Assume we bind this method to an `UIButton`:
 
-```swift
+{% highlight swift %}
 @IBAction func recordButtonTapped() {
     if audioEngine.isRunning {
         audioEngine.stop()
         recognitionRequest?.endAudio()
         recordButton.isEnabled = false
     } else {
-        try! startRecording()
+        try? startRecording()
     }
 }
-```
+{% endhighlight %}
 
 Start only occurs when microphone is not already running, so we only have one task running at a time.
+
+# What are you saying?
 
 {% include 
     image.html 
     src="speech-recognition-demo.gif"
     alt="Demo project"
     caption="Demo project"
+    style="half"
 %}
 
-The project (based on Apple’s sample code *SpeakToMe*) [is available on GitHub](https://github.com/gaelfoppolo/SpeakToMe).
+The sample project above (based on Apple’s sample code *SpeakToMe*) [is available on GitHub](https://github.com/gaelfoppolo/SpeakToMe).
 
-# File based recognition
+# Listen to this
 
 It is also possible to use file as data input. Even if the API wasn’t designed for that purpose, it can be useful to transcript lyrics, podcast or [generate live subtitles of a video](https://github.com/zats/SpeechRecognition).
 
-And it does not need much change to work.
+And it does not need much changes to work. Update the current code with these:
 
-## Request object type
-
-```swift
+{% highlight swift %}
 private var recognitionRequest: SFSpeechURLRecognitionRequest?
-```
 
-## `startRecording()` function
-
-```swift
 private func startRecording() throws {
     
     if let recognitionTask = recognitionTask {
@@ -277,13 +262,7 @@ private func startRecording() throws {
         }
     }
 }
-```
 
-Instead of the audio engine, the path of a file is required, it will be played internally automatically by the recognizer.
-
-## Trigger
-
-```swift
 @IBAction func recordButtonTapped() {
     if (self.recognitionTask?.state == .running) {
         self.recognitionTask?.finish()
@@ -293,19 +272,8 @@ Instead of the audio engine, the path of a file is required, it will be played i
         try! startRecording()
     }
 }
-```
+{% endhighlight %}
+
+Instead of the audio engine, the path of a file is required, it will be played internally automatically by the recognizer.
 
 Task state is check instead of audio input state.
-
-*That’s all!*
-
-# References
-[https://developer.apple.com/reference/speech](https://developer.apple.com/reference/speech)
-
-[https://developer.apple.com/reference/speech/sfspeechrecognizerdelegate](https://developer.apple.com/reference/speech/sfspeechrecognizerdelegate)
-
-[https://developer.apple.com/reference/speech/sfspeechrecognitiontaskdelegate](https://developer.apple.com/reference/speech/sfspeechrecognitiontaskdelegate)
-
-[https://developer.apple.com/videos/play/wwdc2016/509/](https://developer.apple.com/videos/play/wwdc2016/509/)
-
-[https://developer.apple.com/library/content/samplecode/SpeakToMe/Introduction/Intro.html#//apple_ref/doc/uid/TP40017110](https://developer.apple.com/library/content/samplecode/SpeakToMe/Introduction/Intro.html#//apple_ref/doc/uid/TP40017110)

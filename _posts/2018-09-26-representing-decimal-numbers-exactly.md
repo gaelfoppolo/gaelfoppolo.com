@@ -7,58 +7,59 @@ excerpt: Most decimal fractions cannot be represented exactly on our modern comp
 
 Recently, I came across an article, highlighting how quickly and dramatically floating point roundoff errors can cause things to fall apart, given the right conditions[^goneWrong], in our modern programming languages.
 
-*Note: Some assumptions might not be fully correct. Feel free to correct me if spot any mistakes!*
+{% info %}
+Some assumptions might not be fully correct. Feel free to correct me if spot any mistakes!
+{% endinfo %}
 
-## A representation problem
+# A representation problem
 
 Modern computer use binary representation to store decimals. That's mean they can only use a combination of $2^n$.
+
+For example **101.10** is **5.5** in binary ($4 + 1 + \frac{1}{2}$).
 
 |    1    |    0    |    1    |  .   |       1       |       0       |
 | :-----: | :-----: | :-----: | :--: | :-----------: | :-----------: |
 |    4    |    2    |    1    |  .   | $\frac{1}{2}$ | $\frac{1}{4}$ |
 | $2^{2}$ | $2^{1}$ | $2^{0}$ |      |   $2^{-1}$    |   $2^{-2}$    |
 
-This is **5.5** in binary ($4 + 1 + \frac{1}{2}$).
-
-We'll try now to represent another number, **0.1**, in binary.
-
+But now, let's try to represent **0.1**, in binary.
 
 $$
-2^{-4} + 2^{-5} = 0.09375\\
-2^{-4} + 2^{-5} + 2^{-6} = 0.109375\\
-2^{-4} + 2^{-5} + 2^{-8} = 0.09765625
+2^{-4} + 2^{-5} = 0.09375~\text{(not enough)}\\
+2^{-4} + 2^{-5} + 2^{-6} = 0.109375~\text{(too much)}\\
+2^{-4} + 2^{-5} + 2^{-8} = 0.09765625~\text{(not enough)}\\
+...
 $$
 
 We could go continue like this for ages, and still only approximate **0.1**.
 
-The problem lies in the fact our metric system uses base 10 fractions, decimals, but floating-point numbers are usually represented as base 2 fractions.
+The problem lies in the fact our metric system uses base 10 fractions, known as decimals, but floating-point numbers are usually represented as base 2 fractions.
 
 Unfortunately, most decimal fractions cannot be represented exactly as binary fractions. A consequence is that, in general, the decimal floating-point numbers you enter are only approximated by the binary floating-point numbers actually stored in the machine.
 
 Let's illustrate with a simple example, in Swift.
 
-```swift
+{% highlight swift %}
 let a: Float = 0.1
 let b: Double = 0.1
+{% endhighlight %}
+
+The value of `a` and `b`, if we print it usually, *is* 0.1.
+
+However it’s easy to forget that the actual stored value is an approximation to the original decimal fraction. Printing more digits, we would see this.
+
 ```
-
-The value of `a` and `b`, if we print it, **is** 0.1.
-
-However it’s easy to forget that the actual stored value is an approximation to the original decimal fraction. Printing more digits, we would see:
-
-```swift
 (a) 0.10000000149011611938
 (b) 0.10000000000000000555
 ```
 
 The value is not **exactly** what we hoped. The same kind of things is observable in all languages that support IEEE-754 floating-point arithmetic.
 
-## Muller’s Recurrence
+# Muller’s Recurrence
 
 We could easily argue that we usually don't need that much precision, and that the representation produced is generally enough for us. This is true. But sometimes when the right conditions are met, floating-point representation might break and produces unexpected results.
 
-Jean-Michel Muller is a French computer scientist specialized in finding ways to break computers using math. One of his best-known problems is his recurrence formula:
-
+Jean-Michel Muller is a French computer scientist specialized in finding ways to break computers using math. One of his best-known problems is his recurrence formula.
 
 $$
 f(y,z) = 108-\frac{815/1500z}{y}\\
@@ -67,16 +68,11 @@ x_1 = 4.25\\
 x_n = f(x_{n-1}, x_{n-2})
 $$
 
+We're going to compute $x_{n}$ for a large value of $n$ and try to infer the limit. Let's begin with $n = 25$.
 
-Really straightforward, nothing fancy or complex. 
+First, we define a generic Swift code that implements the formula, and the main of our program.
 
-We're going to compute $x_{n}$ for a large value of $n$ and try to infer the limit. 
-
-We begin with $n = 25$.
-
-First, we define a generic Swift code that implements the formula:
-
-```swift
+{% highlight swift %}
 func f<T>(y: T, z: T) -> T {
     return 108 - (815-1500/z)/y
 }
@@ -91,18 +87,14 @@ func xvalues<T>(n: Int) -> [T] {
     }
     return xi
 }
-```
 
-And the main of our program:
-
-```swift
 let N: Int = 25
 let xi = xvalues(n: N)
 
 for i in 0..<N {
     print(String(format: "%i | %@", i, xi[i].description))
 }
-```
+{% endhighlight %}
 
 We now use this with the double floating point arithmetic implementation of Swift, `Double`.
 
@@ -145,11 +137,11 @@ With this precision, as $i$ increases, the result converges toward 100. Great, w
 
 Unfortunately, this recurrence actually converges to 5.
 
-### Why this gigantic round-off error?
+## Why this gigantic round-off error?
 
 There are two main reasons: the design of this formula and the way the computer store the floating point number.
 
-Computer has a finite memory and we saw they represent numbers a combination of $2^n$. This limited memory requires the need to make trades-off, especially regarding the number of combinations. The number of combinations defines the "precision" of the number it represents. For example `Float` has about 6 digits precision whereas `Double` has about 15 digits precision.
+A computer has a finite memory and we saw earlier, they represent numbers a combination of $2^n$. This limited memory requires the need to make trades-off, especially regarding the number of combinations. The number of combinations defines the "precision" of the number it represents. For example `Float` has about 6 digits precision whereas `Double` has about 15 digits precision.
 
 Go back to the representation of **0.1** and count the numbers of zeros after the dot, you'll  retrieve these numbers.
 
@@ -159,29 +151,27 @@ Muller designed his recurrence to produce numbers with an increasing number of d
 
 The recurrence is also designed so that a slight rounding error produces a tremendous round-off error. This happens when we wit the $15^{th}$ iteration in our example.
 
+{% info %}
 If you need further explanations, this paper gives more details[^mindless].
+{% endinfo %}
 
-## Fixed-point representation
+# Fixed-point representation
 
 Another classical representation of number is fixed-point. A value of a fixed-point is an integer that is scaled by a factor. This factor is the same for all number. And so the scaling factor defines the range of numbers you can represent.
 
-For example, 1 234 000 can be represented as 1234 by a factor of 1000.
+For example, **1 234 000** can be represented as 1234 by a factor of 1000.
 
 But does fixed-point solves our rounding problem? The short answer is **no**. 
 
 Same as floating-point number, fixed-point is limited by memory.
 
-Neither fixed point nor floating point are immune to Muller’s recurrence. Both will eventually produce the wrong answer. The question is *when*?
+Neither fixed point nor floating point are immune to Muller’s recurrence. Both will eventually produce the wrong answer. The only question you should ask yourself is *"when?"*.
 
-## Fractional's representation
+# Fractional's representation
 
 Since storing decimals is hard, why not using a method, like fixed-point, that can store without producing an error?
 
-While digging, I stumble upon Lisp and one of his dialect, Clojure.
-
-Clojure choose to represent integer division as **fractions**. 
-
-So why not use the same technique to our little problem? Using fractions as inputs just treats everything as a fraction, avoiding the problem of decimals.
+While digging, I stumble upon Lisp and one of his dialect, Clojure. Clojure choose to represent integer division as **fractions**. So why not use the same technique to our little problem? Using fractions as inputs just treats everything as a fraction, avoiding the problem of decimals.
 
 Same as before, we run the program but now using fractions of `Int`.
 
@@ -226,18 +216,16 @@ Unfortunately, we hit the `Int` limit. The numerator can't be represented using 
 
 In order to test our theory, we need an **arbitrary-precision arithmetic**.
 
-Using this, we are now able to compute $x_{100}$ and a get an accurate result:
-
+Using this, we are now able to compute much more digits and get an accurate result.
 
 $$
-\frac{19721522630525295135293987198350753758826715569420223551166026427884564}{3944304526105059027058900515174297154031550406109997834487745707081313}\\
+x_{100} = \frac{19721522630525295135293987198350753758826715569420223551166026427884564}{3944304526105059027058900515174297154031550406109997834487745707081313}\\
 \approx ~4.9999999999999999999998693362752999858
 $$
 
+Precision of the approximation is lost at $x_{173}$ and approximation is completely lost at $x_{273}$. 
 
-After some tests, I lost precision of my approximation at $x_{173}$. I completely lost my approximation at $x_{273}$. With a little more work, I'm sure we can easily do better.
-
-Finally, I was able to reach $x_{1000}$ in matter of seconds.
+Some work later, finally, I was able to reach $x_{1000}$.
 
 {% include 
     image.html 
@@ -246,7 +234,7 @@ Finally, I was able to reach $x_{1000}$ in matter of seconds.
     caption="Muller's Recurrence, with $n=1000$"
 %}
 
-## Wrapping up
+# Wrapping up
 
 Not many languages handle fractions natively although it’s a good way of storing decimals efficiently. Sure, there are some drawbacks, time consuming for example, but **if you seek extensive exactness, I encourage you to explore this perspective.**
 

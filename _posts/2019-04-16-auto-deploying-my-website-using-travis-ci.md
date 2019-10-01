@@ -3,11 +3,11 @@ title: Auto deploying my website using Travis CI
 categories: [continuous deployment]
 ---
 
-Since I set up this blog, I wanted two things : owning my data and remove any unnecessary manual operation. Using Jekyll, I already achieved the former. Let's achieve the latter in 50 lines of code.
+Since I set up this blog, I wanted two things: owning my data and remove any unnecessary manual operation. Using Jekyll, I already achieved the former. Let's achieve the latter in 50 lines of code.
 
 While figuring things out, I decided to document my solution, so that others could do the same, without the burden part. 
 
-## Continuous Deployment
+# Continuous Deployment
 
 Continuous Deployment is the practice of deploying small changes frequently — rather than deploying a big change at the end of a development cycle. For example, GitHub deploys into production about 80 times a day.
 
@@ -15,11 +15,11 @@ The goal is to build healthier software by developing and testing in smaller inc
 
 ## Say hi to Travis
 
-Travis CI is a free Continuous Integration service for building, testing and deploying your GitHub projects. The service is free for open source repositories. 
+[Travis CI](https://travis-ci.org) is a free Continuous Integration service for building, testing and deploying your GitHub projects. The service is free for open source repositories. 
 
 Travis allows us to have reproducible and clean builds, notifications, conditionals and a lot more. This is exactly what I want.
 
-## Workflow
+# Workflow
 
 Our workflow will be simple, a single job with several phases.
 
@@ -32,14 +32,14 @@ Our workflow will be simple, a single job with several phases.
 The complete job lifecycle in Travis is [described here](https://docs.travis-ci.com/user/job-lifecycle#the-job-lifecycle).
 {% endstandard %}
 
-### Configure
+## Configure
 
-To tell Travis CI what to do, we have to declare a `.travis.yml` file. Begin to fill it with the following content:
+To tell Travis CI what to do, we have to declare a `.travis.yml` file. Begin to fill it with the following content.
 
-```yaml
+{% highlight yaml %}
 os: osx
 language: ruby
-rvm: 2.5.0
+rvm: 2.6.0
 sudo: false
 
 notifications:
@@ -51,7 +51,7 @@ notifications:
 
 before_install:
   - gem update
-```
+{% endhighlight %}
 
 This is quite self-explanatory. We want to use macOS, our project is Ruby based and we wish to have email notifications. That our environment.
 
@@ -61,38 +61,43 @@ The first phase also takes place, before installing our dependencies, we make ou
 Notice the `$EMAIL` variable. With Travis we can declare environment variables, which can be used to hold information. The e-mail is a sensitive information, hence we use a "Repository Environment Variable". To define variables, make sure you’re logged in, navigate to the repository in Travis, choose “Settings” from the cog menu, and click on “Add new variable” in the [“Environment Variables” section](https://docs.travis-ci.com/user/environment-variables#defining-variables-in-repository-settings).
 {% endinfo %}
 
-### Install
+## Install
 
 Next up, we install the dependencies.
 
-```yaml
+{% highlight yaml %}
 install:
   - bundle install
-```
+{% endhighlight %}
 
-### Build
+## Build
 
 In this phase, we build our website.
 
-First, we declare a new type of environment variable. This one is located inside the `.travis.yml` file, because there is no sensitive information. `JEKYLL_ENV` is a [Jekyll variable](https://jekyllrb.com/docs/configuration/environments/), and `JEKYLL_CONF` is one of mine.
+First, we declare a new type of environment variable. This one is located inside the `.travis.yml` file, because there is no sensitive information. `JEKYLL_ENV` is a [Jekyll variable](https://jekyllrb.com/docs/configuration/environments/), `JEKYLL_CONF` and `LOCAL_FOLDER` are ones of mine.
 
-```yaml
+{% highlight yaml %}
 env:
   global:
   - JEKYLL_ENV=production
+  - LOCAL_FOLDER=_site
   - JEKYLL_CONF=_config.yml
-```
+{% endhighlight %}
 
 Coming next, the generation of the blog.
 
-```yaml
+{% highlight yaml %}
 script:
   - bundle exec jekyll build --config $JEKYLL_CONF
-```
+  - bundle exec htmlproofer ./$LOCAL_FOLDER --check-favicon --check-html --http_status_ignore 999 --disable-external
+  - mv $LOCAL_FOLDER $REMOTE_FOLDER
+{% endhighlight %}
 
 I don't have tests (yet), but I could have run them in the `before_script` phase, for example. If they'd fail, my job would  also fail. The build and deploy phases would not occur.
+At the moment I use [HTMLProofer](https://github.com/gjtorikian/html-proofer) to check the HTML validity (links, etc.).
+`$REMOTE_FOLDER` is an environment variable. 
 
-### Deploy
+## Deploy
 
 We are at the core of the job. Our content is ready, we need to deliver it onto our web server.
 
@@ -100,7 +105,7 @@ Travis offers a plethora of deployment strategies, to numerous providers like AW
 
 Using SSH implies having the private key available in the Travis build. But we don't want having this highly sensitive information in the GitHub repository. Well, not in that form. So first, we need to encrypt the private key to make it readable only by Travis.
 
-#### One-time configuration
+### One-time configuration
 
 The steps are:
 
@@ -109,7 +114,7 @@ The steps are:
 3. Encrypt the private key and add it to Travis
 4. Commit the encrypted key in the repository
 
-```shell
+{% highlight shell %}
 ssh-keygen -t rsa -b 4096 -C 'build@travis-ci.org' -f ./deploy_rsa
 # enter an empty passphrase
 
@@ -123,15 +128,15 @@ travis login --org --auto
 travis encrypt-file deploy_rsa --add
 
 git commit -m "Add encrypted SSH private key" deploy_rsa.enc
-```
+{% endhighlight %}
 
 The Travis CLI utility created an encrypted version of the private key and store the decryption key as an environment variable on Travis. It also added some lines to the `.yml` file which will decrypt the private key file during the build.
 
-#### Job configuration
+### Job configuration
 
 `rsync` is a powerful utility for efficiently transferring files between two computers. On macOS, the utility is available through HomeBrew. The package will be installed before our workflow kicks in, at environment configuration. Don't forget to add these two new environment variables as well.
 
-```yaml
+{% highlight yaml %}
 addons:
   homebrew:
     packages:
@@ -140,8 +145,7 @@ addons:
 env:
   global:
   - DEPLOY_KEY=deploy_rsa
-  - LOCAL_PATH=_site
-```
+{% endhighlight %}
 
 The last step of our configuration will be composed of three phases:
 
@@ -149,7 +153,7 @@ The last step of our configuration will be composed of three phases:
 - Deployment, this is where `rsync` does its part, uploading the blog into our web server, securely. I choose to only deploy the `master` branch.
 - After deployment, we do some house cleaning, for safety purpose, even if Travis's builds are destroyed afterwards.
 
-```yaml
+{% highlight yaml %}
 before_deploy:
 - ssh-keyscan -t rsa -H $HOST >> $HOME/.ssh/known_hosts
 - openssl aes-256-cbc -K $encrypted_XXXXXXXX_key -iv $encrypted_XXXXXXXX5_iv -in $DEPLOY_KEY.enc -out /tmp/$DEPLOY_KEY -d
@@ -160,25 +164,23 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: rsync --recursive --relative --delete-after --progress --stats $LOCAL_PATH $USERNAME@$HOST:$REMOTE_PATH
+  script: rsync --recursive --relative --delete-after --progress --stats $REMOTE_FOLDER $USERNAME@$HOST:$REMOTE_PATH
   on:
     branch: master
 
 after_deploy:
 - ssh-add -D /tmp/$DEPLOY_KEY
 - rm /tmp/$DEPLOY_KEY
-```
+{% endhighlight %}
 
 Same as before, notice the new environment variables. Add the three of them as "Repository Environment Variable", with the proper values: `$HOST`, `$USERNAME` and `$REMOTE_PATH`.  
 
-## Wrapping up
+# Wrapping up
 
-The complete file follows:
-
-```yaml
+{% highlight yaml %}
 os: osx
 language: ruby
-rvm: 2.5.0
+rvm: 2.6.0
 sudo: false
 
 notifications:
@@ -192,7 +194,7 @@ env:
   global:
   - JEKYLL_ENV=production
   - DEPLOY_KEY=deploy_rsa
-  - LOCAL_PATH=_site
+  - LOCAL_FOLDER=_site
   - JEKYLL_CONF=_config.yml
 
 addons:
@@ -208,10 +210,12 @@ install:
 
 script:
   - bundle exec jekyll build --config $JEKYLL_CONF
+  - bundle exec htmlproofer ./$LOCAL_FOLDER --check-favicon --check-html --http_status_ignore 999 --disable-external
+  - mv $LOCAL_FOLDER $REMOTE_FOLDER
 
 before_deploy:
 - ssh-keyscan -t rsa -H $HOST >> $HOME/.ssh/known_hosts
-- openssl aes-256-cbc -K $encrypted_57051782bb65_key -iv $encrypted_57051782bb65_iv -in $DEPLOY_KEY.enc -out /tmp/$DEPLOY_KEY -d
+- openssl aes-256-cbc -K $encrypted_XXXXXXXX_key -iv $encrypted_XXXXXXXX5_iv -in $DEPLOY_KEY.enc -out /tmp/$DEPLOY_KEY -d
 - eval "$(ssh-agent -s)"
 - chmod 600 /tmp/$DEPLOY_KEY
 - ssh-add /tmp/$DEPLOY_KEY
@@ -219,14 +223,16 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: rsync --recursive --relative --delete-after --progress --stats $LOCAL_PATH $USERNAME@$HOST:$REMOTE_PATH
+  script: rsync --recursive --relative --delete-after --progress --stats $REMOTE_FOLDER $USERNAME@$HOST:$REMOTE_PATH
   on:
     branch: master
 
 after_deploy:
 - ssh-add -D /tmp/$DEPLOY_KEY
 - rm /tmp/$DEPLOY_KEY
-```
+{% endhighlight %}
+
+or [here](https://github.com/gaelfoppolo/gaelfoppolo.com/blob/master/.travis.yml) for an up-to-date version.
 
 You can now deploy automatically by pushing new content on the master branch, multiple times a day, and, avoiding any misfortune from using your own machine.
 

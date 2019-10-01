@@ -7,7 +7,7 @@ Higher-order functions are functions that take one or more functions as argument
 
 Let's take an example.
 
-```swift
+{% highlight swift %}
 func performArithmeticalOperation(_ x: Int, operation: (Int) -> Int) -> Int {
     return operation(x)
 }
@@ -19,13 +19,13 @@ func double(_ x: Int) -> Int {
 performArithmeticOperation(4, operation: double) // -> 8
 // as trailing closure
 performArithmeticOperation(4) { $0 / 2 } // -> 2
-```
+{% endhighlight %}
 
 A function that can perform any type of arithmetical operation on `Int`. 
 
 Let's assume an operator function might raise an error. 
 
-```swift
+{% highlight swift %}
 enum RandomError: Error {
     case myError
 }
@@ -37,11 +37,11 @@ func random(_ x: Int) throws -> Int {
         throw RandomError.myError
     }
 }
-```
+{% endhighlight %}
 
 The compiler now rejects us when calling the high-order function, because the signature of `performArithmeticalOperation` does not match. We must update the `performArithmeticalOperation` signature and surround its calls with a do catch block. Yikes.
 
-```swift
+{% highlight swift %}
 func performArithmeticalOperation(_ x: Int, operation: (Int) throws -> Int) throws -> Int {
     return try operation(x)
 }
@@ -51,7 +51,7 @@ do {
 } catch let error {
     dump(error) // -> myError
 }
-```
+{% endhighlight %}
 
 And we can't call `performArithmeticalOperation` using the `double` function without a do catch block, even if we know the function will never throw! A lot of unnecessary boilerplate code to come.
 
@@ -61,12 +61,12 @@ Swift already embed quantity of higher-order functions and nevertheless we don't
 
 Looking closely to their signature, you can notice a strange keyword, `rethrows`.
 
-```swift
+{% highlight swift %}
 func map<T>(_ transform: (Element) throws -> T) rethrows -> [T] 
 func flatMap<SegmentOfResult>(_ transform: (Element) throws -> SegmentOfResult) rethrows -> [SegmentOfResult.Element] where SegmentOfResult : Sequence 
 func compactMap<ElementOfResult>(_ transform: (Element) throws -> ElementOfResult?) rethrows -> [ElementOfResult] 
 func filter(_ isIncluded: (Self.Element) throws -> Bool) rethrows -> [Self.Element] 
-```
+{% endhighlight %}
 
 Only a quick section of our favorite book, The Swift Programming Language, mention it:
 
@@ -74,7 +74,7 @@ Only a quick section of our favorite book, The Swift Programming Language, menti
 
 Using this keyword, the compiler is now able to check at compile time if the function parameter will throw an error. `double` will never, so it does not need a try catch block. You'll even get a warning if you add it anyway.
 
-```swift
+{% highlight swift %}
 func performArithmeticalOperation(_ x: Int, operation: (Int) throws -> Int) rethrows -> Int {
     return try operation(x)
 }
@@ -86,4 +86,4 @@ do {
 } catch let error {
     dump(error) // -> myError
 }
-```
+{% endhighlight %}

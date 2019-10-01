@@ -10,11 +10,11 @@ But sometimes, we need more control. Quickly, we end up declaring our coding key
 
 Eventually we'll get exactly what we want. Well, *almost* exactly.
 
-## The issue
+# The issue
 
 Let's say we want to display a list of items, retrieved from an API.
 
-```swift
+{% highlight swift %}
 enum Planet: String, Decodable {
   case mercury, venus, earth, mars, jupiter, saturn, uranus, neptune
 }
@@ -49,11 +49,15 @@ do {
 } catch let error {
     dump(error)
 }
-```
+{% endhighlight %}
 
 A naive data model and a quick JSON mock. A `PlanetarySystem` with a list of `Planet`. The JSON data contains a list of `PlanetarySystem`.
 
-Executing this code will throw a `DecodingError.dataCorrupted`, with the following, rather explicit, debug description : `Cannot initialize Planet from invalid String value pluto`.
+Executing this code will throw a `DecodingError.dataCorrupted`, with the following, rather explicit, debug description.
+
+{% error %}
+Cannot initialize Planet from invalid String value pluto.
+{% enderror %}
 
 And this is where the problem lies. We can't be sure the data will be valid.
 
@@ -63,7 +67,7 @@ And this is where the problem lies. We can't be sure the data will be valid.
 
 In order to achieve this, we need to build a fault tolerant system, one that will allow lossy decoding of array elements.
 
-## The idea
+# The idea
 
 The way `Decodale`works when processing a collection is simple : it will throw as soon as one of the children's collection throws. In our example, `Decodable` throws at the very end, when reaching the `pluto`value. The value is not a part of the enum ; the decoding of that item and so the decoding of the collection. All the data process before is *throw* away. A fail strategy.
 
@@ -77,7 +81,7 @@ We'll use a generic enum to represent it. The current `decodeItem` method will e
 - return nil when using remove strategy
 - throw an error when using fail strategy
 
-```swift
+{% highlight swift %}
 enum InvalidElementStrategy<T> {
     case remove
     case fail
@@ -95,7 +99,7 @@ enum InvalidElementStrategy<T> {
         }
     }
 }
-```
+{% endhighlight %}
 
 The second step is a bit tougher. Our strategy is now defined, we want to use it, when processing a collection.
 
@@ -110,7 +114,7 @@ The job is then as described earlier. We iterate over the container, try to deco
   - and the strategy is removing : nothing happens, we continue looping over the container
   - and the strategy is failing : we throw, as usual, and the decoding stop
 
-````swift
+{% highlight swift %}
 extension KeyedDecodingContainer {
 
     private struct EmptyDecodable: Decodable {}
@@ -134,21 +138,21 @@ extension KeyedDecodingContainer {
         return array
     }
 }
-````
+{% endhighlight %}
 
 Updating our example code, and we have a rather simple fault tolerant decoding system.
 
-```swift
+{% highlight swift %}
 self.planets = try container.decode([Planet].self, forKey: .planets, invalidElementStrategy: .remove)
-```
+{% endhighlight %}
 
 I love the fact that if all of our objects are corrupted and we choose the remove strategy, we'll get an empty array and not an error. 
 
-## Next step
+# Next step
 
 This solution works great when using a wrapper object, like the `PlanetarySystem`. Not with a plain object like `Planet`.
 
-```swift
+{% highlight swift %}
 let json = """
 ["mercury", "mars", "saturn", "pluto"]
 """
@@ -159,13 +163,13 @@ do {
 } catch let error {
     dump(error)
 }
-```
+{% endhighlight %}
 
 Executing this code will throw the exact same error as before. And same as before, we would need to create a new method, in `JSONDecoder` this time, to have something like this :
 
-```swift
+{% highlight swift %}
 func decode<T>(_ type: [T].Type, from data: Data, invalidElementStrategy: InvalidElementStrategy<T> = .fail) throws -> [T] where T : Decodable
-```
+{% endhighlight %}
 
 Unfortunately, we hit the limit of our possibilities. In order to decode the `Data` we would need access to the internal `_JSONDecoder` type, which is... internal. Without it, we cannot do more, unless rewriting our own `JSONDecoder`, which would be a terrible mistake and a waste, if you ask me.
 
@@ -173,18 +177,6 @@ Unfortunately, we hit the limit of our possibilities. In order to decode the `Da
 If you wish to know more about this, Greg Heo wrote a [full article on how JSONDecoder works internally](https://swiftunboxed.com/stdlib/json-decoder-decodable/).
 {% endinfo %}
 
-## What you can do
+# What you can do
 
-Since September 2017, an issue about this subject is open on the Swift bug tracker, [SR-5953](https://bugs.swift.org/browse/SR-5953). Unfortunately, not much has been made since. So, instead of trying to write your own decoder and if this issue is important to you, feel free to upvote and comment on the issue! 
-
-## Reference
-
-[https://bugs.swift.org/browse/SR-5953](https://bugs.swift.org/browse/SR-5953)
-
-[https://docs.swift.org/swift-book/LanguageGuide/Enumerations.html](https://docs.swift.org/swift-book/LanguageGuide/Enumerations.html)
-
-[https://swiftunboxed.com/stdlib/json-decoder-decodable/](https://swiftunboxed.com/stdlib/json-decoder-decodable/)
-
-[http://kean.github.io/post/codable-tips-and-tricks#1-safely-decoding-arrays](http://kean.github.io/post/codable-tips-and-tricks#1-safely-decoding-arrays)
-
-[https://paul-samuels.com/blog/2019/03/03/handling-bad-input-with-decodable/](https://paul-samuels.com/blog/2019/03/03/handling-bad-input-with-decodable/)
+Since September 2017, an issue about this subject is open on the Swift bug tracker, [SR-5953](https://bugs.swift.org/browse/SR-5953). Unfortunately, not much has been made since. So, instead of trying to write your own decoder and if this issue is important to you, feel free to upvote and comment on the issue!

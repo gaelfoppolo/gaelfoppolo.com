@@ -23,7 +23,7 @@ This allows the display of multiple colors, gradients, shades and even transpare
 
 We also refer to OTS fonts as “**color fonts**”, and you've been using them for years already.
 
-## Emoji
+# Emoji
 
 The Unicode Standard began to add emoji in its sixth version, in late 2011. A lot of actors integrated them in their products and platforms, but this was just a start. Unicode emoji are handled as text, and color is an essential aspect of the emoji experience. This led to a need to create mechanisms for displaying multicolor glyphs. Each actor then created its own format to display it own emojis. So emojis are color fonts.
 
@@ -34,7 +34,7 @@ The Unicode Standard began to add emoji in its sixth version, in late 2011. A lo
     caption="Emoji are SVG fonts"
 %}
 
-## Color font formats
+# Color font formats
 
 All of major players have previously developed and implemented their own proprietary color formats to display emojis, for the gaming, or printing purpose.
 
@@ -64,7 +64,7 @@ OTS is both SVG and bitmap compatible.
 
 As you see, the OTS standard is relatively new, and therefore as of 2017, no operating system supports OTS fonts. But it's changing!
 
-## OTS in Apple ecosystem
+# OTS in Apple ecosystem
 
 While browsing the headers of the new Xcode 10 beta 2, I noticed a completely new framework in CoreText, **OTSVG.framework**. 
 
@@ -88,23 +88,24 @@ You can also find the related new [data types](https://developer.apple.com/docum
 
 This new framework is available on iOS 12.0+, macOS 10.14+, watchOS 5.0+, tvOS 12.0+ starting Xcode 10 beta 2.
 
-### How to use it?
+## How to use it?
 
 Well, this is the easy part, you don't need to do anything else to use them. Either select the font in the Interface Builder or set it in the code. For example to use the [Playbox](https://colorfontweek.fontself.com/#playbox) font with a UILabel:
 
-```swift
+{% highlight swift %}
 label.text = "An OpenType SVG font on iOS!"
 label.font = UIFont(name: "PlayboxRegular", size: 30)
-```
+{% endhighlight %}
 
 {% include 
     image.html 
     src="opentype-playbox-ios12.png"
     alt="Playbox font on iOS 12"
     caption="Playbox font on iOS 12"
+	style="half"
 %}
 
-### What about retrocompatibility?
+## What about retrocompatibility?
 
 iOS 11 and previous **will not crash**, they'll just display a plain black version of the glyphs. That's neat, right?
 
@@ -113,22 +114,23 @@ iOS 11 and previous **will not crash**, they'll just display a plain black versi
     src="opentype-playbox-ios11.png"
     alt="Playbox font on iOS 11"
     caption="Playbox font on iOS 11"
+	style="half"
 %}
 
-### Font features
+## Font features
 
 A ma­jor goal of Open­Type was to pro­vide bet­ter sup­port for in­ter­na­tional lan­guages than its pre­de­ces­sors. In order to do this, Open­Type introduced lay­out fea­tures, com­monly known as font features, that al­low fonts to spec­ify what and how these features should be in­serted into the text. And of course, color fonts have font features. 
 
 But not all color fonts have all font features. So first we need to check what are the features available in the font. I choose the font [Trajan Color](https://typekit.com/fonts/trajan-color) as example. We use [CTFontCopyFeatures(_:)](https://developer.apple.com/documentation/coretext/1509767-ctfontcopyfeatures) to extract the font features.
 
-```swift
+{% highlight swift %}
 let font = UIFont(name: "TrajanColor-Concept", size: 30)
 let features = CTFontCopyFeatures(font)
-```
+{% endhighlight %}
 
 Let's see the content of it. Don't forget to bring your [Font Feature Registry](https://developer.apple.com/fonts/TrueType-Reference-Manual/RM09/AppendixF.html).
 
-```json
+{% highlight json %}
 (
     {
         CTFeatureTypeIdentifier = 0;
@@ -180,7 +182,7 @@ Let's see the content of it. Don't forget to bring your [Font Feature Registry](
         );
     }
 )    
-```
+{% endhighlight %}
 
 Let's take the one named  "Alternative Stylistic Sets". It's identifier is 35.
 
@@ -192,7 +194,7 @@ Let's says I want the one named "Salmon", with the identifier 26. We need to fin
 
 We now have the feature we want, need to add it to our font, using a `UIFontDescriptor`.
 
-```swift
+{% highlight swift %}
 let alternativesType = [
 	UIFontDescriptor.FeatureKey.featureIdentifier: kStylisticAlternativesType,
 	UIFontDescriptor.FeatureKey.typeIdentifier: kStylisticAltThirteenOnSelector
@@ -203,13 +205,13 @@ let descriptor = font
 	            .addingAttributes(
     	            [UIFontDescriptor.AttributeName.featureSettings: [alternativesType]]
         	    )
-```
+{% endhighlight %}
 
 Finally we create a new font with this new feature.
 
-```swift
+{% highlight swift %}
 let salmonFont = UIFont(descriptor: descriptor, size: 0.0)
-```
+{% endhighlight %}
 
 {% include 
     image.html 
@@ -218,11 +220,11 @@ let salmonFont = UIFont(descriptor: descriptor, size: 0.0)
     caption="Trajan font"
 %}
 
-## Where can I get these gorgeous color fonts? 
+# Where can I get these gorgeous color fonts? 
 
 Color fonts are still new and so hard to find. You can go to [colorfonts.wtf](https://www.colorfonts.wtf), which references most of them. And if you are inspired you can even create your own with a dedicated software, [Fontself](https://www.fontself.com/).
 
-## What's next?
+# What's next?
 
 At the moment, the **OTSVG.framework** is only available in Objective-C, so I encourage you to browse the header of the framework if you want to go further. Watch closely the new betas and the documentation.
 
@@ -234,16 +236,6 @@ At the moment, the **OTSVG.framework** is only available in Objective-C, so I en
 %}
 
 There is still a lot to talk about and explore about color fonts and I hope these colorful fonts will appear on some iOS app in next fall!
-
-## References
-
-<https://helpx.adobe.com/typekit/using/ot-svg-color-fonts.html>
-
-<https://www.colorfonts.wtf/>
-
-<https://generic.cx/essays/font-descriptors/>
-
-and a big thanks to Jean-Luc Jumpertz for the [idea](https://twitter.com/JLJumpertz/status/1009493272484630529)!
 
 [^tweet]: [https://twitter.com/Litherum/status/1010205915641835521](https://twitter.com/Litherum/status/1010205915641835521)
 

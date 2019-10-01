@@ -9,13 +9,13 @@ The vast majority of countries use the most widely known calendar, the Gregorian
 
 The Japanese imperial calendar is quite unique. It is based on the legendary foundation of Japan. The calendar works like the Gregorian, except for years. Years are based on the reign of the current Emperor. When a new emperor access power, years go back to one. With each new emperor, a new era begins.
 
-```swift
+{% highlight swift %}
 let dateFormatter = DateFormatter()
 dateFormatter.calendar = Calendar.init(identifier: .japanese)
 dateFormatter.locale = Locale(identifier: "ja_JP")
 dateFormatter.dateStyle = .long
 print(dateFormatter.string(from: Date()))
-```
+{% endhighlight %}
 
 For example, this piece of code will show `平成31年5月5日`. Which is wrong. Why?
 
@@ -37,7 +37,7 @@ At the moment I do not own a device with either of these betas, so I could not v
 Fun fact: 2019 is both year 31 (Hensei) and year 1 (Reiwa), depending on the date.
 {% endinfo %}
 
-## Atypical calendar localization
+# Atypical calendar localization
 
 The Gregorian calendar also uses eras, except it doesn't change often. It's the same for 2019 years, and counting : AD (Anno Domini). 
 
@@ -58,9 +58,9 @@ However, what happens when we want to use our custom format without considering 
 
 We do this using the `dateFormat` property. Replace the instruction containing `dateStyle` with the following:
 
-```swift
+{% highlight swift %}
 dateFormatter.dateFormat = "dd/MM/yyyy"
-```
+{% endhighlight %}
 {% warning %}
 [Always use `yyyy`](https://gaelfoppolo.com/it-s-that-week-of-the-year/).
 {% endwarning %}
@@ -80,11 +80,3 @@ The only time you're allowed to use a custom `dateFormat` is when you work with 
 In any other case, especially if the date will be displayed to the user, you should use the `dateStyle` and `timeStyle` properties. 
 
 Japan is not the only country with another calendar (China, Thailand, India, etc.), so let's keep the dates simple!
-
-## References
-
-[http://unicode.org/reports/tr35/tr35-6.html#Date_Format_Patterns](http://unicode.org/reports/tr35/tr35-6.html#Date_Format_Patterns) 
-
-[https://developer.apple.com/documentation/ios_release_notes/ios_12_3_beta_4_release_notes](https://developer.apple.com/documentation/ios_release_notes/ios_12_3_beta_4_release_notes)
-
-[https://ericasadun.com/2018/12/25/iso-8601-yyyy-yyyy-and-why-your-year-may-be-wrong/](https://ericasadun.com/2018/12/25/iso-8601-yyyy-yyyy-and-why-your-year-may-be-wrong/)
