@@ -2,8 +2,8 @@
 title: Handling the @unknown
 categories:
 - swift
+date: 2020-01-12 20:25 +0100
 ---
-
 This week, I've been working on improving the code coverage of an iOS application.
 One of the scenarios I've been testing involved an enum, with a handful of cases.
 Eager to maximise my coverage, I created several test functions to cover them all.
