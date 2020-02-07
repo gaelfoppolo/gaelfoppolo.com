@@ -1,7 +1,6 @@
 ---
 title: Simulating remote push notifications
-categories:
-- xcode, ios, tool
+categories: [xcode, ios, tool]
 date: 2020-02-07 07:00 +0100
 ---
 Currently, when I want to test a part of an app involving a remote notification, I only have one choice: using a real device and the Apple Push Notification service (APNs). To send a notification, we need an *APNs device token*, which is a globally unique token that identifies a device to APNs.
