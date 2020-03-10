@@ -14,8 +14,8 @@ code, kbd, pre, samp {
 }
 
 :not(pre) > code {
-  background-color: var(--background-color);
-  color: var(--muted-text-color);
+  background-color: var(--text-color);
+  color: var(--background-color);
   border-radius: $border-radius;
 }
 
