@@ -30,8 +30,8 @@ The derivated forms of this command are well known.
 (lldb) expression -- print(myVar)
 (lldb) expr -- debugPrint(myVar)
 (lldb) e -- myVar = "myString"
-(lldb) p -- myVar = "anotherString"
-(lldb) po -- myVar
+(lldb) p myVar = "anotherString"
+(lldb) po myVar
 {% endhighlight %}
 
 # Inspecting the state
