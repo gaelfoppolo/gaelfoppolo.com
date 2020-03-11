@@ -26,13 +26,13 @@ The derivated forms of this command are well known.
 - `p`, an abbreviation for `expression -`
 - `po`, an abbreviation for `expression -O  --`
 
-``` shell
+{% highlight sh %}
 (lldb) expression -- print(myVar)
 (lldb) expr -- debugPrint(myVar)
 (lldb) e -- myVar = "myString"
 (lldb) p -- myVar = "anotherString"
 (lldb) po -- myVar
-```
+{% endhighlight %}
 
 # Inspecting the state
 
@@ -44,12 +44,12 @@ Several derivated of this command are also well known.
 - the standard `var` and `v`, abbreviations for `frame variable`
 - `vo`, an abbreviation for `frame variable -O`.
 
-``` shell
+{% highlight sh %}
 (lldb) frame variable myVar
 (lldb) var myVar
 (lldb) v myVar
 (lldb) vo myVar
-```
+{% endhighlight %}
 
 Note that using `frame variable` (or its other forms) is more efficient than `expression` to perform a simple inspection, since it uses memory reads directly, rather than evaluating an expression. When using `po`, you are evaluating the object as an expression. Be aware of the potential side effects.
 
@@ -66,11 +66,11 @@ As usual, some derivated forms of this command exist; `jump` or `j` is easier to
 
 Let's assume our program paused and we want to skip two lines ahead.
 
-``` shell
+{% highlight sh %}
 (lldb) thread jump --by 2
 (lldb) jump -b 2
 (lldb) j +2
-```
+{% endhighlight %}
 
 By doing this, the program may enter in an unstable, potentially unknown, state, since this alters the correct execution flow of the program. Be aware of the consequences.
 
